@@ -54,7 +54,9 @@ export function ShopProvider({ children }: { children: ReactNode }) {
     setReady(true);
   }, []);
   useEffect(() => {
-    if (ready) localStorage.setItem("envases3g-pedido", JSON.stringify(lines));
+    if (ready) {
+      try { localStorage.setItem("envases3g-pedido", JSON.stringify(lines)); } catch { /* The current order still works if browser storage is unavailable. */ }
+    }
   }, [lines, ready]);
   const resolved = lines.flatMap((l) => {
     const p = products.find((p) => p.slug === l.slug);

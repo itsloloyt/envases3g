@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { products } from "@/lib/catalog";
 export default function sitemap(): MetadataRoute.Sitemap {
   const base =
-    process.env.NEXT_PUBLIC_SITE_URL || "https://envases3g.vercel.app";
+    process.env.NEXT_PUBLIC_SITE_URL || "https://envases3g-itsloloyt.vercel.app";
   return [
     { url: base, priority: 1 },
     { url: base + "/productos", priority: 0.9 },
@@ -13,3 +13,4 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ];
 }
+

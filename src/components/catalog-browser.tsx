@@ -10,6 +10,7 @@ import {
   categoryName,
 } from "@/lib/catalog";
 import { ProductCard } from "./product-card";
+import subcategories from '@/data/subcategories.json';
 export function CatalogBrowser({
   items = fallbackProducts,
 }: {
@@ -26,13 +27,7 @@ export function CatalogBrowser({
   const [limit, setLimit] = useState(24);
   const [stock, setStock] = useState(false);
   const [filters, setFilters] = useState(false);
-  const subcats = Array.from(
-    new Map(
-      products
-        .filter((p) => p.category === cat && p.subcategory)
-        .map((p) => [p.subcategory, p.subcategoryName]),
-    ).entries(),
-  );
+  const subcats = subcategories.filter(s=>s.category===cat).map(s=>[s.slug,s.name]);
   const filtered = useMemo(
     () =>
       products
