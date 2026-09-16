@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { products, categories } from "@/lib/catalog";
 import { ProductCard } from "@/components/product-card";
+import photography from "@/data/product-photography.json";
 export default function Home() {
   const featured = [
     "body-125-cc-ambar",
@@ -56,8 +57,8 @@ export default function Home() {
         </div>
         <div className="hero-visual">
           <Image
-            src="/images/hero-envases.jpg"
-            alt="Envases ámbar con dosificador, spray y gotero sobre una tela natural"
+            src="/images/hero-general.svg"
+            alt="Composición abstracta de materiales, colores y formas para crear"
             fill
             priority
             sizes="(max-width: 760px) 100vw, 52vw"
@@ -116,10 +117,8 @@ export default function Home() {
           </Link>
         </div>
         <div className="category-grid">
-          {categories.slice(0, 4).map((c, i) => {
-            const p =
-              products.find((p) => p.slug === c.image) ||
-              products.find((p) => p.category === c.slug)!;
+          {categories.map((c, i) => {
+            const p = products.find((p) => p.category === c.slug)!;
             return (
               <Link
                 key={c.slug}
@@ -128,7 +127,7 @@ export default function Home() {
               >
                 <div className="category-photo">
                   <Image
-                    src={p.image}
+                    src={c.image.startsWith("http") || c.image.startsWith("/") ? c.image : ((photography as Record<string,string>)[p.slug] || p.image)}
                     alt={c.name}
                     fill
                     sizes="(max-width:600px) 46vw, 23vw"
@@ -149,15 +148,11 @@ export default function Home() {
             );
           })}
         </div>
-        <div className="more-categories">
-          <span>Y mucho más para crear:</span>
-          {categories.slice(4).map((c) => (
-            <Link key={c.slug} href={"/productos?categoria=" + c.slug}>
-              {c.name}
-              <Plus size={15} />
-            </Link>
-          ))}
-        </div>
+        <div className="catalog-total"><strong>425 productos</strong><span>Vidrio, plástico, accesorios, aromas, cosmética, alimentos y kits, con sus variantes, precios y disponibilidad del catálogo original.</span><Link href="/productos" className="text-link">Ver el catálogo completo <ArrowUpRight size={18}/></Link></div>
+      </section>
+      <section className="section container discounts-section" id="descuentos">
+        <div className="discounts-copy"><span className="eyebrow">MÁS ENVASES, MÁS POSIBILIDADES</span><h2>Descuentos vigentes<span>.</span></h2><p>Combiná diferentes productos y aprovechá los descuentos por cantidad.</p><p>En efectivo: 10% por más de 20 productos, 15% por más de 50 y 20% por más de 200. Por transferencia: 10% por más de 100 y 15% por más de 200.</p><p className="fine">No incluye líquidos, aceites, combos, promos, varillas ni línea Marena. El equipo confirma qué productos participan antes del pago.</p><Link href="/productos" className="button primary">Armá tu pedido <ArrowUpRight size={20}/></Link></div>
+        <a href="https://d22fxaf9t8d39k.cloudfront.net/a5b3f5164d93d0514b3fe551b3d849810eaa165376bb841b19e6362858363a6c99432.jpg" target="_blank" rel="noreferrer" aria-label="Ampliar imagen de descuentos vigentes"><Image src="https://d22fxaf9t8d39k.cloudfront.net/a5b3f5164d93d0514b3fe551b3d849810eaa165376bb841b19e6362858363a6c99432.jpg" alt="Descuentos por cantidad en efectivo y transferencia. Condiciones detalladas junto a la imagen." width={1024} height={669} sizes="(max-width: 900px) 100vw, 60vw"/></a>
       </section>
       <section className="featured-section">
         <div className="section container">
@@ -215,6 +210,11 @@ export default function Home() {
             </Link>
           </div>
         </div>
+      </section>
+      <section className="section container help-section" id="como-comprar">
+        <div className="section-heading"><div><span className="eyebrow">SIMPLE Y ACOMPAÑADO</span><h2>Comprar también puede ser fácil<span>.</span></h2></div><Link href="/contacto" className="text-link">Hablar con el equipo <ArrowUpRight size={18}/></Link></div>
+        <div className="buy-steps"><article><span>01</span><h3>Explorá</h3><p>Buscá por material, capacidad o categoría. En cada ficha vas a encontrar todas las tapas, válvulas y presentaciones disponibles.</p></article><article><span>02</span><h3>Armá tu pedido</h3><p>Elegí la variante y la cantidad mínima. El total se calcula automáticamente con el precio vigente.</p></article><article><span>03</span><h3>Coordinamos</h3><p>Registramos tu orden, te damos un número y abrimos WhatsApp para confirmar stock, descuentos, pago y entrega.</p></article></div>
+        <div className="faq-grid"><details><summary>¿Los precios son finales?</summary><p>Son los precios publicados por Envases 3G para cada variante. Antes de pagar confirmamos stock, descuentos aplicables y costo de entrega.</p></details><details><summary>¿Puedo comprar por cantidad?</summary><p>Sí. La imagen de descuentos vigentes explica las condiciones de efectivo y transferencia. Algunos productos están excluidos.</p></details><details><summary>¿Dónde retiro o consulto?</summary><p>Estamos en Moreno 4156, Mar del Plata. También podés escribirnos al 0223 598 4362 o por WhatsApp.</p></details></div>
       </section>
       <section className="contact-banner">
         <div className="container">

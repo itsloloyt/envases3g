@@ -2,12 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Product, currency, categoryName } from "@/lib/catalog";
+import photography from "@/data/product-photography.json";
 export function ProductCard({ product: p }: { product: Product }) {
   return (
     <article className="product-card">
       <Link className="product-image" href={"/productos/" + p.slug}>
         <Image
-          src={p.image}
+          src={(photography as Record<string,string>)[p.slug] || p.image}
           alt={p.name}
           fill
           sizes="(max-width: 600px) 46vw, (max-width: 1000px) 30vw, 23vw"

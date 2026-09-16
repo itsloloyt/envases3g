@@ -99,7 +99,8 @@ export function Footer() {
           <Link href="/contacto?tipo=arrepentimiento">
             Botón de arrepentimiento
           </Link>
-          <span>Hecho para dar forma a tus ideas.</span>
+          <Link href="/administracion/pedidos">Acceso del equipo</Link>
+          <Link href="/administracion/catalogo">Editar catálogo</Link>
         </div>
       </div>
     </footer>

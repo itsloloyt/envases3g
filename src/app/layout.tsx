@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ShopProvider } from "@/components/shop-provider";
+import { WhatsappButton } from "@/components/whatsapp-button";
 import "./globals.css";
 const dm = localFont({
   src: "../../public/fonts/dm-sans.woff2",
@@ -40,6 +41,7 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
+          <WhatsappButton />
         </ShopProvider>
       </body>
     </html>

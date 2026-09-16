@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Search,
   ShoppingBag,
@@ -15,10 +16,10 @@ export function Logo() {
   return (
     <span className="logo">
       <span className="logo-mark">
-        <Package size={28} strokeWidth={1.5} />
+        <Image src="https://d22fxaf9t8d39k.cloudfront.net/341755497af03ec86a78e6191618f1a413fd32e31b76ede124f1dc682ceba73e99432.jpeg" alt="" width={62} height={62} priority />
       </span>
       <span>
-        envases
+        ENVASES
         <span className="logo-3g">
           3G<span className="logo-dot">.</span>
         </span>

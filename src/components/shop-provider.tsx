@@ -18,6 +18,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { Product, Variant, currency, whatsapp, products } from "@/lib/catalog";
+import { CheckoutForm } from "./checkout-form";
 type Line = { key: string; slug: string; variantId: string; quantity: number };
 type Shop = {
   lines: Line[];
@@ -63,7 +64,7 @@ export function ShopProvider({ children }: { children: ReactNode }) {
     const v = p?.variants.find((v) => v.id === l.variantId);
     return p && v ? [{ ...l, p, v }] : [];
   });
-  const total = resolved.reduce((sum, l) => sum + l.v.price * l.quantity, 0);
+  const total = resolved.reduce((sum, l) => sum + Math.round(l.v.price * 100) * l.quantity, 0) / 100;
   const message =
     "Hola Envases 3G, quisiera consultar este pedido:\n\n" +
     resolved
@@ -177,21 +178,14 @@ export function ShopProvider({ children }: { children: ReactNode }) {
                 ))}
               </div>
               <div className="cart-total">
-                <span>Total de referencia</span>
+                <span>Total de productos</span>
                 <strong>{currency(total)}</strong>
               </div>
               <p className="fine">
                 Precios del catálogo original. Confirmá stock, precio final y
                 costo de entrega con el equipo antes de comprar.
               </p>
-              <a
-                className="button primary full"
-                href={whatsapp + "?text=" + encodeURIComponent(message)}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Consultar pedido por WhatsApp <ArrowUpRight size={18} />
-              </a>
+              <CheckoutForm key={JSON.stringify(lines)} lines={lines}/>
             </>
           ) : (
             <div className="empty">

@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { Product, currency, categoryName, whatsapp } from "@/lib/catalog";
 import { useShop } from "./shop-provider";
+import photography from "@/data/product-photography.json";
 export function ProductDetail({ product: p }: { product: Product }) {
   const shop = useShop();
   const [image, setImage] = useState(0);
@@ -38,7 +39,7 @@ export function ProductDetail({ product: p }: { product: Product }) {
         <div>
           <div className="detail-image">
             <Image
-              src={p.images[image]}
+              src={image === 0 ? ((photography as Record<string,string>)[p.slug] || p.images[image]) : p.images[image]}
               alt={p.name + " — imagen " + (image + 1)}
               fill
               sizes="(max-width:760px) 94vw, 48vw"
