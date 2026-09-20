@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { connection } from "next/server";
 import {
   ArrowUpRight,
   ArrowRight,
@@ -9,10 +10,14 @@ import {
   Sparkles,
   Plus,
 } from "lucide-react";
-import { products, categories } from "@/lib/catalog";
+import { categories } from "@/lib/catalog";
+import { getCatalog } from "@/lib/catalog-server";
 import { ProductCard } from "@/components/product-card";
+import { EditorialShowcase } from "@/components/editorial-showcase";
 import photography from "@/data/product-photography.json";
-export default function Home() {
+export default async function Home() {
+  await connection();
+  const products = await getCatalog();
   const featured = [
     "body-125-cc-ambar",
     "frasco-vidrio-amanecer-250-cc",
@@ -104,6 +109,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <EditorialShowcase products={featured.filter((p) => Boolean(p.price)).slice(0, 3)} />
       <section className="section container" id="categorias">
         <div className="section-heading">
           <div>

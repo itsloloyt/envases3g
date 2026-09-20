@@ -1,16 +1,16 @@
 import { notFound } from "next/navigation";
-import { products } from "@/lib/catalog";
+import { connection } from "next/server";
+import { getCatalog } from "@/lib/catalog-server";
 import { ProductDetail } from "@/components/product-detail";
 import { ProductCard } from "@/components/product-card";
-export function generateStaticParams() {
-  return products.map((p) => ({ slug: p.slug }));
-}
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  await connection();
+  const products = await getCatalog();
   const p = products.find((p) => p.slug === slug);
   return {
     title: p?.name || "Producto no encontrado",
@@ -23,6 +23,8 @@ export default async function Detail({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  await connection();
+  const products = await getCatalog();
   const p = products.find((p) => p.slug === slug);
   if (!p) notFound();
   return (

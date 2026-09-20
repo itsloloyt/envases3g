@@ -28,6 +28,12 @@ Repositorio elegido: https://github.com/itsloloyt/envases3g. Proyecto de Vercel 
 
 Los archivos binarios se preparan con `scripts/prepare-assets.mjs` durante el build. Las fuentes quedan servidas localmente por `next/font` y la imagen de portada por `next/image`, sin solicitudes a Google Fonts desde el navegador.
 
+## Planillas NHP y precios
+
+Se revisaron las planillas `nhp 20.xlsx`, `nhp 24.xlsx` y `nhp 28.xlsx` entregadas por la empresa. `scripts/analyze-nhp.py` genera un CSV con las 104 filas, el producto sugerido y cada precio con accesorio. `scripts/nhp-price-plan.py` compara esos valores con el catálogo y exige coincidencia de nombre, precio base positivo y correspondencia para todas las variantes antes de proponer una actualización. Las diferencias seguras se aplicaron a 40 productos en Supabase. Las 29 filas que siguen en `reports/nhp-skipped.json` requieren revisar nombres, valores en cero o accesorios sin equivalencia inequívoca; no se publicaron precios deducidos para ellas. `reports/nhp-price-review.csv` conserva la comparación de las 104 filas.
+
+El catálogo, las fichas y el carrito consultan Supabase en tiempo de ejecución. Esto permite que los cambios del administrador aparezcan sin volver a compilar. El checkout verifica los importes de nuevo en la base antes de registrar el pedido.
+
 ## Fuentes de imágenes
 
 Las fotos de las fichas pertenecen al catálogo original y se cargan desde su CDN, indicado en cada registro. La imagen de ambientación de portada fue obtenida de https://www.faire.com/discover/unbranded (https://cdn.faire.com/fastly/b82abce062ea60e11df4bedfadfcf8bb2b6ae2b8134d25504395dcbb2588b76d.jpeg); está identificada como inspiración y no reemplaza las fotos reales del catálogo. Tipografías DM Sans y Manrope, Google Fonts.

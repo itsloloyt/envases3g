@@ -5,6 +5,7 @@ export type Variant = {
   price: number;
   available: boolean;
   minQuantity: number;
+  image?: string;
 };
 export type Product = {
   id: string;

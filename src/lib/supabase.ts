@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import config from '@/data/supabase-config.json';
+export const adminEmails = ["envases3g@gmail.com", "itsloloyt@gmail.com"];
 export function database() {
   const url = process.env.SUPABASE_URL || config.url;
   const key = process.env.SUPABASE_PUBLISHABLE_KEY || config.publishableKey;

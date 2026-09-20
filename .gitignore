@@ -7,5 +7,5 @@ research/
 *.tsbuildinfo
 test-results/
 src/data/products.json
-public/images/
+public/images/hero-envases.jpg
 public/fonts/

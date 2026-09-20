@@ -29,6 +29,7 @@ const Context = createContext<Shop | null>(null);
 export const useShop = () => useContext(Context)!;
 export function ShopProvider({ children }: { children: ReactNode }) {
   const [lines, setLines] = useState<Line[]>([]);
+  const [catalog, setCatalog] = useState<Product[]>(products);
   const [ready, setReady] = useState(false);
   const dialog = useRef<HTMLDialogElement>(null);
   useEffect(() => {
@@ -59,8 +60,18 @@ export function ShopProvider({ children }: { children: ReactNode }) {
       try { localStorage.setItem("envases3g-pedido", JSON.stringify(lines)); } catch { /* The current order still works if browser storage is unavailable. */ }
     }
   }, [lines, ready]);
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch("/api/catalogo", { signal: controller.signal, cache: "no-store" })
+      .then((response) => response.ok ? response.json() : null)
+      .then((items: Product[] | null) => {
+        if (Array.isArray(items) && items.length) setCatalog(items);
+      })
+      .catch(() => {});
+    return () => controller.abort();
+  }, []);
   const resolved = lines.flatMap((l) => {
-    const p = products.find((p) => p.slug === l.slug);
+    const p = catalog.find((p) => p.slug === l.slug);
     const v = p?.variants.find((v) => v.id === l.variantId);
     return p && v ? [{ ...l, p, v }] : [];
   });

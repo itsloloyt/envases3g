@@ -24,6 +24,8 @@ export function ProductDetail({ product: p }: { product: Product }) {
   const [quantity, setQuantity] = useState(variant?.minQuantity || 1);
   const price = variant?.price ?? p.price;
   const available = variant?.available ?? p.available;
+  const baseImage = image === 0 ? ((photography as Record<string,string>)[p.slug] || p.images[image]) : p.images[image];
+  const displayImage = variant?.image || baseImage;
   return (
     <>
       <nav className="breadcrumbs" aria-label="Ruta de navegación">
@@ -37,14 +39,15 @@ export function ProductDetail({ product: p }: { product: Product }) {
       </nav>
       <div className="detail-layout">
         <div>
-          <div className="detail-image">
+          <div className="detail-image assembly-stage" key={variantId}>
             <Image
-              src={image === 0 ? ((photography as Record<string,string>)[p.slug] || p.images[image]) : p.images[image]}
-              alt={p.name + " — imagen " + (image + 1)}
+              src={displayImage}
+              alt={p.name + (variant ? " con " + variant.name : "")}
               fill
               sizes="(max-width:760px) 94vw, 48vw"
               priority
             />
+            {variant && !variant.image && <span className="assembly-label">Vista de presentación: {variant.name}</span>}
           </div>
           {p.images.length > 1 && (
             <div className="thumbnails">
@@ -82,6 +85,7 @@ export function ProductDetail({ product: p }: { product: Product }) {
                 value={variantId}
                 onChange={(e) => {
                   setVariantId(e.target.value);
+                  setImage(0);
                   setQuantity(
                     p.variants.find((v) => v.id === e.target.value)
                       ?.minQuantity || 1,
