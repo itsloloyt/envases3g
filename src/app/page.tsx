@@ -109,7 +109,7 @@ export default async function Home() {
           </div>
         </div>
       </div>
-      <EditorialShowcase products={featured.filter((p) => Boolean(p.price)).slice(0, 3)} />
+      <EditorialShowcase products={products.map((p) => ({ slug: p.slug, name: p.name, category: p.category, image: p.image, price: p.price }))} />
       <section className="section container" id="categorias">
         <div className="section-heading">
           <div>
