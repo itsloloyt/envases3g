@@ -1,7 +1,7 @@
 {
   "total": 425,
-  "completed": 7,
-  "remaining": 418,
+  "completed": 10,
+  "remaining": 415,
   "missing": [
     {
       "slug": "aceite-aromatico-premium-puro",
@@ -10,28 +10,10 @@
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
-      "slug": "acqua-200-ml-pet-cristal",
-      "name": "Acqua 200 ml PET cristal",
-      "category": "plastico",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/7ac6d3c3a963ac4c4663b0da6ca83606bc71ef3ec9930ed0e7af18fd37bacdc299432.jpg"
-    },
-    {
-      "slug": "ampolla-pvc-10-cc-con-tapa-presion",
-      "name": "Ampolla PVC 10 cc con tapa presión",
-      "category": "cosmetica-y-farmacia",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/642032611527b54fb565336ca8d15727bb92e82e2d55bb6e9133e50138ad1b3699432.jpeg"
-    },
-    {
       "slug": "ampolla-pvc-15-cc-con-tapa-presion",
       "name": "Ampolla PVC 15 cc con tapa presión",
       "category": "cosmetica-y-farmacia",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/946c873b5835982e0a624b0b32a8149aad7d831b672f69d8d50ed1b18e98aaa199432.jpeg"
-    },
-    {
-      "slug": "bandeja-chica-yeso",
-      "name": "Bandeja chica - Yeso",
-      "category": "accesorios",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/66678b3064c25d19afb54a88fea6724d710a936999c40e09bc61489e06b39b7199432.jpg"
     },
     {
       "slug": "bandeja-grande-yeso",
