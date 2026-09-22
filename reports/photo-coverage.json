@@ -1,7 +1,7 @@
 {
   "total": 425,
-  "completed": 10,
-  "remaining": 415,
+  "completed": 11,
+  "remaining": 414,
   "missing": [
     {
       "slug": "aceite-aromatico-premium-puro",
@@ -44,12 +44,6 @@
       "name": "Bochines - Peceras de vidrio",
       "category": "accesorios",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/ad31d1ce59bed9a36c103b7e483ec5e21b4f35a4cdaa28c2582e899258cb28d399432.jpg"
-    },
-    {
-      "slug": "body-100-cc-cristal",
-      "name": "Body 100 cc Cristal",
-      "category": "plastico",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/2b8efef57d55291c66811bec5ef8be24f2743686a98290c47886a8cc77bb299e99432.jpg"
     },
     {
       "slug": "body-100-ml-cristal-pet-con-tapa-difusora-plastica",
