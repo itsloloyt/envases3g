@@ -45,22 +45,18 @@ export function ProductDetail({ product: p }: { product: Product }) {
         <div>
           <div className="detail-image assembly-stage">
             <Image
-              src={baseImage}
-              alt={variantImage ? "" : p.name}
+              key={`${variantId}-${image}-${displayImage}`}
+              className="product-selection-image"
+              src={displayImage}
+              alt={p.name + (variantImage && variant ? " con " + variant.name : " — foto del envase")}
               fill
               sizes="(max-width:760px) 94vw, 48vw"
               priority
             />
-            {variantImage && <Image
-              key={displayImage}
-              className="assembly-final"
-              src={variantImage}
-              alt={p.name + (variant ? " con " + variant.name : "")}
-              fill
-              sizes="(max-width:760px) 94vw, 48vw"
-            />}
-            {variant && !variantImage && !/^solo envase$/i.test(variant.name) && <span className="assembly-label">{image === 0 ? "Foto del envase base" : "Foto del catálogo"} · opción elegida: {variant.name}</span>}
-            {variantImage && <span className="assembly-label">Vista con {variant?.name}</span>}
+          </div>
+          <div className="product-selection-caption" aria-live="polite" aria-atomic="true">
+            <span key={variantId + image}><Check size={16}/>{variant?.name || p.name}</span>
+            <small>{variantImage ? "Foto de la presentación elegida" : image > 0 ? "Imagen adicional del catálogo" : variant && !/^solo envase$/i.test(variant.name) ? "Foto del envase base. La imagen de esta combinación todavía no está disponible." : "Vista del envase"}</small>
           </div>
           {p.images.length > 1 && (
             <div className="thumbnails">

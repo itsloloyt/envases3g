@@ -1,7 +1,7 @@
 {
   "totalAccessoryVariants": 3086,
-  "completed": 2,
-  "remaining": 3084,
+  "completed": 5,
+  "remaining": 3081,
   "missing": [
     {
       "productSlug": "aceite-aromatico-premium-puro",
@@ -783,13 +783,6 @@
     {
       "productSlug": "body-125-cc-ambar",
       "productName": "Body 125 cc Ámbar",
-      "variantId": "11254733",
-      "variantName": "Crema premium negra",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/df0b638d3977c8881ba28af7f744bfc086aafc85f4cf010d02acebce0acad82599432.jpeg"
-    },
-    {
-      "productSlug": "body-125-cc-ambar",
-      "productName": "Body 125 cc Ámbar",
       "variantId": "17043544",
       "variantName": "Spray oro brillo",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/df0b638d3977c8881ba28af7f744bfc086aafc85f4cf010d02acebce0acad82599432.jpeg"
@@ -813,20 +806,6 @@
       "productName": "Body 125 cc Ámbar",
       "variantId": "17527059",
       "variantName": "Flip Top blanca",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/df0b638d3977c8881ba28af7f744bfc086aafc85f4cf010d02acebce0acad82599432.jpeg"
-    },
-    {
-      "productSlug": "body-125-cc-ambar",
-      "productName": "Body 125 cc Ámbar",
-      "variantId": "17839523",
-      "variantName": "Tapa ciega blanca",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/df0b638d3977c8881ba28af7f744bfc086aafc85f4cf010d02acebce0acad82599432.jpeg"
-    },
-    {
-      "productSlug": "body-125-cc-ambar",
-      "productName": "Body 125 cc Ámbar",
-      "variantId": "19410867",
-      "variantName": "Spray negra",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/df0b638d3977c8881ba28af7f744bfc086aafc85f4cf010d02acebce0acad82599432.jpeg"
     },
     {
