@@ -42,14 +42,22 @@ export function ProductDetail({ product: p }: { product: Product }) {
       </nav>
       <div className="detail-layout">
         <div>
-          <div className="detail-image assembly-stage" key={displayImage}>
+          <div className="detail-image assembly-stage">
             <Image
-              src={displayImage}
-              alt={p.name + (variantImage && variant ? " con " + variant.name : "")}
+              src={baseImage}
+              alt={variantImage ? "" : p.name}
               fill
               sizes="(max-width:760px) 94vw, 48vw"
               priority
             />
+            {variantImage && <Image
+              key={displayImage}
+              className="assembly-final"
+              src={variantImage}
+              alt={p.name + (variant ? " con " + variant.name : "")}
+              fill
+              sizes="(max-width:760px) 94vw, 48vw"
+            />}
             {variant && !variantImage && !/^solo envase$/i.test(variant.name) && <span className="assembly-label">Foto del envase base · opción elegida: {variant.name}</span>}
             {variantImage && <span className="assembly-label">Vista con {variant?.name}</span>}
           </div>

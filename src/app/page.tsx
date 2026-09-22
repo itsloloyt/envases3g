@@ -30,12 +30,20 @@ export default async function Home() {
     <main id="contenido">
       <section className="premium-hero" aria-labelledby="hero-title">
         <Image
-          className="premium-hero-art"
-          src="/images/hero-3g-sculpture.png"
+          className="premium-hero-art premium-hero-art-desktop"
+          src="/images/hero-3g-medallion-desktop.png"
           alt=""
           fill
           priority
-          sizes="100vw"
+          sizes="(max-width: 760px) 1px, 100vw"
+        />
+        <Image
+          className="premium-hero-art premium-hero-art-mobile"
+          src="/images/hero-3g-medallion-mobile.png"
+          alt=""
+          fill
+          priority
+          sizes="(max-width: 760px) 100vw, 1px"
         />
         <div className="premium-hero-content container">
           <div className="premium-hero-copy">
