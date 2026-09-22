@@ -14,6 +14,7 @@ import {
 import { Product, currency, categoryName, whatsapp } from "@/lib/catalog";
 import { useShop } from "./shop-provider";
 import photography from "@/data/product-photography.json";
+import variantPhotography from "@/data/variant-photography.json";
 export function ProductDetail({ product: p }: { product: Product }) {
   const shop = useShop();
   const [image, setImage] = useState(0);
@@ -25,7 +26,9 @@ export function ProductDetail({ product: p }: { product: Product }) {
   const price = variant?.price ?? p.price;
   const available = variant?.available ?? p.available;
   const baseImage = image === 0 ? ((photography as Record<string,string>)[p.slug] || p.images[image]) : p.images[image];
-  const displayImage = variant?.image || baseImage;
+  const generatedVariants = (variantPhotography as Record<string, Record<string, string>>)[p.slug] || {};
+  const variantImage = variant?.image || (variant ? generatedVariants[variant.id] : undefined);
+  const displayImage = variantImage || baseImage;
   return (
     <>
       <nav className="breadcrumbs" aria-label="Ruta de navegación">
@@ -39,15 +42,16 @@ export function ProductDetail({ product: p }: { product: Product }) {
       </nav>
       <div className="detail-layout">
         <div>
-          <div className="detail-image assembly-stage" key={variantId}>
+          <div className="detail-image assembly-stage" key={displayImage}>
             <Image
               src={displayImage}
-              alt={p.name + (variant ? " con " + variant.name : "")}
+              alt={p.name + (variantImage && variant ? " con " + variant.name : "")}
               fill
               sizes="(max-width:760px) 94vw, 48vw"
               priority
             />
-            {variant && !variant.image && <span className="assembly-label">Vista de presentación: {variant.name}</span>}
+            {variant && !variantImage && !/^solo envase$/i.test(variant.name) && <span className="assembly-label">Foto del envase base · opción elegida: {variant.name}</span>}
+            {variantImage && <span className="assembly-label">Vista con {variant?.name}</span>}
           </div>
           {p.images.length > 1 && (
             <div className="thumbnails">

@@ -28,60 +28,29 @@ export default async function Home() {
     .filter(Boolean);
   return (
     <main id="contenido">
-      <section className="hero container">
-        <div className="hero-copy">
-          <span className="eyebrow">
-            <span className="tiny-dot" /> GRANDES IDEAS EMPIEZAN CON UN ENVASE
-          </span>
-          <h1>
-            Vos lo imaginás.
-            <br />
-            Nosotros lo
-            <br />
-            <em>contenemos.</em>
-          </h1>
-          <p>
-            Frascos, botellas, aromas y esos pequeños detalles que hacen grande
-            tu proyecto.
-          </p>
-          <div className="hero-buttons">
-            <Link href="/productos" className="button primary">
-              Encontrá tu envase <ArrowUpRight size={19} />
-            </Link>
-            <Link
-              href="/productos?categoria=combos-y-kits"
-              className="text-link"
-            >
-              Descubrí los kits <ArrowRight size={17} />
-            </Link>
+      <section className="premium-hero" aria-labelledby="hero-title">
+        <Image
+          className="premium-hero-art"
+          src="/images/hero-3g-sculpture.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+        />
+        <div className="premium-hero-content container">
+          <div className="premium-hero-copy">
+            <span className="premium-hero-kicker">&#123; SOMOS ENVASES 3G &#125; <ArrowRight size={15} /></span>
+            <h1 id="hero-title">Cada idea<br />merece un<br /><span>gran envase.</span></h1>
+            <p>Envases de plástico y vidrio, tapas, válvulas y accesorios para perfumería, cosmética, farmacia, alimentos y aromas. Para proyectos de todos los tamaños.</p>
+            <div className="premium-hero-actions">
+              <Link href="/productos" className="premium-hero-button">VER PRODUCTOS <ArrowUpRight size={18} /></Link>
+              <Link href="/contacto" className="premium-hero-button secondary">CONTACTANOS <ArrowUpRight size={18} /></Link>
+            </div>
           </div>
-          <div className="hero-caption">
-            <span className="small-line" /> VIDRIO · PLÁSTICO · INFINITAS
-            POSIBILIDADES
+          <div className="premium-hero-bottom" aria-hidden="true">
+            <span>DESCUBRÍ MÁS <span className="premium-scroll-arrow">↓</span></span>
+            <span>MAR DEL PLATA, ARGENTINA</span>
           </div>
-        </div>
-        <div className="hero-visual">
-          <Image
-            src="/images/hero-general.svg"
-            alt="Composición abstracta de materiales, colores y formas para crear"
-            fill
-            priority
-            sizes="(max-width: 760px) 100vw, 52vw"
-          />
-          <div className="hero-image-shade" />
-          <span className="hero-image-label">
-            Pequeños envases.
-            <br />
-            <strong>Grandes comienzos.</strong>
-          </span>
-          <div className="round-seal">
-            <Sparkles size={22} />
-            <span>
-              DALE FORMA
-              <br />A TU IDEA
-            </span>
-          </div>
-          <span className="image-note">Inspiración en envases</span>
         </div>
       </section>
       <div className="benefits">

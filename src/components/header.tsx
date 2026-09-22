@@ -47,17 +47,23 @@ export function Header() {
             className={menu ? "main-nav expanded" : "main-nav"}
             aria-label="Navegación principal"
           >
+            <Link href="/" onClick={() => setMenu(false)}>
+              Inicio
+            </Link>
             <Link href="/productos" onClick={() => setMenu(false)}>
               Productos
             </Link>
             <Link
-              href="/productos?categoria=combos-y-kits"
+              href="/productos?categoria=plastico"
               onClick={() => setMenu(false)}
             >
-              Combos y kits
+              Plástico
             </Link>
-            <Link href="/#nosotros" onClick={() => setMenu(false)}>
-              Nosotros
+            <Link href="/productos?categoria=frascos-y-botellas-de-vidrio" onClick={() => setMenu(false)}>
+              Vidrio
+            </Link>
+            <Link href="/productos?categoria=accesorios" onClick={() => setMenu(false)}>
+              Accesorios
             </Link>
             <Link href="/contacto" onClick={() => setMenu(false)}>
               Contacto
@@ -79,8 +85,8 @@ export function Header() {
               <ShoppingBag size={20} />
               <span>{shop.lines.reduce((s, l) => s + l.quantity, 0)}</span>
             </button>
-            <Link className="header-contact" href="/contacto">
-              Hablemos <ArrowUpRight size={16} />
+            <Link className="header-contact" href="/productos">
+              Ver productos <ArrowUpRight size={16} />
             </Link>
             <button
               className="icon-button menu-toggle"
