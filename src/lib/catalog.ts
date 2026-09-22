@@ -71,7 +71,7 @@ export const categories = [
     name: "Combos y kits",
     short: "Combos y kits",
     text: "Todo listo para empezar.",
-    image: "/images/hero-general.svg",
+    image: "https://d22fxaf9t8d39k.cloudfront.net/87e3c5263c3a70a88c072dc6fde9e418f5e934970f61a4ac8e8e0c541023db9599432.jpeg",
   },
 ];
 export const currency = (n: number) =>

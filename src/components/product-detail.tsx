@@ -27,7 +27,8 @@ export function ProductDetail({ product: p }: { product: Product }) {
   const available = variant?.available ?? p.available;
   const baseImage = image === 0 ? ((photography as Record<string,string>)[p.slug] || p.images[image]) : p.images[image];
   const generatedVariants = (variantPhotography as Record<string, Record<string, string>>)[p.slug] || {};
-  const variantImage = variant?.image || (variant ? generatedVariants[variant.id] : undefined);
+  const selectedVariantImage = variant?.image || (variant ? generatedVariants[variant.id] : undefined);
+  const variantImage = image === 0 ? selectedVariantImage : undefined;
   const displayImage = variantImage || baseImage;
   return (
     <>
@@ -58,7 +59,7 @@ export function ProductDetail({ product: p }: { product: Product }) {
               fill
               sizes="(max-width:760px) 94vw, 48vw"
             />}
-            {variant && !variantImage && !/^solo envase$/i.test(variant.name) && <span className="assembly-label">Foto del envase base · opción elegida: {variant.name}</span>}
+            {variant && !variantImage && !/^solo envase$/i.test(variant.name) && <span className="assembly-label">{image === 0 ? "Foto del envase base" : "Foto del catálogo"} · opción elegida: {variant.name}</span>}
             {variantImage && <span className="assembly-label">Vista con {variant?.name}</span>}
           </div>
           {p.images.length > 1 && (
@@ -71,7 +72,7 @@ export function ProductDetail({ product: p }: { product: Product }) {
                   aria-pressed={image === i}
                   onClick={() => setImage(i)}
                 >
-                  <Image src={src} alt="" width={72} height={85} />
+                  <Image src={i === 0 ? selectedVariantImage || (photography as Record<string,string>)[p.slug] || src : src} alt="" width={72} height={85} />
                 </button>
               ))}
             </div>
