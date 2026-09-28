@@ -14,7 +14,7 @@ import {
 import { Product, currency, categoryName, whatsapp } from "@/lib/catalog";
 import { useShop } from "./shop-provider";
 import photography from "@/data/product-photography.json";
-import variantPhotography from "@/data/variant-photography.json";
+import { variantPhoto } from "@/lib/variant-image";
 export function ProductDetail({ product: p }: { product: Product }) {
   const shop = useShop();
   const [image, setImage] = useState(0);
@@ -26,8 +26,8 @@ export function ProductDetail({ product: p }: { product: Product }) {
   const price = variant?.price ?? p.price;
   const available = variant?.available ?? p.available;
   const baseImage = image === 0 ? ((photography as Record<string,string>)[p.slug] || p.images[image]) : p.images[image];
-  const generatedVariants = (variantPhotography as Record<string, Record<string, string>>)[p.slug] || {};
-  const selectedVariantImage = variant?.image || (variant ? generatedVariants[variant.id] : undefined);
+  const selectedPhoto = variantPhoto(p, variant);
+  const selectedVariantImage = selectedPhoto?.src;
   const variantImage = image === 0 ? selectedVariantImage : undefined;
   const displayImage = variantImage || baseImage;
   return (
@@ -48,7 +48,7 @@ export function ProductDetail({ product: p }: { product: Product }) {
               key={`${variantId}-${image}-${displayImage}`}
               className="product-selection-image"
               src={displayImage}
-              alt={p.name + (variantImage && variant ? " con " + variant.name : " — foto del envase")}
+              alt={p.name + (variantImage && variant ? " — " + variant.name + (selectedPhoto?.shared ? " (referencia del catálogo original)" : "") : " — foto del envase")}
               fill
               sizes="(max-width:760px) 94vw, 48vw"
               priority
@@ -56,7 +56,7 @@ export function ProductDetail({ product: p }: { product: Product }) {
           </div>
           <div className="product-selection-caption" aria-live="polite" aria-atomic="true">
             <span key={variantId + image}><Check size={16}/>{variant?.name || p.name}</span>
-            <small>{variantImage ? "Foto de la presentación elegida" : image > 0 ? "Imagen adicional del catálogo" : variant && !/^solo envase$/i.test(variant.name) ? "Foto del envase base. La imagen de esta combinación todavía no está disponible." : "Vista del envase"}</small>
+            <small>{variantImage ? selectedPhoto?.shared ? "Referencia del catálogo original, compartida entre presentaciones. El color o accesorio puede variar." : "Foto de la presentación elegida" : image > 0 ? "Imagen adicional del catálogo" : variant && !/^solo envase$/i.test(variant.name) ? "Foto del envase base. La imagen de esta combinación todavía no está disponible." : "Vista del envase"}</small>
           </div>
           {p.images.length > 1 && (
             <div className="thumbnails">

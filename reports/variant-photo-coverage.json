@@ -2,6 +2,8 @@
   "totalAccessoryVariants": 3086,
   "completed": 6,
   "remaining": 3080,
+  "sourceLinked": 3086,
+  "sourceSharedReferences": 2615,
   "missing": [
     {
       "productSlug": "aceite-aromatico-premium-puro",

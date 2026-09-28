@@ -20,7 +20,7 @@ import Link from "next/link";
 import { Product, Variant, currency, whatsapp, products } from "@/lib/catalog";
 import { CheckoutForm } from "./checkout-form";
 import photography from "@/data/product-photography.json";
-import variantPhotography from "@/data/variant-photography.json";
+import { variantPhoto } from "@/lib/variant-image";
 type Line = { key: string; slug: string; variantId: string; quantity: number };
 type Shop = {
   lines: Line[];
@@ -147,7 +147,7 @@ export function ShopProvider({ children }: { children: ReactNode }) {
                 {resolved.map((l) => (
                   <article className="cart-line" key={l.key}>
                     <Image
-                      src={l.v.image || (variantPhotography as Record<string, Record<string, string>>)[l.slug]?.[l.v.id] || (photography as Record<string, string>)[l.slug] || l.p.image}
+                      src={variantPhoto(l.p, l.v)?.src || (photography as Record<string, string>)[l.slug] || l.p.image}
                       alt={l.p.name}
                       width={90}
                       height={110}
