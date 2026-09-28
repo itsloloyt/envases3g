@@ -1972,7 +1972,7 @@ body:has(.premium-hero) .header-actions { gap: 7px; }
 body:has(.premium-hero) .header-contact { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 body:has(.premium-hero) .bag span { background: #00c0cd; color: #001a1c; border-color: #001a1c; }
 .premium-hero { position: relative; isolation: isolate; min-height: min(780px, calc(100svh - 124px)); background: radial-gradient(circle at 72% 47%, #00c0cd 0%, #007d86 28%, #003236 53%, #001a1c 82%); color: #fff; overflow: hidden; }
-.premium-hero-art { z-index: -1; object-fit: contain; object-position: center; }
+.premium-hero-art { z-index: -1; object-fit: contain; object-position: center; mask-image: linear-gradient(to right, transparent, #000 8%, #000 88%, transparent), linear-gradient(to bottom, transparent, #000 12%, #000 85%, transparent); mask-composite: intersect; }
 .premium-hero-art-mobile { display: none; }
 .premium-hero::after { content: ""; position: absolute; z-index: -1; inset: 0; pointer-events: none; background: linear-gradient(90deg, #001a1cdb 0%, #001a1c83 26%, transparent 53%); }
 .premium-hero-content { min-height: inherit; display: flex; flex-direction: column; justify-content: center; position: relative; padding-top: 72px; padding-bottom: 44px; }
@@ -2217,7 +2217,7 @@ footer { padding-bottom: 110px; }
 }
 @keyframes hero-rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 /* Keep artwork and long catalog names inside their own layout areas. */
-.premium-hero-art-desktop { padding: 35px 0; }
+.premium-hero-art-desktop { width: auto !important; height: auto !important; max-width: 100%; max-height: calc(100% - 70px); margin: auto; }
 .editorial-stage { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.2fr) minmax(0,.8fr); grid-template-areas: "top top top" "controls image price" "copy image price" "footer footer footer"; gap: 24px; padding: 28px 34px; min-height: 560px; }
 .editorial-stage-top, .editorial-controls, .editorial-copy, .editorial-image, .editorial-price, .editorial-footer { position: relative; inset: auto; width: auto; height: auto; min-width: 0; }
 .editorial-stage-top { grid-area: top; }
@@ -2244,7 +2244,7 @@ footer { padding-bottom: 110px; }
 @media(max-width:760px) {
   .premium-hero { min-height: 0; padding-bottom: 350px; }
   .premium-hero-content { position: static; min-height: 0; padding-top: 42px; padding-bottom: 35px; }
-  .premium-hero-art-mobile { height: 480px !important; top: auto !important; bottom: 20px !important; object-position: center bottom; }
+  .premium-hero-art-mobile { height: auto !important; max-height: 480px; top: auto !important; bottom: 20px !important; object-position: center bottom; }
   .premium-hero-bottom { left: 18px; right: 18px; }
   .premium-hero h1 { font-size: clamp(40px,10vw,62px); }
 }

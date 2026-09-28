@@ -6,8 +6,6 @@ import {
   ShoppingBag,
   Menu,
   X,
-  ArrowUpRight,
-  Package,
   MapPin,
 } from "lucide-react";
 import { useState } from "react";
@@ -53,18 +51,6 @@ export function Header() {
             <Link href="/productos" onClick={() => setMenu(false)}>
               Productos
             </Link>
-            <Link
-              href="/productos?categoria=plastico"
-              onClick={() => setMenu(false)}
-            >
-              Plástico
-            </Link>
-            <Link href="/productos?categoria=frascos-y-botellas-de-vidrio" onClick={() => setMenu(false)}>
-              Vidrio
-            </Link>
-            <Link href="/productos?categoria=accesorios" onClick={() => setMenu(false)}>
-              Accesorios
-            </Link>
             <Link href="/contacto" onClick={() => setMenu(false)}>
               Contacto
             </Link>
@@ -85,9 +71,6 @@ export function Header() {
               <ShoppingBag size={20} />
               <span>{shop.lines.reduce((s, l) => s + l.quantity, 0)}</span>
             </button>
-            <Link className="header-contact" href="/productos">
-              Ver productos <ArrowUpRight size={16} />
-            </Link>
             <button
               className="icon-button menu-toggle"
               aria-label={menu ? "Cerrar menú" : "Abrir menú"}
