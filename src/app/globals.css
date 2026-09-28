@@ -1048,7 +1048,7 @@ img {
   background: white;
   width: 100%;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 16px;
   color: var(--ink);
 }
 .buy-row {
@@ -1079,7 +1079,7 @@ img {
   background: none;
   color: var(--ink);
   text-align: center;
-  font-size: 12px;
+  font-size: 16px;
 }
 .quantity input::-webkit-inner-spin-button {
   appearance: none;
@@ -2270,4 +2270,30 @@ footer { padding-bottom: 110px; }
   .editorial-intro, .section-heading, .category-card, .catalog-total, .discounts-copy, .discounts-section > a,
   .featured-section .product-card, .story-art, .story-copy, .buy-steps article, .faq-grid details { animation: none !important; }
   .editorial-stage:hover .editorial-image img, .category-card:hover, .product-card:hover, .faq-grid details:hover, .buy-steps article:hover { transform: none; }
+}
+
+/* Readable product controls and a keyboard-accessible photo viewer. */
+.detail-layout > div { min-width: 0; }
+.variant-label { font-size: 17px; line-height: 1.5; }
+.variant-label select { min-height: 54px; border-color: #879487; }
+.detail-price > span, .availability, .detail-services small { font-size: 15px; line-height: 1.5; }
+.product-selection-caption small { font-size: 15px; line-height: 1.6; color: #475447; }
+.photo-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0; }
+.photo-actions button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 16px; min-height: 48px; border: 1px solid #879487; border-radius: 8px; background: #fff; font-size: 16px; color: var(--ink); }
+.thumbnails button { display: grid; justify-items: center; gap: 6px; padding: 8px; min-width: 96px; }
+.thumbnails button.active { border-width: 2px; background: #e9efe7; }
+.thumbnails button span { font-size: 14px; line-height: 1.4; color: var(--ink); }
+.photo-dialog { width: min(1050px, 94vw); max-height: 94dvh; padding: 18px; border: 0; border-radius: 12px; background: #fff; color: var(--ink); }
+.photo-dialog::backdrop { background: #001a1cbd; }
+.photo-dialog-close { display: flex; align-items: center; gap: 8px; min-height: 48px; padding: 10px 16px; margin-left: auto; border: 1px solid #879487; border-radius: 8px; font-size: 16px; }
+.photo-dialog-image { position: relative; height: 68dvh; margin-top: 12px; }
+.photo-dialog-image img { object-fit: contain; }
+.photo-dialog p { font-size: 16px; line-height: 1.5; margin: 12px 0 0; }
+@media (max-width: 760px) {
+  .photo-actions button { flex: 1; }
+  .detail-copy h1 { font-size: clamp(28px, 7vw, 36px); }
+  .buy-row { flex-wrap: wrap; }
+  .buy-row > .button { min-width: 190px; min-height: 52px; }
+  .whatsapp-float { padding: 12px; }
+  .whatsapp-float span { display: none; }
 }

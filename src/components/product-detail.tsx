@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -10,6 +10,8 @@ import {
   Package,
   Check,
   ShoppingBag,
+  ZoomIn,
+  X,
 } from "lucide-react";
 import { Product, currency, categoryName, whatsapp } from "@/lib/catalog";
 import { useShop } from "./shop-provider";
@@ -18,6 +20,7 @@ import { variantPhoto } from "@/lib/variant-image";
 export function ProductDetail({ product: p }: { product: Product }) {
   const shop = useShop();
   const [image, setImage] = useState(0);
+  const photoDialog = useRef<HTMLDialogElement>(null);
   const [variantId, setVariantId] = useState(
     (p.variants.find((v) => v.available) || p.variants[0])?.id || "",
   );
@@ -25,11 +28,12 @@ export function ProductDetail({ product: p }: { product: Product }) {
   const [quantity, setQuantity] = useState(variant?.minQuantity || 1);
   const price = variant?.price ?? p.price;
   const available = variant?.available ?? p.available;
-  const baseImage = image === 0 ? ((photography as Record<string,string>)[p.slug] || p.images[image]) : p.images[image];
+  const baseImage = image === 0 ? ((photography as Record<string,string>)[p.slug] || p.images[0]) : p.images[image - 1];
   const selectedPhoto = variantPhoto(p, variant);
   const selectedVariantImage = selectedPhoto?.src;
   const variantImage = image === 0 ? selectedVariantImage : undefined;
   const displayImage = variantImage || baseImage;
+  const imageDescription = p.name + (variantImage && variant ? " — " + variant.name + (selectedPhoto?.shared ? " (referencia del catálogo original)" : "") : " — foto original del catálogo");
   return (
     <>
       <nav className="breadcrumbs" aria-label="Ruta de navegación">
@@ -48,27 +52,41 @@ export function ProductDetail({ product: p }: { product: Product }) {
               key={`${variantId}-${image}-${displayImage}`}
               className="product-selection-image"
               src={displayImage}
-              alt={p.name + (variantImage && variant ? " — " + variant.name + (selectedPhoto?.shared ? " (referencia del catálogo original)" : "") : " — foto del envase")}
+              alt={imageDescription}
               fill
               sizes="(max-width:760px) 94vw, 48vw"
               priority
             />
           </div>
+          <div className="photo-actions">
+            <button type="button" onClick={() => photoDialog.current?.showModal()}><ZoomIn size={20}/> Ampliar foto</button>
+            <button type="button" onClick={() => setImage(image === 1 ? 0 : 1)}>{image === 1 ? "Ver presentación elegida" : "Ver foto original"}</button>
+          </div>
+          <dialog ref={photoDialog} className="photo-dialog" aria-label={"Foto ampliada de " + p.name} onClick={(event) => { if (event.target === event.currentTarget) photoDialog.current?.close(); }}>
+            <button type="button" className="photo-dialog-close" onClick={() => photoDialog.current?.close()} autoFocus><X size={22}/> Cerrar foto</button>
+            <div className="photo-dialog-image"><Image src={displayImage} alt={imageDescription} fill sizes="90vw" /></div>
+            <p>{imageDescription}</p>
+          </dialog>
           <div className="product-selection-caption" aria-live="polite" aria-atomic="true">
-            <span key={variantId + image}><Check size={16}/>{variant?.name || p.name}</span>
+            <span key={variantId + image}><Check size={16}/>{image > 0 ? "Foto original " + image : variant?.name || p.name}</span>
             <small>{variantImage ? selectedPhoto?.shared ? "Referencia del catálogo original, compartida entre presentaciones. El color o accesorio puede variar." : "Foto de la presentación elegida" : image > 0 ? "Imagen adicional del catálogo" : variant && !/^solo envase$/i.test(variant.name) ? "Foto del envase base. La imagen de esta combinación todavía no está disponible." : "Vista del envase"}</small>
           </div>
-          {p.images.length > 1 && (
+          {p.images.length > 0 && (
             <div className="thumbnails">
+              <button className={image === 0 ? "active" : ""} aria-label="Ver presentación elegida" aria-pressed={image === 0} onClick={() => setImage(0)}>
+                <Image src={selectedVariantImage || (photography as Record<string,string>)[p.slug] || p.images[0]} alt="" width={72} height={85}/>
+                <span>Tu selección</span>
+              </button>
               {p.images.map((src, i) => (
                 <button
-                  className={image === i ? "active" : ""}
+                  className={image === i + 1 ? "active" : ""}
                   key={src + i}
-                  aria-label={"Ver imagen " + (i + 1)}
-                  aria-pressed={image === i}
-                  onClick={() => setImage(i)}
+                  aria-label={"Ver foto original " + (i + 1)}
+                  aria-pressed={image === i + 1}
+                  onClick={() => setImage(i + 1)}
                 >
-                  <Image src={i === 0 ? selectedVariantImage || (photography as Record<string,string>)[p.slug] || src : src} alt="" width={72} height={85} />
+                  <Image src={src} alt="" width={72} height={85} />
+                  <span>Original {i + 1}</span>
                 </button>
               ))}
             </div>
