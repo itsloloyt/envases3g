@@ -8,6 +8,8 @@ export type SavedOrder = {
   customer: { name: string; phone: string; postcode?: string; address?: string };
   items: { name: string; variant: string; quantity: number; unitPrice: number; subtotal: number; image: string | null; slug?: string }[];
   subtotal: number;
+  discount?: { percent: number; amount: number; label: string };
+  payment?: string;
   shipping: Pick<ShippingQuote, "method" | "label" | "detail" | "price">;
   total: number;
   whatsapp: string;

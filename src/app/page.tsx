@@ -3,6 +3,7 @@ import { categories } from "@/lib/catalog";
 import { subcategories, toCard } from "@/lib/shop";
 import { Hero } from "@/components/home/Hero";
 import { AccessoryShowcase } from "@/components/home/AccessoryShowcase";
+import { Discounts } from "@/components/home/Discounts";
 import { Featured, HowToBuy, Location, Marquee, Rubros, Stats, Wholesale, type Rubro } from "@/components/home/Sections";
 
 export const revalidate = 3600;
@@ -65,6 +66,7 @@ export default async function Home() {
       )}
       <Featured products={featured.length ? featured : products.slice(0, 10).map(toCard)} />
       <HowToBuy />
+      <Discounts />
       <Wholesale />
       <Location />
     </>

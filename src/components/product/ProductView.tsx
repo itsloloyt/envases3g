@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Check, Link2, Minus, Plus, Share2, ShoppingBag, Sparkles, Store, Truck } from "lucide-react";
 import { cover } from "@/lib/shop";
+import { CASH_TIERS, cashPercent } from "@/lib/discounts";
 import { rememberProduct } from "./RecentlyViewed";
 import { currency, type Product } from "@/lib/catalog";
 import { accessoryArt, photoFor } from "@/lib/accessories";
@@ -14,16 +15,17 @@ import { ease } from "../Reveal";
 export function ProductView({ product, categoryName }: { product: Product; categoryName: string }) {
   const add = useCart((s) => s.add);
   const reduce = useReducedMotion();
-  const firstAvailable = product.variants.find((v) => v.available) ?? product.variants[0];
+  const bare = product.variants.find((v) => /solo envase|sin tapa|sin accesorio/i.test(v.name));
+  const firstAvailable = bare ?? product.variants.find((v) => v.available) ?? product.variants[0];
   const [variantId, setVariantId] = useState(firstAvailable.id);
   const variant = product.variants.find((v) => v.id === variantId) ?? firstAvailable;
   const [qty, setQty] = useState(Math.max(1, firstAvailable.minQuantity));
   const [added, setAdded] = useState(false);
 
-  // Galería: la foto de la opción elegida primero, después el resto de las fotos del producto.
+  // Una sola imagen: arranca con el envase solo y cambia cuando se elige un accesorio.
   const selected = photoFor(product, variant);
-  const gallery = [selected.src, ...product.images.filter((i) => i !== selected.src)];
   const [shown, setShown] = useState<string>(selected.src);
+  const [sweep, setSweep] = useState(0);
   const [fit, setFit] = useState<{ key: number; src: string; label: string; width: number } | null>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const fitTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -72,10 +74,14 @@ export function ProductView({ product, categoryName }: { product: Product; categ
       // Animación de "colocado": el accesorio baja, se enrosca y aparece la foto final.
       if (fitTimer.current) clearTimeout(fitTimer.current);
       setFit({ key: Date.now(), ...art });
-      timer.current = setTimeout(() => setShown(next), 650);
+      timer.current = setTimeout(() => {
+        setShown(next);
+        setSweep((s) => s + 1);
+      }, 620);
       fitTimer.current = setTimeout(() => setFit(null), 1550);
     } else {
       setShown(next);
+      setSweep((s) => s + 1);
     }
   }
 
@@ -90,38 +96,37 @@ export function ProductView({ product, categoryName }: { product: Product; categ
 
   return (
     <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
-      {/* Visor */}
+      {/* Visor: envase solo → accesorio colocado */}
       <div className="min-w-0 lg:col-span-7">
-        <div className="flex flex-col-reverse gap-3 sm:flex-row">
-          {gallery.length > 1 && (
-            <div className="no-scrollbar flex gap-2 overflow-x-auto sm:max-h-[680px] sm:flex-col sm:overflow-y-auto" data-lenis-prevent>
-              {gallery.map((src, i) => (
-                <button
-                  key={src}
-                  onClick={() => setShown(src)}
-                  aria-label={`Ver imagen ${i + 1}`}
-                  aria-current={src === shown}
-                  className={`size-16 shrink-0 overflow-hidden rounded-xl bg-photo ring-2 ring-offset-2 ring-offset-paper transition sm:size-20 ${
-                    src === shown ? "ring-teal-deep" : "ring-transparent opacity-70 hover:opacity-100"
-                  }`}
-                >
-                  <img src={src} alt="" className="size-full object-cover" loading="lazy" />
-                </button>
-              ))}
-            </div>
-          )}
-          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[30px] bg-photo sm:w-auto sm:flex-1">
+        <div className="lg:sticky lg:top-28">
+          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[32px] bg-photo shadow-[0_40px_80px_-50px_rgb(4_22_25/0.6)]">
+            {/* Cambio de imagen: cortina de arriba hacia abajo, como si la pieza se enroscara */}
             <AnimatePresence initial={false}>
               <motion.img
                 key={shown}
                 src={shown}
                 alt={`${product.name}${hasVariants ? ` — ${variant.name}` : ""}`}
-                initial={{ opacity: 0, scale: 1.05, filter: "blur(8px)" }}
-                animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                exit={{ opacity: 0, transition: { duration: 0.5 } }}
-                transition={{ duration: 0.7, ease }}
+                initial={reduce ? { opacity: 0 } : { clipPath: "inset(0% 0% 100% 0%)", scale: 1.06, filter: "brightness(1.15)" }}
+                animate={{ clipPath: "inset(0% 0% 0% 0%)", scale: 1, filter: "brightness(1)", opacity: 1 }}
+                exit={{ opacity: 0, transition: { duration: 0.2, delay: 0.75 } }}
+                transition={{ duration: 0.85, ease: [0.76, 0, 0.24, 1] }}
                 className="absolute inset-0 size-full object-cover"
               />
+            </AnimatePresence>
+
+            {/* Brillo que recorre el vidrio al terminar el cambio */}
+            <AnimatePresence>
+              {sweep > 0 && !reduce && (
+                <motion.span
+                  key={sweep}
+                  aria-hidden
+                  className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/45 to-transparent"
+                  initial={{ x: "0%" }}
+                  animate={{ x: "320%" }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1.1, delay: 0.55, ease: "easeInOut" }}
+                />
+              )}
             </AnimatePresence>
 
             {/* Accesorio cayendo y enroscándose */}
@@ -143,12 +148,15 @@ export function ProductView({ product, categoryName }: { product: Product; categ
                     animate={{ y: ["-160%", "6%", "0%", "0%"], rotate: [-35, 12, 0, 0], opacity: [0, 1, 1, 0], scale: [1.15, 1, 1, 0.96] }}
                     transition={{ duration: 1.5, times: [0, 0.4, 0.55, 1], ease: "easeOut" }}
                   />
-                  <motion.span
-                    className="absolute left-1/2 top-[22%] size-24 -translate-x-1/2 rounded-full border-2 border-teal"
-                    initial={{ scale: 0.3, opacity: 0 }}
-                    animate={{ scale: [0.3, 1.8], opacity: [0, 0.9, 0] }}
-                    transition={{ duration: 0.8, delay: 0.55, ease: "easeOut" }}
-                  />
+                  {[0, 0.12].map((d) => (
+                    <motion.span
+                      key={d}
+                      className="absolute left-1/2 top-[22%] size-24 -translate-x-1/2 rounded-full border-2 border-teal"
+                      initial={{ scale: 0.3, opacity: 0 }}
+                      animate={{ scale: [0.3, 2], opacity: [0, 0.9, 0] }}
+                      transition={{ duration: 0.9, delay: 0.55 + d, ease: "easeOut" }}
+                    />
+                  ))}
                   <motion.span
                     className="glass absolute left-1/2 top-5 flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full px-3.5 py-1.5 text-xs font-semibold text-ink"
                     initial={{ y: -12, opacity: 0 }}
@@ -176,6 +184,7 @@ export function ProductView({ product, categoryName }: { product: Product; categ
               </AnimatePresence>
             )}
           </div>
+          {hasVariants && <p className="mt-3 text-center text-xs text-muted">Elegí un accesorio y miralo colocado en el envase ✦</p>}
         </div>
       </div>
 
@@ -291,6 +300,38 @@ export function ProductView({ product, categoryName }: { product: Product; categ
                 )}
               </AnimatePresence>
             </button>
+          </div>
+
+          {/* Descuentos vigentes por cantidad (pagando en efectivo) */}
+          <div className="mt-4 overflow-hidden rounded-2xl border border-line bg-white">
+            <div className="flex items-center justify-between gap-3 bg-sun/35 px-4 py-2.5">
+              <p className="text-sm font-semibold">Descuentos pagando en efectivo</p>
+              <AnimatePresence mode="wait">
+                {cashPercent(qty) > 0 && (
+                  <motion.span key={cashPercent(qty)} initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.6, opacity: 0 }} className="rounded-full bg-night px-2.5 py-0.5 text-xs font-bold text-sun">
+                    {cashPercent(qty)}% aplicado
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </div>
+            <div className="grid grid-cols-3 divide-x divide-line text-center">
+              {[...CASH_TIERS].reverse().map((t) => {
+                const on = cashPercent(qty) === t.percent;
+                return (
+                  <button key={t.minUnits} type="button" onClick={() => setQty(Math.max(qty, t.minUnits))} className={`px-2 py-3 transition-colors ${on ? "bg-teal/10" : "hover:bg-paper-2"}`}>
+                    <span className="block text-xs text-muted">desde {t.minUnits} u.</span>
+                    <span className={`block font-display text-xl font-extrabold ${on ? "text-teal-deep" : ""}`}>{t.percent}% OFF</span>
+                    <span className="block text-xs tabular-nums text-muted">{currency(variant.price * (1 - t.percent / 100))} c/u</span>
+                  </button>
+                );
+              })}
+            </div>
+            {cashPercent(qty) > 0 && (
+              <p className="border-t border-line px-4 py-2 text-sm">
+                Total en efectivo: <strong className="tabular-nums">{currency(variant.price * qty * (1 - cashPercent(qty) / 100))}</strong>{" "}
+                <span className="text-muted line-through tabular-nums">{currency(variant.price * qty)}</span>
+              </p>
+            )}
           </div>
 
           <a

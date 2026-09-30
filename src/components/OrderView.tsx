@@ -115,6 +115,12 @@ export function OrderView({ number }: { number: string }) {
               <dt className="text-muted">Subtotal productos</dt>
               <dd className="tabular-nums">{currency(order.subtotal)}</dd>
             </div>
+            {order.discount && (
+              <div className="flex justify-between font-semibold text-teal-deep">
+                <dt>{order.discount.label}</dt>
+                <dd className="tabular-nums">-{currency(order.discount.amount)}</dd>
+              </div>
+            )}
             <div className="flex justify-between gap-4">
               <dt className="text-muted">
                 {order.shipping.label}
@@ -140,6 +146,7 @@ export function OrderView({ number }: { number: string }) {
               {pickup ? `${site.address}, ${site.city}` : [order.customer.address, order.customer.postcode && `CP ${order.customer.postcode}`].filter(Boolean).join(" · ")}
             </p>
             <p className="mt-1 text-xs text-muted">Contacto: {order.customer.phone}</p>
+            {order.payment && <p className="mt-1 text-xs text-muted">Pago: {order.payment}</p>}
           </div>
           <ol className="rounded-3xl border border-line bg-white p-5 text-sm">
             {[

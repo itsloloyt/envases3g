@@ -9,6 +9,7 @@ import { currency } from "@/lib/catalog";
 import { waLink } from "@/lib/site";
 import { estimateWeightKg, quoteShipping, type ShippingMethod } from "@/lib/shipping";
 import { saveOrder } from "@/lib/orders";
+import { discountFor, nextTier, PAYMENT_LABEL, type PaymentMethod } from "@/lib/discounts";
 import { lockScroll } from "./SmoothScroll";
 import { ease } from "./Reveal";
 
@@ -24,6 +25,7 @@ export function CartDrawer() {
   const [error, setError] = useState("");
   const [postcode, setPostcode] = useState("");
   const [method, setMethod] = useState<ShippingMethod>("retiro");
+  const [payment, setPayment] = useState<PaymentMethod>("efectivo");
   const pending = useRef<{ signature: string; id: string } | null>(null);
 
   const weight = items.reduce((kg, i) => kg + estimateWeightKg(i.name, i.subcategory ?? "", i.quantity), 0);
@@ -64,7 +66,9 @@ export function CartDrawer() {
       const result = await res.json();
       if (!res.ok) throw new Error(result.error || "No pudimos guardar el pedido.");
       const saved = result as Receipt;
-      const total = saved.total + shipping.price;
+      const units = saved.items.reduce((n, i) => n + i.quantity, 0);
+      const disc = discountFor(saved.total, units, payment);
+      const total = saved.total - disc.amount + shipping.price;
       const delivery =
         shipping.method === "retiro"
           ? "Retiro en el local"
@@ -72,7 +76,7 @@ export function CartDrawer() {
       const message =
         `Hola Envases 3G, soy ${body.name}. Mi pedido es ${saved.number}.\n\n` +
         saved.items.map((i) => `${i.quantity} × ${i.name} (${i.variant})\n${currency(i.unitPrice)} c/u — ${currency(i.subtotal)}`).join("\n\n") +
-        `\n\nProductos: ${currency(saved.total)}\nEntrega: ${delivery}\nTotal: ${currency(total)}\nTeléfono: ${body.phone}\nQuisiera coordinar el pago.`;
+        `\n\nProductos: ${currency(saved.total)}${disc.amount ? `\nDescuento ${disc.percent}% pagando en efectivo: -${currency(disc.amount)}` : ""}\nEntrega: ${delivery}\nPago: ${PAYMENT_LABEL[payment]}\nTotal: ${currency(total)}\nTeléfono: ${body.phone}`;
       const lineFor = (name: string, variant: string) => items.find((i) => i.name === name && i.variantName === variant);
       saveOrder({
         number: saved.number,
@@ -80,6 +84,8 @@ export function CartDrawer() {
         customer: { name: body.name, phone: body.phone, postcode: postcode || undefined, address: address || undefined },
         items: saved.items.map((i) => ({ ...i, image: lineFor(i.name, i.variant)?.image ?? null, slug: lineFor(i.name, i.variant)?.slug })),
         subtotal: saved.total,
+        discount: disc.amount ? { percent: disc.percent, amount: disc.amount, label: `${disc.percent}% OFF pagando en efectivo` } : undefined,
+        payment: PAYMENT_LABEL[payment],
         shipping: { method: shipping.method, label: shipping.label, detail: shipping.detail, price: shipping.price },
         total,
         whatsapp: waLink(message),
@@ -99,6 +105,9 @@ export function CartDrawer() {
   if (pathname.startsWith("/administracion")) return null;
   const count = cartCount(items);
   const total = cartTotal(items);
+  const disc = discountFor(total, count, payment);
+  const cashDisc = discountFor(total, count, "efectivo");
+  const next = nextTier(count);
 
   return (
     <AnimatePresence>
@@ -195,7 +204,22 @@ export function CartDrawer() {
                           <span className="text-sm text-muted">Total de productos</span>
                           <span className="font-display text-3xl tabular-nums">{currency(total)}</span>
                         </div>
-                        <p className="mt-1 text-xs text-muted">El pago, los descuentos y la entrega se coordinan por WhatsApp.</p>
+                        {cashDisc.amount > 0 && (
+                          <motion.p initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="mt-1 flex items-center justify-between rounded-xl bg-sun/40 px-3 py-2 text-sm font-semibold">
+                            <span>Pagando en efectivo ({cashDisc.percent}% OFF)</span>
+                            <span className="tabular-nums">{currency(total - cashDisc.amount)}</span>
+                          </motion.p>
+                        )}
+                        {next && (
+                          <div className="mt-3">
+                            <p className="text-xs text-muted">
+                              Sumá <strong className="text-ink">{next.missing} u.</strong> más y obtenés <strong className="text-teal-deep">{next.percent}% OFF</strong> pagando en efectivo
+                            </p>
+                            <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-line">
+                              <motion.div className="h-full rounded-full bg-gradient-to-r from-teal to-sun" initial={false} animate={{ width: `${Math.min(100, (count / (count + next.missing)) * 100)}%` }} transition={{ type: "spring", stiffness: 120, damping: 20 }} />
+                            </div>
+                          </div>
+                        )}
                         <button onClick={() => setStep("checkout")} className="mt-4 w-full rounded-full bg-ink py-4 text-sm font-semibold text-white transition-colors duration-200 hover:bg-teal-deep">
                           Continuar pedido
                         </button>
@@ -260,6 +284,27 @@ export function CartDrawer() {
                       )}
                       {shipping.price > 0 && <p className="mt-2 text-xs text-muted">Peso estimado {weight.toFixed(1)} kg · costo orientativo, se confirma al despachar.</p>}
                     </fieldset>
+                    <fieldset className="rounded-2xl border border-line bg-white p-4">
+                      <legend className="px-1 text-sm font-semibold">Forma de pago</legend>
+                      <div className="grid grid-cols-2 gap-2">
+                        {(["efectivo", "transferencia"] as const).map((m) => {
+                          const d = discountFor(total, count, m);
+                          return (
+                            <label key={m} className={`cursor-pointer rounded-xl border p-3 text-sm transition-colors ${payment === m ? "border-teal-deep bg-teal/5" : "border-line hover:border-ink/30"}`}>
+                              <input type="radio" name="payment" className="sr-only" checked={payment === m} onChange={() => setPayment(m)} />
+                              <span className="block font-medium">{PAYMENT_LABEL[m]}</span>
+                              <span className={`block text-xs ${d.percent ? "font-semibold text-teal-deep" : "text-muted"}`}>{d.percent ? `${d.percent}% OFF aplicado` : m === "efectivo" ? "Descuento desde 20 u." : "Se coordina por WhatsApp"}</span>
+                            </label>
+                          );
+                        })}
+                      </div>
+                    </fieldset>
+                    <div className="space-y-1.5 rounded-2xl bg-paper-2 p-4 text-sm">
+                      <p className="flex justify-between"><span className="text-muted">Productos</span><span className="tabular-nums">{currency(total)}</span></p>
+                      {disc.amount > 0 && <p className="flex justify-between font-semibold text-teal-deep"><span>Descuento {disc.percent}% efectivo</span><span className="tabular-nums">-{currency(disc.amount)}</span></p>}
+                      <p className="flex justify-between"><span className="text-muted">Envío</span><span className="tabular-nums">{shipping.price ? currency(shipping.price) : "Sin cargo"}</span></p>
+                      <p className="flex justify-between border-t border-line pt-2 font-semibold"><span>Total</span><span className="tabular-nums">{currency(total - disc.amount + shipping.price)}</span></p>
+                    </div>
                     <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-line bg-white p-4 text-sm">
                       <input type="checkbox" name="consent" required disabled={busy} className="mt-0.5 size-4 accent-[var(--teal-deep)]" />
                       Acepto que Envases 3G guarde mis datos para gestionar este pedido.
@@ -275,7 +320,7 @@ export function CartDrawer() {
                       <ShieldCheck className="size-4 text-teal-deep" /> No pagás nada ahora: registramos tu orden y la confirmamos por WhatsApp.
                     </div>
                     <button disabled={busy} className="flex w-full items-center justify-center gap-2 rounded-full bg-ink py-4 text-sm font-semibold text-white transition-colors duration-200 hover:bg-teal-deep disabled:opacity-60">
-                      {busy ? "Guardando tu pedido…" : `Confirmar pedido · ${currency(total + shipping.price)}`}
+                      {busy ? "Guardando tu pedido…" : `Confirmar pedido · ${currency(total - disc.amount + shipping.price)}`}
                     </button>
                   </div>
                 </motion.form>

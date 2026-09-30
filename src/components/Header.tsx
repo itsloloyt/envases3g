@@ -5,6 +5,7 @@ import { useEffect, useState, useSyncExternalStore } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, Search, ShoppingBag, X } from "lucide-react";
 import { SearchPalette } from "./SearchPalette";
+import { AnnouncementBar } from "./AnnouncementBar";
 import { cartCount, useCart } from "@/store/cart";
 import { Logo } from "./icons";
 import { lockScroll } from "./SmoothScroll";
@@ -56,7 +57,11 @@ export function Header() {
   if (pathname.startsWith("/administracion")) return <AdminBar />;
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5">
+    <header className="fixed inset-x-0 top-0 z-50">
+      <motion.div animate={{ height: scrolled ? 0 : "auto", opacity: scrolled ? 0 : 1 }} transition={{ duration: 0.3 }} className="overflow-hidden">
+        <AnnouncementBar />
+      </motion.div>
+      <div className="px-3 pt-3 sm:px-5">
       <div
         className={`mx-auto flex max-w-7xl items-center justify-between gap-4 rounded-full py-2 pl-2 pr-2 transition-all duration-500 ${
           scrolled || menu ? "glass" : "border border-transparent"
@@ -151,6 +156,7 @@ export function Header() {
         </div>
       </div>
 
+      </div>
       <SearchPalette open={search} onClose={() => setSearch(false)} />
       <AnimatePresence>
         {menu && (
@@ -161,7 +167,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, transition: { duration: 0.2 } }}
             transition={{ duration: 0.4, ease }}
-            className="glass mx-auto mt-2 max-w-7xl rounded-3xl p-3 lg:hidden"
+            className="glass mx-3 mt-2 rounded-3xl p-3 sm:mx-5 lg:hidden"
           >
             <ul>
               {nav.map((n, i) => (
