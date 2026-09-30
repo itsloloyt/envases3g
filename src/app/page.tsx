@@ -1,11 +1,11 @@
 import { getCatalog } from "@/lib/catalog-server";
 import { categories } from "@/lib/catalog";
-import { subcategories, toCard } from "@/lib/shop";
+import { toCard } from "@/lib/shop";
 import { Hero } from "@/components/home/Hero";
 import { AccessoryShowcase } from "@/components/home/AccessoryShowcase";
 import { Discounts } from "@/components/home/Discounts";
-import { ExpandImage, ScrollText } from "@/components/home/ScrollStory";
-import { Featured, HowToBuy, Location, Marquee, Rubros, Stats, Wholesale, type Rubro } from "@/components/home/Sections";
+import { ExpandImage } from "@/components/home/ScrollStory";
+import { Featured, Location, Marquee, Rubros, type Rubro } from "@/components/home/Sections";
 
 export const revalidate = 3600;
 
@@ -58,8 +58,6 @@ export default async function Home() {
     <>
       <Hero products={hero.length >= 4 ? hero : products.slice(0, 4).map(toCard)} total={products.length} />
       <Marquee />
-      <ScrollText />
-      <Stats products={Math.floor(products.length / 10) * 10} categories={subcategories.length} />
       <Rubros rubros={rubros} />
       <ExpandImage />
       {showcase && (
@@ -71,9 +69,7 @@ export default async function Home() {
         />
       )}
       <Featured products={featured.length ? featured : products.slice(0, 10).map(toCard)} />
-      <HowToBuy />
       <Discounts />
-      <Wholesale />
       <Location />
     </>
   );
