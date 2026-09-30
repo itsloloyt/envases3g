@@ -1,10 +1,15 @@
 {
   "body-125-cc-ambar": {
-    "22378831": "https://d22fxaf9t8d39k.cloudfront.net/305c116d289fb7ccb31f18926f5b1c9fc888f0a3cb8a7a807664fba9ccfe5d0099432.jpg",
     "11254733": "/images/body-125-crema-premium-negra.png",
-    "19410867": "/images/body-125-spray-negra.png",
-    "17839523": "/images/body-125-tapa-ciega-blanca.png",
     "11254734": "/images/body-125-flip-top-negra.png",
-    "17043543": "/images/body-125-spray-blanca.png"
+    "17043543": "/images/body-125-spray-blanca.png",
+    "17839523": "/images/body-125-tapa-ciega-blanca.png",
+    "19410867": "/images/body-125-spray-negra.png",
+    "22378831": "https://d22fxaf9t8d39k.cloudfront.net/305c116d289fb7ccb31f18926f5b1c9fc888f0a3cb8a7a807664fba9ccfe5d0099432.jpg"
+  },
+  "body-125-cc-blanco": {
+    "11254861": "https://d22fxaf9t8d39k.cloudfront.net/81046e3884d338521c0167adb0e79e964c0cd01bf5822386dec07c2d41e7828199432.jpeg",
+    "17043397": "https://d22fxaf9t8d39k.cloudfront.net/c4bdadf96cd092772b61617175e8f146b3afc0004017642bf4054c597dbce9bf99432.jpeg",
+    "19410976": "https://d22fxaf9t8d39k.cloudfront.net/034ba8b21dadea1883e25a73f0c60ccd298b7ea76d55595c0ae9d766f14be3c399432.jpg"
   }
 }

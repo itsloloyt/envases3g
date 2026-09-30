@@ -1,9 +1,9 @@
 {
   "totalAccessoryVariants": 3086,
-  "completed": 6,
-  "remaining": 3080,
+  "completed": 9,
+  "remaining": 3077,
   "sourceLinked": 3086,
-  "sourceSharedReferences": 2615,
+  "sourceSharedReferences": 2612,
   "missing": [
     {
       "productSlug": "aceite-aromatico-premium-puro",
@@ -918,13 +918,6 @@
     {
       "productSlug": "body-125-cc-blanco",
       "productName": "Body 125 cc Blanco",
-      "variantId": "11254861",
-      "variantName": "Crema premium blanca",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/89462cccfc4ff32e2498067c05d47487401c1ea386f0a9298cb3708929724eb999432.jpeg"
-    },
-    {
-      "productSlug": "body-125-cc-blanco",
-      "productName": "Body 125 cc Blanco",
       "variantId": "11254862",
       "variantName": "Spray negra",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/89462cccfc4ff32e2498067c05d47487401c1ea386f0a9298cb3708929724eb999432.jpeg"
@@ -953,13 +946,6 @@
     {
       "productSlug": "body-125-cc-blanco",
       "productName": "Body 125 cc Blanco",
-      "variantId": "17043397",
-      "variantName": "Flip Top blanca",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/89462cccfc4ff32e2498067c05d47487401c1ea386f0a9298cb3708929724eb999432.jpeg"
-    },
-    {
-      "productSlug": "body-125-cc-blanco",
-      "productName": "Body 125 cc Blanco",
       "variantId": "17487628",
       "variantName": "Gota Gota natural estriad",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/89462cccfc4ff32e2498067c05d47487401c1ea386f0a9298cb3708929724eb999432.jpeg"
@@ -969,13 +955,6 @@
       "productName": "Body 125 cc Blanco",
       "variantId": "17839495",
       "variantName": "Tapa ciega",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/89462cccfc4ff32e2498067c05d47487401c1ea386f0a9298cb3708929724eb999432.jpeg"
-    },
-    {
-      "productSlug": "body-125-cc-blanco",
-      "productName": "Body 125 cc Blanco",
-      "variantId": "19410976",
-      "variantName": "Spray blanca",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/89462cccfc4ff32e2498067c05d47487401c1ea386f0a9298cb3708929724eb999432.jpeg"
     },
     {
