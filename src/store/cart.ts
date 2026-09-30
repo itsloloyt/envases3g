@@ -39,7 +39,7 @@ export const useCart = create<CartState>()(
           const items = found
             ? s.items.map((i) => (same(i, item.slug, item.variantId) ? { ...i, quantity: Math.min(9999, i.quantity + quantity) } : i))
             : [...s.items, { ...item, quantity: Math.max(item.minQuantity, quantity) }];
-          return { items, open: true };
+          return { items };
         }),
       setQuantity: (slug, variantId, quantity) =>
         set((s) => ({

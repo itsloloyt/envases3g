@@ -7,6 +7,8 @@ import { CartDrawer } from "@/components/CartDrawer";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
 import { ScrollProgress } from "@/components/ScrollProgress";
+import { MobileNav } from "@/components/MobileNav";
+import { FlyToCart } from "@/components/FlyToCart";
 import { site } from "@/lib/site";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
@@ -25,7 +27,7 @@ export const viewport: Viewport = { themeColor: "#041619" };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es-AR" className={`${inter.variable} ${manrope.variable} ${instrument.variable}`}>
-      <body className="grain min-h-dvh">
+      <body className="grain min-h-dvh pb-24 lg:pb-0">
         <SmoothScroll />
         <ScrollProgress />
         <a
@@ -39,6 +41,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Footer />
         <CartDrawer />
         <WhatsAppFab />
+        <MobileNav />
+        <FlyToCart />
       </body>
     </html>
   );

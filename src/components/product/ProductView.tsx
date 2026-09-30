@@ -5,6 +5,7 @@ import { Check, Link2, Minus, Plus, Share2, ShoppingBag, Sparkles, Store, Truck 
 import { cover } from "@/lib/shop";
 import { CASH_TIERS, cashPercent } from "@/lib/discounts";
 import { rememberProduct } from "./RecentlyViewed";
+import { flyToCart } from "../FlyToCart";
 import { currency, type Product } from "@/lib/catalog";
 import { accessoryArt, photoFor } from "@/lib/accessories";
 import { site, waLink } from "@/lib/site";
@@ -39,6 +40,7 @@ export function ProductView({ product, categoryName }: { product: Product; categ
   );
 
   const [shared, setShared] = useState(false);
+  const stage = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     rememberProduct({ slug: product.slug, name: product.name, image: cover(product), price: Math.min(...product.variants.map((v) => v.price)) });
@@ -86,6 +88,7 @@ export function ProductView({ product, categoryName }: { product: Product; categ
   }
 
   function addToCart() {
+    flyToCart(shown, stage.current, product.name);
     add(
       { slug: product.slug, variantId: variant.id, name: product.name, variantName: variant.name, price: variant.price, image: photoFor(product, variant).src, minQuantity: variant.minQuantity, subcategory: product.subcategory },
       qty,
@@ -99,7 +102,7 @@ export function ProductView({ product, categoryName }: { product: Product; categ
       {/* Visor: envase solo → accesorio colocado */}
       <div className="min-w-0 lg:col-span-7">
         <div className="lg:sticky lg:top-28">
-          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[32px] bg-photo shadow-[0_40px_80px_-50px_rgb(4_22_25/0.6)]">
+          <div ref={stage} className="relative aspect-[3/4] w-full overflow-hidden rounded-[32px] bg-photo shadow-[0_40px_80px_-50px_rgb(4_22_25/0.6)]">
             {/* Cambio de imagen: cortina de arriba hacia abajo, como si la pieza se enroscara */}
             <AnimatePresence initial={false}>
               <motion.img
@@ -361,6 +364,18 @@ export function ProductView({ product, categoryName }: { product: Product; categ
               <ShoppingBag className="size-5 text-teal-deep" strokeWidth={1.6} /> Precio mayorista por cantidad — consultanos
             </li>
           </ul>
+        </div>
+      </div>
+      {/* Barra de compra fija en celular */}
+      <div className="fixed inset-x-3 bottom-[84px] z-30 lg:hidden">
+        <div className="glass flex items-center gap-3 rounded-2xl p-2 pl-4">
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-xs text-muted">{hasVariants ? variant.name : product.name}</p>
+            <p className="font-display text-lg font-extrabold tabular-nums leading-tight">{currency(variant.price * qty)}</p>
+          </div>
+          <motion.button whileTap={{ scale: 0.94 }} onClick={addToCart} disabled={!variant.available} className="flex items-center gap-2 rounded-xl bg-ink px-5 py-3 text-sm font-semibold text-white disabled:opacity-50">
+            {added ? <Check className="size-4" /> : <ShoppingBag className="size-4" />} {added ? "Agregado" : "Agregar"}
+          </motion.button>
         </div>
       </div>
     </div>

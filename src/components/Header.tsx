@@ -50,8 +50,13 @@ export function Header() {
         setSearch(true);
       }
     };
+    const open = () => setSearch(true);
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    window.addEventListener("abrir-busqueda", open);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("abrir-busqueda", open);
+    };
   }, []);
 
   if (pathname.startsWith("/administracion")) return <AdminBar />;
@@ -124,6 +129,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setOpen(true)}
+            data-cart-target="header"
             className={`relative grid size-11 place-items-center rounded-full transition-colors duration-200 ${dark ? "hover:bg-white/10" : "hover:bg-ink/[0.06]"}`}
             aria-label={`Abrir carrito, ${count} ${count === 1 ? "producto" : "productos"}`}
           >
