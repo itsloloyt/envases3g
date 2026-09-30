@@ -69,7 +69,7 @@ export function ProductView({ product, categoryName }: { product: Product; categ
   return (
     <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
       {/* Visor */}
-      <div className="lg:col-span-7">
+      <div className="min-w-0 lg:col-span-7">
         <div className="flex flex-col-reverse gap-3 sm:flex-row">
           {gallery.length > 1 && (
             <div className="no-scrollbar flex gap-2 overflow-x-auto sm:max-h-[680px] sm:flex-col sm:overflow-y-auto" data-lenis-prevent>
@@ -88,7 +88,7 @@ export function ProductView({ product, categoryName }: { product: Product; categ
               ))}
             </div>
           )}
-          <div className="relative aspect-[3/4] flex-1 overflow-hidden rounded-[30px] bg-photo">
+          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[30px] bg-photo sm:w-auto sm:flex-1">
             <AnimatePresence initial={false}>
               <motion.img
                 key={shown}
@@ -158,7 +158,7 @@ export function ProductView({ product, categoryName }: { product: Product; categ
       </div>
 
       {/* Información */}
-      <div className="lg:col-span-5">
+      <div className="min-w-0 lg:col-span-5">
         <div className="lg:sticky lg:top-28">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-deep">{categoryName}</p>
           <h1 className="mt-3 font-display text-4xl font-extrabold leading-[1.02] sm:text-5xl">{product.name}</h1>
