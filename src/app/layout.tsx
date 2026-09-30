@@ -1,48 +1,44 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
-import { ShopProvider } from "@/components/shop-provider";
-import { WhatsappButton } from "@/components/whatsapp-button";
+import type { Metadata, Viewport } from "next";
+import { Inter, Instrument_Serif, Manrope } from "next/font/google";
 import "./globals.css";
-const dm = localFont({
-  src: "../../public/fonts/dm-sans.woff2",
-  variable: "--font-dm",
-  display: "swap",
-  weight: "400 700",
-});
-const manrope = localFont({
-  src: "../../public/fonts/manrope.woff2",
-  variable: "--font-manrope",
-  display: "swap",
-  weight: "400 800",
-});
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { CartDrawer } from "@/components/CartDrawer";
+import { SmoothScroll } from "@/components/SmoothScroll";
+import { WhatsAppFab } from "@/components/WhatsAppFab";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { site } from "@/lib/site";
+
+const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
+const manrope = Manrope({ variable: "--font-manrope", subsets: ["latin"], weight: ["500", "700", "800"] });
+const instrument = Instrument_Serif({ variable: "--font-instrument", subsets: ["latin"], weight: "400", style: ["italic"] });
+
 export const metadata: Metadata = {
-  title: {
-    default: "Envases 3G · El comienzo de tus ideas",
-    template: "%s | Envases 3G",
-  },
-  description:
-    "Envases de vidrio y plástico, accesorios, esencias y difusores. Descubrí el catálogo de Envases 3G en Moreno 4156, Mar del Plata.",
-  openGraph: { locale: "es_AR", type: "website", siteName: "Envases 3G" },
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://envases3g.vercel.app"),
+  title: { default: "Envases 3G · Envases de vidrio y plástico en Mar del Plata", template: "%s | Envases 3G" },
+  description: site.description,
+  openGraph: { title: "Envases 3G", description: site.description, locale: "es_AR", type: "website", siteName: "Envases 3G", images: ["/brand/logo-3g.png"] },
 };
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+
+export const viewport: Viewport = { themeColor: "#041619" };
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es-AR" data-scroll-behavior="smooth" className={`${dm.variable} ${manrope.variable}`}>
-      <body>
-        <ShopProvider>
-          <a className="skip-link" href="#contenido">
-            Ir al contenido
-          </a>
-          <Header />
-          {children}
-          <Footer />
-          <WhatsappButton />
-        </ShopProvider>
+    <html lang="es-AR" className={`${inter.variable} ${manrope.variable} ${instrument.variable}`}>
+      <body className="grain min-h-dvh">
+        <SmoothScroll />
+        <ScrollProgress />
+        <a
+          href="#contenido"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-white"
+        >
+          Saltar al contenido
+        </a>
+        <Header />
+        <main id="contenido">{children}</main>
+        <Footer />
+        <CartDrawer />
+        <WhatsAppFab />
       </body>
     </html>
   );
