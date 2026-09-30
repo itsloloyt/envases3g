@@ -6,6 +6,7 @@ import { ArrowRight, ArrowUpRight, Clock, Mail, MapPin, MessageCircle, Package, 
 import type { Card } from "@/lib/shop";
 import { site, waLink } from "@/lib/site";
 import { ProductCard } from "../ProductCard";
+import { RubroMedia } from "./RubroMedia";
 import { Reveal, SplitHeading, ease } from "../Reveal";
 import { InstagramIcon, WhatsAppIcon } from "../icons";
 
@@ -70,7 +71,7 @@ export function Stats({ products, categories }: { products: number; categories: 
 }
 
 /* ───────────────────────── Rubros (bento) ───────────────────────── */
-export type Rubro = { slug: string; name: string; count: number; image: string | null; blurb: string };
+export type Rubro = { slug: string; name: string; count: number; image: string | null; blurb: string; video?: string };
 
 export function Rubros({ rubros }: { rubros: Rubro[] }) {
   const spans = ["md:col-span-4 md:row-span-2", "md:col-span-2", "md:col-span-2", "md:col-span-2", "md:col-span-2", "md:col-span-4", "md:col-span-4"];
@@ -94,14 +95,7 @@ export function Rubros({ rubros }: { rubros: Rubro[] }) {
               href={`/productos?rubro=${r.slug}`}
               className="group relative flex size-full flex-col justify-end overflow-hidden rounded-[22px] bg-photo p-4 sm:rounded-[26px] sm:p-5"
             >
-              {r.image && (
-                <img
-                  src={r.image}
-                  alt=""
-                  loading="lazy"
-                  className="absolute inset-0 size-full object-cover transition duration-[1.2s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-110"
-                />
-              )}
+              <RubroMedia image={r.image} video={r.video} />
               <div className="absolute inset-0 bg-gradient-to-t from-night/75 via-night/10 to-transparent" />
               <div className="relative flex items-end justify-between gap-2 text-white">
                 <div>

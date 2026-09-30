@@ -29,6 +29,9 @@ const FEATURED = [
 // Configurador del inicio: envase con fotos IA de cada accesorio.
 const SHOWCASE = { slug: "omega-200-cc-ambar", keys: ["spray-negra", "crema-oro", "gatillo-negra", "fliptop-negra", "crema-blanca", "spray-plata", "tapa-aluminio"] };
 
+// Rubros con video generado con Higgsfield.
+const RUBRO_VIDEOS = ["cosmetica-y-farmacia", "plastico", "frascos-y-botellas-de-vidrio", "esencias-y-difusores", "accesorios"];
+
 const ORDER = ["cosmetica-y-farmacia", "plastico", "frascos-y-botellas-de-vidrio", "esencias-y-difusores", "accesorios", "alimentos", "combos-y-kits"];
 const BLURBS: Record<string, string> = {
   "cosmetica-y-farmacia": "Goteros, potes, tubos, perfumeros y latas para laboratorios, cosmética natural y farmacia.",
@@ -44,7 +47,7 @@ export default async function Home() {
     .map((c) => {
       const inRubro = products.filter((p) => p.category === c.slug);
       // Portadas editoriales de cada rubro generadas con Higgsfield.
-      return { slug: c.slug, name: c.name, count: inRubro.length, image: `/rubros/${c.slug}.webp`, blurb: BLURBS[c.slug] ?? c.text };
+      return { slug: c.slug, name: c.name, count: inRubro.length, image: `/rubros/${c.slug}.webp`, video: RUBRO_VIDEOS.includes(c.slug) ? `/video/rubro-${c.slug}.mp4` : undefined, blurb: BLURBS[c.slug] ?? c.text };
     });
 
   const showcase = bySlug.get(SHOWCASE.slug);
