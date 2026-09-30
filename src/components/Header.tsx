@@ -3,7 +3,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { Menu, ShoppingBag, X } from "lucide-react";
+import { Menu, Search, ShoppingBag, X } from "lucide-react";
+import { SearchPalette } from "./SearchPalette";
 import { cartCount, useCart } from "@/store/cart";
 import { Logo } from "./icons";
 import { lockScroll } from "./SmoothScroll";
@@ -24,6 +25,7 @@ export function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menu, setMenu] = useState(false);
+  const [search, setSearch] = useState(false);
   const items = useCart((s) => s.items);
   const setOpen = useCart((s) => s.setOpen);
   const count = useHydrated() ? cartCount(items) : 0;
@@ -38,6 +40,18 @@ export function Header() {
   }, []);
 
   useEffect(() => lockScroll(menu), [menu]);
+
+  // Atajo de teclado Ctrl/⌘ + K para buscar.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearch(true);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   if (pathname.startsWith("/administracion")) return <AdminBar />;
 
@@ -96,6 +110,14 @@ export function Header() {
           </Link>
           <button
             type="button"
+            onClick={() => setSearch(true)}
+            className={`grid size-11 place-items-center rounded-full transition-colors duration-200 ${dark ? "hover:bg-white/10" : "hover:bg-ink/[0.06]"}`}
+            aria-label="Buscar productos (Ctrl + K)"
+          >
+            <Search className="size-5" strokeWidth={1.8} />
+          </button>
+          <button
+            type="button"
             onClick={() => setOpen(true)}
             className={`relative grid size-11 place-items-center rounded-full transition-colors duration-200 ${dark ? "hover:bg-white/10" : "hover:bg-ink/[0.06]"}`}
             aria-label={`Abrir carrito, ${count} ${count === 1 ? "producto" : "productos"}`}
@@ -129,6 +151,7 @@ export function Header() {
         </div>
       </div>
 
+      <SearchPalette open={search} onClose={() => setSearch(false)} />
       <AnimatePresence>
         {menu && (
           <motion.nav

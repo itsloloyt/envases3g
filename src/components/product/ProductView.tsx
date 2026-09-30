@@ -1,7 +1,9 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { Check, Minus, Plus, ShoppingBag, Sparkles, Store, Truck } from "lucide-react";
+import { Check, Link2, Minus, Plus, Share2, ShoppingBag, Sparkles, Store, Truck } from "lucide-react";
+import { cover } from "@/lib/shop";
+import { rememberProduct } from "./RecentlyViewed";
 import { currency, type Product } from "@/lib/catalog";
 import { accessoryArt, photoFor } from "@/lib/accessories";
 import { site, waLink } from "@/lib/site";
@@ -33,6 +35,26 @@ export function ProductView({ product, categoryName }: { product: Product; categ
     },
     [],
   );
+
+  const [shared, setShared] = useState(false);
+
+  useEffect(() => {
+    rememberProduct({ slug: product.slug, name: product.name, image: cover(product), price: Math.min(...product.variants.map((v) => v.price)) });
+  }, [product]);
+
+  async function share() {
+    const url = window.location.href;
+    try {
+      if (navigator.share) await navigator.share({ title: product.name, text: `${product.name} — Envases 3G`, url });
+      else {
+        await navigator.clipboard.writeText(url);
+        setShared(true);
+        setTimeout(() => setShared(false), 2000);
+      }
+    } catch {
+      /* El usuario canceló. */
+    }
+  }
 
   const hasVariants = product.variants.length > 1;
   // Si el producto ya es una tapa o válvula, no tiene sentido animar un accesorio encima.
@@ -160,7 +182,12 @@ export function ProductView({ product, categoryName }: { product: Product; categ
       {/* Información */}
       <div className="min-w-0 lg:col-span-5">
         <div className="lg:sticky lg:top-28">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-deep">{categoryName}</p>
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-deep">{categoryName}</p>
+            <button onClick={share} className="inline-flex items-center gap-1.5 rounded-full border border-line px-3 py-1.5 text-xs font-medium transition-colors hover:border-teal-deep hover:text-teal-deep" aria-label="Compartir producto">
+              {shared ? <Link2 className="size-3.5" /> : <Share2 className="size-3.5" />} {shared ? "¡Link copiado!" : "Compartir"}
+            </button>
+          </div>
           <h1 className="mt-3 font-display text-4xl font-extrabold leading-[1.02] sm:text-5xl">{product.name}</h1>
 
           <div className="mt-6 flex items-baseline gap-3">

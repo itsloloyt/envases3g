@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { motion } from "motion/react";
+import { motion, useMotionTemplate, useMotionValue, useReducedMotion, useSpring, useTransform } from "motion/react";
 import { ArrowUpRight, Plus } from "lucide-react";
 import { currency } from "@/lib/catalog";
 import type { Card } from "@/lib/shop";
@@ -9,6 +9,13 @@ import { useCart } from "@/store/cart";
 export function ProductCard({ p, priority = false }: { p: Card; priority?: boolean }) {
   const add = useCart((s) => s.add);
   const single = p.variantCount === 1;
+  const reduce = useReducedMotion();
+  // Inclinación 3D suave que sigue al mouse.
+  const mx = useMotionValue(0.5);
+  const my = useMotionValue(0.5);
+  const rx = useSpring(useTransform(my, [0, 1], [7, -7]), { stiffness: 200, damping: 20 });
+  const ry = useSpring(useTransform(mx, [0, 1], [-7, 7]), { stiffness: 200, damping: 20 });
+  const glare = useMotionTemplate`radial-gradient(circle at ${useTransform(mx, (v) => v * 100)}% ${useTransform(my, (v) => v * 100)}%, rgb(255 255 255 / 0.35), transparent 55%)`;
 
   return (
     <motion.article
@@ -19,6 +26,19 @@ export function ProductCard({ p, priority = false }: { p: Card; priority?: boole
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
       className="group relative flex flex-col"
     >
+      <motion.div
+        style={reduce ? undefined : { rotateX: rx, rotateY: ry, transformPerspective: 900 }}
+        onPointerMove={(e) => {
+          if (e.pointerType !== "mouse") return;
+          const b = e.currentTarget.getBoundingClientRect();
+          mx.set((e.clientX - b.left) / b.width);
+          my.set((e.clientY - b.top) / b.height);
+        }}
+        onPointerLeave={() => {
+          mx.set(0.5);
+          my.set(0.5);
+        }}
+      >
       <Link
         href={`/productos/${p.slug}`}
         className="relative block aspect-[3/4] overflow-hidden rounded-[24px] bg-photo transition-[box-shadow,transform] duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_28px_50px_-26px_rgb(4_22_25/0.55)]"
@@ -33,7 +53,7 @@ export function ProductCard({ p, priority = false }: { p: Card; priority?: boole
         {p.image2 && (
           <img src={p.image2} alt="" loading="lazy" decoding="async" className="absolute inset-0 size-full object-cover opacity-0 transition duration-700 group-hover:opacity-100" />
         )}
-        <span className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-white/0 to-white/0 transition duration-700 group-hover:via-white/15" />
+        {!reduce && <motion.span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" style={{ background: glare }} />}
         {!p.available ? (
           <span className="absolute left-3 top-3 rounded-full bg-ink/80 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur">Sin stock</span>
         ) : (
@@ -43,6 +63,7 @@ export function ProductCard({ p, priority = false }: { p: Card; priority?: boole
           <ArrowUpRight className="size-4" />
         </span>
       </Link>
+      </motion.div>
       <div className="flex items-start justify-between gap-3 px-1 pt-3.5">
         <div className="min-w-0">
           <p className="mb-1 truncate text-[11px] font-semibold uppercase tracking-[0.14em] text-teal-deep">{p.subcategoryName}</p>

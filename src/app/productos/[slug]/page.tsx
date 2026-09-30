@@ -9,6 +9,7 @@ import { site } from "@/lib/site";
 import { ProductView } from "@/components/product/ProductView";
 import { ProductCard } from "@/components/ProductCard";
 import { Reveal } from "@/components/Reveal";
+import { RecentlyViewed } from "@/components/product/RecentlyViewed";
 
 export const revalidate = 60;
 
@@ -97,6 +98,7 @@ export default async function ProductPage({ params }: PageProps<"/productos/[slu
             </div>
           </section>
         )}
+        <RecentlyViewed exclude={product.slug} />
       </div>
     </div>
   );
