@@ -51,3 +51,11 @@ El script `scripts/crawl.py` releva las URLs del sitemap almacenado en `research
   - Fotos IA del envase con cada accesorio (Higgsfield, 6 envases × ~19 accesorios): `public/ia/<slug>/<accesorio>.webp`, mapeadas por variante en `src/data/ai-variant-photos.json`.
   - Prioridad de la foto de una opción: IA → foto de estudio verificada → foto original de la variante → portada.
 - El backend no cambió: catálogo desde Supabase, pedidos por `/api/pedidos` → Edge Function `place-order`, consultas por `/api/consultas`, panel en `/administracion` (sus estilos quedaron encapsulados en `src/app/administracion/admin.css`).
+
+### Fotos profesionales, pedidos y envío (actualización)
+
+- **Portadas de los 425 productos** re-fotografiadas con Higgsfield a partir de la foto original (fondo de estudio, sin carteles ni stickers): `public/portadas/<slug>.webp`, mapeadas en `src/data/ai-covers.json`. La foto original sigue disponible con `originalCover()`.
+- **Portadas de rubros** editoriales: `public/rubros/<rubro>.webp`.
+- **Página de pedido** `/pedido/[numero]`: número de orden, productos con su accesorio, subtotal, envío y total; se guarda en el navegador del cliente (`src/lib/orders.ts`).
+- **Cotizador de envío** por código postal (`src/lib/shipping.ts`): retiro sin cargo, envío en Mar del Plata y Correo Argentino a sucursal/domicilio con peso estimado. Las tarifas son de referencia 2026 y se editan en ese archivo.
+  - El costo de envío todavía no se guarda en Supabase (la tabla `orders` solo guarda productos); viaja en el mensaje de WhatsApp.

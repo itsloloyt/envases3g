@@ -60,7 +60,7 @@ export function ProductCard({ p, priority = false }: { p: Card; priority?: boole
           <button
             type="button"
             onClick={() =>
-              add({ slug: p.slug, variantId: p.variantId, name: p.name, variantName: p.variantName, price: p.price, image: p.image, minQuantity: p.minQuantity }, p.minQuantity)
+              add({ slug: p.slug, variantId: p.variantId, name: p.name, variantName: p.variantName, price: p.price, image: p.image, minQuantity: p.minQuantity, subcategory: p.subcategory }, p.minQuantity)
             }
             className="relative z-10 grid size-11 shrink-0 place-items-center rounded-full border border-line bg-white transition-colors duration-200 hover:border-ink hover:bg-ink hover:text-white active:scale-95"
             aria-label={`Agregar ${p.name} al carrito`}

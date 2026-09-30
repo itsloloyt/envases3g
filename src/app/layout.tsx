@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { CartDrawer } from "@/components/CartDrawer";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import { site } from "@/lib/site";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="es-AR" className={`${inter.variable} ${manrope.variable} ${instrument.variable}`}>
       <body className="grain min-h-dvh">
         <SmoothScroll />
+        <ScrollProgress />
         <a
           href="#contenido"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-white"

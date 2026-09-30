@@ -1,37 +1,40 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowLeft, Check, Minus, Plus, ShieldCheck, ShoppingBag, Trash2, X } from "lucide-react";
+import { ArrowLeft, Minus, Plus, ShieldCheck, ShoppingBag, Trash2, Truck, X } from "lucide-react";
 import { cartCount, cartTotal, useCart } from "@/store/cart";
 import { currency } from "@/lib/catalog";
 import { waLink } from "@/lib/site";
-import { WhatsAppIcon } from "./icons";
+import { estimateWeightKg, quoteShipping, type ShippingMethod } from "@/lib/shipping";
+import { saveOrder } from "@/lib/orders";
 import { lockScroll } from "./SmoothScroll";
 import { ease } from "./Reveal";
 
-type Step = "cart" | "checkout" | "done";
+type Step = "cart" | "checkout";
 type Receipt = { number: string; total: number; items: { name: string; variant: string; quantity: number; unitPrice: number; subtotal: number }[] };
 
 export function CartDrawer() {
   const pathname = usePathname();
+  const router = useRouter();
   const { items, open, setOpen, setQuantity, remove, clear } = useCart();
   const [step, setStep] = useState<Step>("cart");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
-  const [receipt, setReceipt] = useState<Receipt | null>(null);
-  const [waHref, setWaHref] = useState("");
+  const [postcode, setPostcode] = useState("");
+  const [method, setMethod] = useState<ShippingMethod>("retiro");
   const pending = useRef<{ signature: string; id: string } | null>(null);
+
+  const weight = items.reduce((kg, i) => kg + estimateWeightKg(i.name, i.subcategory ?? "", i.quantity), 0);
+  const quotes = quoteShipping(postcode, weight);
+  const shipping = quotes.find((q) => q.method === method) ?? quotes[0];
+  const needsAddress = shipping.method === "local" || shipping.method === "correo-domicilio";
 
   useEffect(() => {
     lockScroll(open);
-    if (!open) {
-      const t = setTimeout(() => setStep((s) => (s === "done" ? "cart" : s)), 400);
-      return () => clearTimeout(t);
-    }
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
-    window.addEventListener("keydown", onKey);
+    if (open) window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open, setOpen]);
 
@@ -46,6 +49,7 @@ export function CartDrawer() {
       website: String(form.get("website") ?? ""),
       lines: items.map(({ slug, variantId, quantity }) => ({ slug, variantId, quantity })),
     };
+    const address = String(form.get("address") ?? "").trim();
     // Mismo identificador si se reintenta el mismo pedido: evita duplicados.
     const signature = JSON.stringify(body);
     if (pending.current?.signature !== signature) pending.current = { signature, id: crypto.randomUUID() };
@@ -60,18 +64,31 @@ export function CartDrawer() {
       const result = await res.json();
       if (!res.ok) throw new Error(result.error || "No pudimos guardar el pedido.");
       const saved = result as Receipt;
+      const total = saved.total + shipping.price;
+      const delivery =
+        shipping.method === "retiro"
+          ? "Retiro en el local"
+          : `${shipping.label} (${currency(shipping.price)} estimado)${address ? ` — ${address}` : ""}${postcode ? ` — CP ${postcode}` : ""}`;
       const message =
         `Hola Envases 3G, soy ${body.name}. Mi pedido es ${saved.number}.\n\n` +
         saved.items.map((i) => `${i.quantity} × ${i.name} (${i.variant})\n${currency(i.unitPrice)} c/u — ${currency(i.subtotal)}`).join("\n\n") +
-        `\n\nTotal de productos: ${currency(saved.total)}.\nTeléfono: ${body.phone}\nQuisiera coordinar el pago y la entrega.`;
-      setReceipt(saved);
-      setWaHref(waLink(message));
-      setStep("done");
+        `\n\nProductos: ${currency(saved.total)}\nEntrega: ${delivery}\nTotal: ${currency(total)}\nTeléfono: ${body.phone}\nQuisiera coordinar el pago.`;
+      const lineFor = (name: string, variant: string) => items.find((i) => i.name === name && i.variantName === variant);
+      saveOrder({
+        number: saved.number,
+        createdAt: new Date().toISOString(),
+        customer: { name: body.name, phone: body.phone, postcode: postcode || undefined, address: address || undefined },
+        items: saved.items.map((i) => ({ ...i, image: lineFor(i.name, i.variant)?.image ?? null, slug: lineFor(i.name, i.variant)?.slug })),
+        subtotal: saved.total,
+        shipping: { method: shipping.method, label: shipping.label, detail: shipping.detail, price: shipping.price },
+        total,
+        whatsapp: waLink(message),
+      });
       clear();
       pending.current = null;
-      try {
-        localStorage.setItem("envases3g-ultimo-pedido", JSON.stringify(saved));
-      } catch {}
+      setOpen(false);
+      setStep("cart");
+      router.push(`/pedido/${encodeURIComponent(saved.number)}`);
     } catch (err) {
       setError(err instanceof Error ? err.message : "No pudimos guardar el pedido. Intentá nuevamente.");
     } finally {
@@ -110,7 +127,7 @@ export function CartDrawer() {
                     <ArrowLeft className="size-5" />
                   </button>
                 )}
-                <h2 className="font-display text-2xl">{step === "checkout" ? "Tus datos" : step === "done" ? "¡Listo!" : "Tu pedido"}</h2>
+                <h2 className="font-display text-2xl">{step === "checkout" ? "Datos y envío" : "Tu pedido"}</h2>
                 {step === "cart" && count > 0 && <span className="rounded-full bg-teal/12 px-2.5 py-0.5 text-xs font-medium text-teal-deep">{count} u.</span>}
               </div>
               <button onClick={() => setOpen(false)} className="grid size-11 place-items-center rounded-full hover:bg-ink/5" aria-label="Cerrar">
@@ -196,6 +213,53 @@ export function CartDrawer() {
                     <div hidden aria-hidden="true">
                       <input name="website" tabIndex={-1} autoComplete="off" />
                     </div>
+                    <fieldset className="rounded-2xl border border-line bg-white p-4">
+                      <legend className="flex items-center gap-2 px-1 text-sm font-semibold">
+                        <Truck className="size-4 text-teal-deep" /> Entrega
+                      </legend>
+                      <label className="block">
+                        <span className="mb-1.5 block text-xs text-muted">Código postal (para calcular el envío)</span>
+                        <input
+                          value={postcode}
+                          onChange={(e) => setPostcode(e.target.value.replace(/\D/g, "").slice(0, 4))}
+                          inputMode="numeric"
+                          autoComplete="postal-code"
+                          placeholder="Ej.: 7600"
+                          className="w-full rounded-xl border border-line px-3 py-2.5 text-base outline-none focus:border-teal-deep"
+                        />
+                      </label>
+                      <div className="mt-3 space-y-2" role="radiogroup" aria-label="Forma de entrega">
+                        <AnimatePresence initial={false}>
+                          {quotes.map((q) => (
+                            <motion.label
+                              key={q.method}
+                              layout
+                              initial={{ opacity: 0, y: -6 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0 }}
+                              className={`flex cursor-pointer items-center gap-3 rounded-xl border p-3 text-sm transition-colors ${
+                                shipping.method === q.method ? "border-teal-deep bg-teal/5" : "border-line hover:border-ink/30"
+                              }`}
+                            >
+                              <input type="radio" name="shipping" checked={shipping.method === q.method} onChange={() => setMethod(q.method)} className="size-4 accent-[var(--teal-deep)]" />
+                              <span className="flex-1">
+                                <span className="block font-medium">{q.label}</span>
+                                <span className="block text-xs text-muted">{q.detail}</span>
+                              </span>
+                              <span className="font-semibold tabular-nums">{q.price ? currency(q.price) : "Gratis"}</span>
+                            </motion.label>
+                          ))}
+                        </AnimatePresence>
+                      </div>
+                      {postcode.length === 4 && quotes.length === 1 && <p className="mt-2 text-xs text-muted">No pudimos cotizar ese código postal: lo coordinamos por WhatsApp.</p>}
+                      {needsAddress && (
+                        <label className="mt-3 block">
+                          <span className="mb-1.5 block text-xs text-muted">Dirección de entrega</span>
+                          <input name="address" required autoComplete="street-address" placeholder="Calle, número, ciudad" className="w-full rounded-xl border border-line px-3 py-2.5 text-base outline-none focus:border-teal-deep" />
+                        </label>
+                      )}
+                      {shipping.price > 0 && <p className="mt-2 text-xs text-muted">Peso estimado {weight.toFixed(1)} kg · costo orientativo, se confirma al despachar.</p>}
+                    </fieldset>
                     <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-line bg-white p-4 text-sm">
                       <input type="checkbox" name="consent" required disabled={busy} className="mt-0.5 size-4 accent-[var(--teal-deep)]" />
                       Acepto que Envases 3G guarde mis datos para gestionar este pedido.
@@ -208,30 +272,15 @@ export function CartDrawer() {
                   </div>
                   <div className="border-t border-line px-5 pb-5 pt-4">
                     <div className="mb-3 flex items-center gap-2 text-xs text-muted">
-                      <ShieldCheck className="size-4 text-teal-deep" /> No pagás nada ahora: registramos el pedido y lo seguimos por WhatsApp.
+                      <ShieldCheck className="size-4 text-teal-deep" /> No pagás nada ahora: registramos tu orden y la confirmamos por WhatsApp.
                     </div>
                     <button disabled={busy} className="flex w-full items-center justify-center gap-2 rounded-full bg-ink py-4 text-sm font-semibold text-white transition-colors duration-200 hover:bg-teal-deep disabled:opacity-60">
-                      {busy ? "Guardando tu pedido…" : `Confirmar pedido · ${currency(total)}`}
+                      {busy ? "Guardando tu pedido…" : `Confirmar pedido · ${currency(total + shipping.price)}`}
                     </button>
                   </div>
                 </motion.form>
               )}
 
-              {step === "done" && receipt && (
-                <motion.div key="done" className="grid flex-1 place-items-center px-8 text-center" initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.4, ease }}>
-                  <div>
-                    <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", stiffness: 260, damping: 16, delay: 0.1 }} className="mx-auto mb-6 grid size-20 place-items-center rounded-full bg-teal text-night">
-                      <Check className="size-9" strokeWidth={2.4} />
-                    </motion.div>
-                    <p className="font-display text-3xl">Pedido {receipt.number}</p>
-                    <p className="mt-2 text-sm text-muted">Total de productos: <strong className="text-ink">{currency(receipt.total)}</strong></p>
-                    <p className="mx-auto mt-3 max-w-xs text-sm text-muted">Ya lo registramos. Envianos el mensaje por WhatsApp para coordinar pago y entrega.</p>
-                    <a href={waHref} target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex items-center gap-2.5 rounded-full bg-[#25D366] px-7 py-4 text-sm font-semibold text-white shadow-lg transition-transform duration-200 hover:scale-[1.03]">
-                      <WhatsAppIcon className="size-5" /> Continuar en WhatsApp
-                    </a>
-                  </div>
-                </motion.div>
-              )}
             </AnimatePresence>
           </motion.aside>
         </div>

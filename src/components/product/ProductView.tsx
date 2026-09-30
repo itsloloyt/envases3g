@@ -59,7 +59,7 @@ export function ProductView({ product, categoryName }: { product: Product; categ
 
   function addToCart() {
     add(
-      { slug: product.slug, variantId: variant.id, name: product.name, variantName: variant.name, price: variant.price, image: photoFor(product, variant).src, minQuantity: variant.minQuantity },
+      { slug: product.slug, variantId: variant.id, name: product.name, variantName: variant.name, price: variant.price, image: photoFor(product, variant).src, minQuantity: variant.minQuantity, subcategory: product.subcategory },
       qty,
     );
     setAdded(true);

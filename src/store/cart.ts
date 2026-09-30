@@ -11,6 +11,8 @@ export type CartItem = {
   image: string | null;
   quantity: number;
   minQuantity: number;
+  /** Para estimar el peso del envío. */
+  subcategory?: string;
 };
 
 type CartState = {

@@ -1,6 +1,6 @@
 import { getCatalog } from "@/lib/catalog-server";
 import { categories } from "@/lib/catalog";
-import { cover, subcategories, toCard } from "@/lib/shop";
+import { subcategories, toCard } from "@/lib/shop";
 import { Hero } from "@/components/home/Hero";
 import { AccessoryShowcase } from "@/components/home/AccessoryShowcase";
 import { Featured, HowToBuy, Location, Marquee, Rubros, Stats, Wholesale, type Rubro } from "@/components/home/Sections";
@@ -31,14 +31,6 @@ const ORDER = ["cosmetica-y-farmacia", "plastico", "frascos-y-botellas-de-vidrio
 const BLURBS: Record<string, string> = {
   "cosmetica-y-farmacia": "Goteros, potes, tubos, perfumeros y latas para laboratorios, cosmética natural y farmacia.",
 };
-const COVER: Record<string, string> = {
-  "cosmetica-y-farmacia": "frasco-boticario-vidrio-10cc-20cc-30cc-50cc-con-gota-gota",
-  plastico: "venecia-250-cc-fume",
-  "frascos-y-botellas-de-vidrio": "frasco-vidrio-hexagonal-190-cc",
-  "esencias-y-difusores": "frasco-apollo-vidrio-125-ml-ambar-con-tapa-difusora",
-  accesorios: "valvula-crema-gota-gota-rosca-20",
-  alimentos: "especiero-370cc-a081",
-};
 
 export default async function Home() {
   const products = await getCatalog();
@@ -49,8 +41,8 @@ export default async function Home() {
     .sort((a, b) => ORDER.indexOf(a.slug) - ORDER.indexOf(b.slug))
     .map((c) => {
       const inRubro = products.filter((p) => p.category === c.slug);
-      const coverProduct = bySlug.get(COVER[c.slug] ?? "");
-      return { slug: c.slug, name: c.name, count: inRubro.length, image: coverProduct ? cover(coverProduct) : c.image, blurb: BLURBS[c.slug] ?? c.text };
+      // Portadas editoriales de cada rubro generadas con Higgsfield.
+      return { slug: c.slug, name: c.name, count: inRubro.length, image: `/rubros/${c.slug}.webp`, blurb: BLURBS[c.slug] ?? c.text };
     });
 
   const showcase = bySlug.get(SHOWCASE.slug);

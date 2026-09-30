@@ -1,12 +1,21 @@
 import originalCovers from "@/data/original-covers.json";
+import aiCovers from "@/data/ai-covers.json";
 import subcategoryList from "@/data/subcategories.json";
 import { categories, type Product } from "./catalog";
 
 export type Subcategory = { category: string; slug: string; name: string };
 export const subcategories = subcategoryList as Subcategory[];
 
-/** Portada del producto: siempre la foto original de envases3g.com.ar. */
+/**
+ * Portada del producto: foto de estudio generada con Higgsfield a partir de la foto original
+ * de envases3g.com.ar; si todavía no existe, la foto original.
+ */
 export function cover(p: Pick<Product, "slug" | "image">) {
+  return (aiCovers as Record<string, string>)[p.slug] ?? originalCover(p);
+}
+
+/** Foto original publicada en envases3g.com.ar. */
+export function originalCover(p: Pick<Product, "slug" | "image">) {
   return (originalCovers as Record<string, string>)[p.slug] ?? p.image;
 }
 
