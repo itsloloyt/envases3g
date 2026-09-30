@@ -41,3 +41,13 @@ Las fotos de las fichas pertenecen al catálogo original y se cargan desde su CD
 ## Actualizar la copia del catálogo
 
 El script `scripts/crawl.py` releva las URLs del sitemap almacenado en `research/sitemap.xml` y guarda las fichas en `src/data/products.json`. Requiere Python 3, sin dependencias adicionales. `research/` se excluye del repositorio. Para una actualización se debe descargar un sitemap nuevo, usar una carpeta de caché vacía, ejecutar el script y revisar su reporte antes de publicar los datos nuevos.
+
+## Rediseño 2026 (rama `rediseno`)
+
+- Frontend nuevo con Tailwind CSS 4 + Motion (animaciones) + Lenis (scroll suave), en la paleta de la marca (turquesa + amarillo) y el logo oficial (`public/brand/`).
+- Las portadas de los productos son siempre las fotos originales de envases3g.com.ar (`src/lib/shop.ts` → `cover()`; `src/data/original-covers.json` corrige las que cambiaron).
+- **Visor de accesorios**: al elegir una tapa/válvula, la pieza baja y se enrosca sobre el envase (`src/components/product/ProductView.tsx`).
+  - Biblioteca de accesorios recortados generados con Higgsfield: `public/accesorios/` + `src/data/accessory-art.json`.
+  - Fotos IA del envase con cada accesorio (Higgsfield, 6 envases × ~19 accesorios): `public/ia/<slug>/<accesorio>.webp`, mapeadas por variante en `src/data/ai-variant-photos.json`.
+  - Prioridad de la foto de una opción: IA → foto de estudio verificada → foto original de la variante → portada.
+- El backend no cambió: catálogo desde Supabase, pedidos por `/api/pedidos` → Edge Function `place-order`, consultas por `/api/consultas`, panel en `/administracion` (sus estilos quedaron encapsulados en `src/app/administracion/admin.css`).
