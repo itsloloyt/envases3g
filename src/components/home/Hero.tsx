@@ -62,22 +62,7 @@ export function Hero({ products, total }: { products: Card[]; total: number }) {
 
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 pb-20 sm:px-6 lg:grid-cols-12 lg:gap-6 lg:pb-28">
         <motion.div style={reduce ? undefined : { y: yText, opacity: fade }} className="lg:col-span-6">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease }}
-            className="glass-dark inline-flex items-center gap-2 rounded-full py-1.5 pl-1.5 pr-4 text-xs font-medium text-white/85"
-          >
-            <motion.img
-              src="/brand/logo-3g.webp"
-              alt=""
-              className="size-7 rounded-full"
-              style={reduce ? undefined : { rotateY: logoRotate, rotateX: logoTilt }}
-            />
-            Minorista y mayorista · Mar del Plata
-          </motion.div>
-
-          <h1 className="mt-7 font-display text-[clamp(2.9rem,7.6vw,6.6rem)] font-extrabold leading-[0.92]">
+          <h1 className="font-display text-[clamp(2.9rem,7.6vw,6.6rem)] font-extrabold leading-[0.92]">
             {["Envases", "que", "hacen"].map((w, i) => (
               <Word key={w} delay={0.1 + i * 0.07}>
                 {w}
@@ -86,15 +71,15 @@ export function Hero({ products, total }: { products: Card[]; total: number }) {
             <br className="hidden sm:block" />
             <Word delay={0.34}>brillar</Word>
             <Word delay={0.41}>tu</Word>
-            <span className="inline-block overflow-hidden pb-[0.12em] align-bottom">
-              <motion.span className="shine inline-block pr-2 font-accent text-[1.12em] leading-[0.8]" initial={{ y: "110%" }} animate={{ y: 0 }} transition={{ duration: 0.9, ease, delay: 0.5 }}>
+            <span className="inline-block">
+              <motion.span className="shine inline-block pb-[0.12em] pr-3 font-accent text-[1.1em] leading-[1]" initial={{ y: 24, opacity: 0, filter: "blur(10px)" }} animate={{ y: 0, opacity: 1, filter: "blur(0px)" }} transition={{ duration: 0.9, ease, delay: 0.5 }}>
                 producto.
               </motion.span>
             </span>
           </h1>
 
-          <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease, delay: 0.6 }} className="mt-7 max-w-lg text-lg leading-relaxed text-white/70">
-            Frascos y botellas de vidrio y plástico, tapas, válvulas, gatillos, esencias y difusores para cosmética, farmacia, alimentos y aromas.
+          <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease, delay: 0.6 }} className="mt-6 max-w-md text-lg leading-relaxed text-white/65">
+            Vidrio, plástico y accesorios. Por unidad o por mayor.
           </motion.p>
 
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease, delay: 0.75 }} className="mt-9 flex flex-wrap items-center gap-3">
@@ -104,7 +89,7 @@ export function Hero({ products, total }: { products: Card[]; total: number }) {
                 <ArrowRight className="size-4" />
               </span>
             </Link>
-            <a href="#local" className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-4 text-sm font-medium text-white transition-colors duration-200 hover:border-white hover:bg-white/5">
+            <a href="#local" className="inline-flex items-center gap-2 px-3 py-4 text-sm font-medium text-white/70 transition-colors duration-200 hover:text-white">
               <MapPin className="size-4 text-sun" /> {site.address}
             </a>
           </motion.div>
@@ -142,8 +127,8 @@ export function Hero({ products, total }: { products: Card[]; total: number }) {
 
 function Word({ children, delay }: { children: React.ReactNode; delay: number }) {
   return (
-    <span className="inline-block overflow-hidden pb-[0.1em] align-bottom">
-      <motion.span className="inline-block pr-[0.22em]" initial={{ y: "110%" }} animate={{ y: 0 }} transition={{ duration: 0.9, ease, delay }}>
+    <span className="inline-block">
+      <motion.span className="inline-block pr-[0.22em]" initial={{ y: 24, opacity: 0, filter: "blur(10px)" }} animate={{ y: 0, opacity: 1, filter: "blur(0px)" }} transition={{ duration: 0.9, ease, delay }}>
         {children}
       </motion.span>
     </span>

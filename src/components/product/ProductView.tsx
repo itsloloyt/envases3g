@@ -172,6 +172,23 @@ export function ProductView({ product, categoryName }: { product: Product; categ
               )}
             </AnimatePresence>
 
+            {/* Sin foto exacta de la combinación: el accesorio elegido queda a la vista junto al envase */}
+            <AnimatePresence mode="wait">
+              {!selected.exact && artFor(variant) && (
+                <motion.div
+                  key={variant.id}
+                  initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.6, rotate: -8, y: -20 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 20, delay: reduce ? 0 : 0.9 }}
+                  className="glass absolute right-4 top-4 flex w-[26%] min-w-24 flex-col items-center gap-1 rounded-2xl p-3"
+                >
+                  <img src={artFor(variant)!.src} alt="" className="aspect-square w-full object-contain drop-shadow-[0_10px_12px_rgb(4_22_25/0.25)]" />
+                  <span className="w-full truncate text-center text-[11px] font-semibold text-ink">+ {artFor(variant)!.label}</span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             {hasVariants && (
               <AnimatePresence mode="wait">
                 <motion.span
