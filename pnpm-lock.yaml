@@ -11,6 +11,9 @@ importers:
       '@supabase/supabase-js':
         specifier: 2.116.0
         version: 2.116.0
+      animateplus:
+        specifier: ^2.1.1
+        version: 2.1.1
       lenis:
         specifier: ^1.3.26
         version: 1.3.26(react@19.3.0)
@@ -560,6 +563,9 @@ packages:
     engines: {node: '>=16.20.0'}
     cpu: [x64]
     os: [win32]
+
+  animateplus@2.1.1:
+    resolution: {integrity: sha512-GWYf8v00UsHlfp1j8YVUdp/a6HMhJs2Mkn6Hioco6q8ybIM0Vu1Afphc0/phPChFY1nz9Wet0XC4gRVxiPaaDQ==}
 
   baseline-browser-mapping@2.11.23:
     resolution: {integrity: sha512-le521dGVfxM7yRX0EikCoSz+rOK+hHzdDt/E7mG1jOJB/6WAAUuwVroLwaB7ApaUsz5Q0kFlDXLSA9MheUIfRQ==}
@@ -1249,6 +1255,8 @@ snapshots:
 
   '@typescript/typescript-win32-x64@7.0.2':
     optional: true
+
+  animateplus@2.1.1: {}
 
   baseline-browser-mapping@2.11.23: {}
 

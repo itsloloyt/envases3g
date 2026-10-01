@@ -1,4 +1,5 @@
 "use client";
+import { useDealIn } from "@/lib/use-deal-in";
 import Link from "next/link";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { animate, motion, useInView, useReducedMotion, useScroll, useTransform } from "motion/react";
@@ -118,6 +119,7 @@ export function Rubros({ rubros }: { rubros: Rubro[] }) {
 /* ───────────────────────── Destacados (carrusel) ───────────────────────── */
 export function Featured({ products }: { products: Card[] }) {
   const rail = useRef<HTMLDivElement>(null);
+  useDealIn(rail);
   const scroll = (dir: 1 | -1) => rail.current?.scrollBy({ left: dir * rail.current.clientWidth * 0.8, behavior: "smooth" });
   return (
     <section className="py-20">
