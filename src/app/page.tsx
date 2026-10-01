@@ -5,6 +5,7 @@ import { Hero } from "@/components/home/Hero";
 import { AccessoryShowcase } from "@/components/home/AccessoryShowcase";
 import { Discounts } from "@/components/home/Discounts";
 import { ExpandImage } from "@/components/home/ScrollStory";
+import { Lookbook } from "@/components/home/Lookbook";
 import { Featured, Location, Marquee, Rubros, type Rubro } from "@/components/home/Sections";
 
 export const revalidate = 3600;
@@ -59,6 +60,7 @@ export default async function Home() {
       <Hero products={hero.length >= 4 ? hero : products.slice(0, 4).map(toCard)} total={products.length} />
       <Marquee />
       <Rubros rubros={rubros} />
+      <Lookbook />
       <ExpandImage />
       {showcase && (
         <AccessoryShowcase
