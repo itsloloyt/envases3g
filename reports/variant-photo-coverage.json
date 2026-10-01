@@ -1,9 +1,9 @@
 {
   "totalAccessoryVariants": 3086,
-  "completed": 9,
-  "remaining": 3077,
+  "completed": 12,
+  "remaining": 3074,
   "sourceLinked": 3086,
-  "sourceSharedReferences": 2612,
+  "sourceSharedReferences": 2610,
   "missing": [
     {
       "productSlug": "aceite-aromatico-premium-puro",
@@ -666,13 +666,6 @@
     {
       "productSlug": "body-100-cc-cristal",
       "productName": "Body 100 cc Cristal",
-      "variantId": "38606561",
-      "variantName": "Tapa ciega blanca",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/2b8efef57d55291c66811bec5ef8be24f2743686a98290c47886a8cc77bb299e99432.jpg"
-    },
-    {
-      "productSlug": "body-100-cc-cristal",
-      "productName": "Body 100 cc Cristal",
       "variantId": "38606562",
       "variantName": "Spray plata brillo",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/2b8efef57d55291c66811bec5ef8be24f2743686a98290c47886a8cc77bb299e99432.jpg"
@@ -710,20 +703,6 @@
       "productName": "Body 100 cc Cristal",
       "variantId": "38606567",
       "variantName": "Gota Gota natural estriad",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/2b8efef57d55291c66811bec5ef8be24f2743686a98290c47886a8cc77bb299e99432.jpg"
-    },
-    {
-      "productSlug": "body-100-cc-cristal",
-      "productName": "Body 100 cc Cristal",
-      "variantId": "38606568",
-      "variantName": "Crema premium negra",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/2b8efef57d55291c66811bec5ef8be24f2743686a98290c47886a8cc77bb299e99432.jpg"
-    },
-    {
-      "productSlug": "body-100-cc-cristal",
-      "productName": "Body 100 cc Cristal",
-      "variantId": "38606569",
-      "variantName": "Spray natural",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/2b8efef57d55291c66811bec5ef8be24f2743686a98290c47886a8cc77bb299e99432.jpg"
     },
     {
