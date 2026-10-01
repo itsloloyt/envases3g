@@ -1,0 +1,167 @@
+{
+ "crema-blanca": {
+  "src": "/accesorios/crema-blanca.webp",
+  "label": "válvula cremera blanca",
+  "width": 27
+ },
+ "crema-natural": {
+  "src": "/accesorios/crema-natural.webp",
+  "label": "válvula cremera natural",
+  "width": 27
+ },
+ "crema-negra": {
+  "src": "/accesorios/crema-negra.webp",
+  "label": "válvula cremera negra",
+  "width": 27
+ },
+ "crema-oro": {
+  "src": "/accesorios/crema-oro.webp",
+  "label": "válvula cremera dorada",
+  "width": 27
+ },
+ "crema-plata": {
+  "src": "/accesorios/crema-plata.webp",
+  "label": "válvula cremera plateada",
+  "width": 27
+ },
+ "difusora-negra": {
+  "src": "/accesorios/difusora-negra.webp",
+  "label": "tapa difusora negra",
+  "width": 17
+ },
+ "difusora-oro": {
+  "src": "/accesorios/difusora-oro.webp",
+  "label": "tapa difusora dorada",
+  "width": 17
+ },
+ "difusora-plata": {
+  "src": "/accesorios/difusora-plata.webp",
+  "label": "tapa difusora plateada",
+  "width": 17
+ },
+ "disktop-natural": {
+  "src": "/accesorios/disktop-natural.webp",
+  "label": "tapa disk top natural",
+  "width": 19
+ },
+ "disktop-negra": {
+  "src": "/accesorios/disktop-negra.webp",
+  "label": "tapa disk top negra",
+  "width": 19
+ },
+ "fliptop-blanca": {
+  "src": "/accesorios/fliptop-blanca.webp",
+  "label": "tapa flip top blanca",
+  "width": 19
+ },
+ "fliptop-natural": {
+  "src": "/accesorios/fliptop-natural.webp",
+  "label": "tapa flip top natural",
+  "width": 19
+ },
+ "fliptop-negra": {
+  "src": "/accesorios/fliptop-negra.webp",
+  "label": "tapa flip top negra",
+  "width": 19
+ },
+ "gatillo-blanca": {
+  "src": "/accesorios/gatillo-blanca.webp",
+  "label": "gatillo blanca",
+  "width": 30
+ },
+ "gatillo-natural": {
+  "src": "/accesorios/gatillo-natural.webp",
+  "label": "gatillo natural",
+  "width": 30
+ },
+ "gatillo-negra": {
+  "src": "/accesorios/gatillo-negra.webp",
+  "label": "gatillo negra",
+  "width": 30
+ },
+ "gotero": {
+  "src": "/accesorios/gotero.webp",
+  "label": "gotero",
+  "width": 11
+ },
+ "spray-blanca": {
+  "src": "/accesorios/spray-blanca.webp",
+  "label": "válvula spray blanca",
+  "width": 19
+ },
+ "spray-natural": {
+  "src": "/accesorios/spray-natural.webp",
+  "label": "válvula spray natural",
+  "width": 19
+ },
+ "spray-negra": {
+  "src": "/accesorios/spray-negra.webp",
+  "label": "válvula spray negra",
+  "width": 19
+ },
+ "spray-oro": {
+  "src": "/accesorios/spray-oro.webp",
+  "label": "válvula spray dorada",
+  "width": 19
+ },
+ "spray-plata": {
+  "src": "/accesorios/spray-plata.webp",
+  "label": "válvula spray plateada",
+  "width": 19
+ },
+ "tapa-aluminio": {
+  "src": "/accesorios/tapa-aluminio.webp",
+  "label": "tapa a rosca de aluminio",
+  "width": 19
+ },
+ "tapa-blanca": {
+  "src": "/accesorios/tapa-blanca.webp",
+  "label": "tapa a rosca blanca",
+  "width": 19
+ },
+ "tapa-natural": {
+  "src": "/accesorios/tapa-natural.webp",
+  "label": "tapa a rosca natural",
+  "width": 19
+ },
+ "tapa-negra": {
+  "src": "/accesorios/tapa-negra.webp",
+  "label": "tapa a rosca negra",
+  "width": 19
+ },
+ "spray": {
+  "src": "/accesorios/spray-negra.webp",
+  "label": "válvula spray negra",
+  "width": 19
+ },
+ "crema": {
+  "src": "/accesorios/crema-negra.webp",
+  "label": "válvula cremera negra",
+  "width": 27
+ },
+ "fliptop": {
+  "src": "/accesorios/fliptop-negra.webp",
+  "label": "tapa flip top negra",
+  "width": 19
+ },
+ "tapa": {
+  "src": "/accesorios/tapa-negra.webp",
+  "label": "tapa a rosca negra",
+  "width": 19
+ },
+ "gatillo": {
+  "src": "/accesorios/gatillo-negra.webp",
+  "label": "gatillo negra",
+  "width": 30
+ },
+ "disktop": {
+  "src": "/accesorios/disktop-negra.webp",
+  "label": "tapa disk top negra",
+  "width": 19
+ },
+ "difusora": {
+  "src": "/accesorios/difusora-plata.webp",
+  "label": "tapa difusora plateada",
+  "width": 17
+ }
+}
