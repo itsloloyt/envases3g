@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useSyncExternalStore } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
+import { useReducedMotion } from "@/lib/reduced-motion";
 import { Check, MessageCircle, PackageCheck, Printer, Store, Truck } from "lucide-react";
 import { currency } from "@/lib/catalog";
 import { readOrder, type SavedOrder } from "@/lib/orders";

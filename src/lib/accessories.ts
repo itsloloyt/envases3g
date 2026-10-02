@@ -1,4 +1,5 @@
 import art from "@/data/accessory-art.json";
+import real from "@/data/accessory-real.json";
 import aiPhotos from "@/data/ai-variant-photos.json";
 import { normalize, type Product, type Variant } from "./catalog";
 import { variantPhoto } from "./variant-image";
@@ -49,4 +50,13 @@ export function photoFor(product: Product, variant?: Variant) {
   const photo = variantPhoto(product, variant);
   if (photo && !photo.shared) return { src: photo.src, exact: true };
   return { src: cover(product), exact: false };
+}
+
+const realPhotos = real as Record<string, string>;
+
+/** Foto real (del sitio original) del accesorio de la variante. */
+export function accessoryPhoto(variant?: Variant): string | null {
+  if (!variant) return null;
+  const key = accessoryKey(variant.name);
+  return key ? (realPhotos[key] ?? null) : null;
 }

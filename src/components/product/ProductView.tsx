@@ -1,13 +1,14 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { Check, Link2, Minus, Plus, Share2, ShoppingBag, Sparkles, Store, Truck } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import { useReducedMotion } from "@/lib/reduced-motion";
+import { Check, Link2, Minus, Plus, Share2, ShoppingBag, Store, Truck } from "lucide-react";
 import { cover } from "@/lib/shop";
 import { CASH_TIERS, cashPercent } from "@/lib/discounts";
 import { rememberProduct } from "./RecentlyViewed";
 import { flyToCart } from "../FlyToCart";
 import { currency, type Product } from "@/lib/catalog";
-import { accessoryArt, photoFor } from "@/lib/accessories";
+import { accessoryPhoto, photoFor } from "@/lib/accessories";
 import { site, waLink } from "@/lib/site";
 import { useCart } from "@/store/cart";
 import { WhatsAppIcon } from "../icons";
@@ -25,19 +26,7 @@ export function ProductView({ product, categoryName }: { product: Product; categ
 
   // Una sola imagen: arranca con el envase solo y cambia cuando se elige un accesorio.
   const selected = photoFor(product, variant);
-  const [shown, setShown] = useState<string>(selected.src);
-  const [sweep, setSweep] = useState(0);
-  const [fit, setFit] = useState<{ key: number; src: string; label: string; width: number } | null>(null);
-  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const fitTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  useEffect(
-    () => () => {
-      if (timer.current) clearTimeout(timer.current);
-      if (fitTimer.current) clearTimeout(fitTimer.current);
-    },
-    [],
-  );
+  const shown = selected.src;
 
   const [shared, setShared] = useState(false);
   const stage = useRef<HTMLDivElement>(null);
@@ -61,30 +50,15 @@ export function ProductView({ product, categoryName }: { product: Product; categ
   }
 
   const hasVariants = product.variants.length > 1;
-  // Si el producto ya es una tapa o válvula, no tiene sentido animar un accesorio encima.
-  const artFor = (v: typeof variant) => (["tapas", "valvulas-y-gatillos"].includes(product.subcategory) ? null : accessoryArt(v));
+  // Si el producto ya es una tapa o válvula no se muestra un accesorio aparte.
+  const isAccessory = ["tapas", "valvulas-y-gatillos"].includes(product.subcategory);
+  const accFor = (v: typeof variant) => (isAccessory ? null : accessoryPhoto(v));
 
   function chooseVariant(id: string) {
     if (id === variantId) return;
     const v = product.variants.find((x) => x.id === id)!;
     setVariantId(id);
     setQty((q) => Math.max(q, v.minQuantity));
-    const next = photoFor(product, v).src;
-    const art = artFor(v);
-    if (timer.current) clearTimeout(timer.current);
-    if (art && !reduce) {
-      // Animación de "colocado": el accesorio baja, se enrosca y aparece la foto final.
-      if (fitTimer.current) clearTimeout(fitTimer.current);
-      setFit({ key: Date.now(), ...art });
-      timer.current = setTimeout(() => {
-        setShown(next);
-        setSweep((s) => s + 1);
-      }, 620);
-      fitTimer.current = setTimeout(() => setFit(null), 1550);
-    } else {
-      setShown(next);
-      setSweep((s) => s + 1);
-    }
   }
 
   function addToCart() {
@@ -99,112 +73,40 @@ export function ProductView({ product, categoryName }: { product: Product; categ
 
   return (
     <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
-      {/* Visor: envase solo → accesorio colocado */}
+      {/* Visor: foto del envase; al elegir un accesorio cambia con un fundido suave */}
       <div className="min-w-0 lg:col-span-7">
         <div className="lg:sticky lg:top-28">
-          <div ref={stage} className="relative aspect-[3/4] w-full overflow-hidden rounded-[32px] bg-photo shadow-[0_40px_80px_-50px_rgb(4_22_25/0.6)]">
-            {/* Cambio de imagen: cortina de arriba hacia abajo, como si la pieza se enroscara */}
+          <div ref={stage} className="relative aspect-[3/4] w-full overflow-hidden rounded-[32px] bg-[#efe8dd]">
             <AnimatePresence initial={false}>
               <motion.img
                 key={shown}
                 src={shown}
                 alt={`${product.name}${hasVariants ? ` — ${variant.name}` : ""}`}
-                initial={reduce ? { opacity: 0 } : { clipPath: "inset(0% 0% 100% 0%)", scale: 1.06, filter: "brightness(1.15)" }}
-                animate={{ clipPath: "inset(0% 0% 0% 0%)", scale: 1, filter: "brightness(1)", opacity: 1 }}
-                exit={{ opacity: 0, transition: { duration: 0.2, delay: 0.75 } }}
-                transition={{ duration: 0.85, ease: [0.76, 0, 0.24, 1] }}
+                initial={{ opacity: 0, scale: 1.04, filter: "blur(8px)" }}
+                animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.7, ease }}
                 className="absolute inset-0 size-full object-cover"
               />
             </AnimatePresence>
 
-            {/* Brillo que recorre el vidrio al terminar el cambio */}
-            <AnimatePresence>
-              {sweep > 0 && !reduce && (
-                <motion.span
-                  key={sweep}
-                  aria-hidden
-                  className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/45 to-transparent"
-                  initial={{ x: "0%" }}
-                  animate={{ x: "320%" }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 1.1, delay: 0.55, ease: "easeInOut" }}
-                />
-              )}
-            </AnimatePresence>
-
-            {/* Accesorio cayendo y enroscándose */}
-            <AnimatePresence>
-              {fit && (
-                <motion.div key={fit.key} className="pointer-events-none absolute inset-0" initial={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-b from-white/50 via-white/10 to-transparent"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: [0, 1, 1, 0] }}
-                    transition={{ duration: 1.4, times: [0, 0.2, 0.6, 1] }}
-                  />
-                  <motion.img
-                    src={fit.src}
-                    alt=""
-                    style={{ width: `${fit.width}%`, left: `${50 - fit.width / 2}%` }}
-                    className="absolute top-[14%] drop-shadow-[0_18px_22px_rgb(4_22_25/0.35)]"
-                    initial={{ y: "-160%", rotate: -35, opacity: 0, scale: 1.15 }}
-                    animate={{ y: ["-160%", "6%", "0%", "0%"], rotate: [-35, 12, 0, 0], opacity: [0, 1, 1, 0], scale: [1.15, 1, 1, 0.96] }}
-                    transition={{ duration: 1.5, times: [0, 0.4, 0.55, 1], ease: "easeOut" }}
-                  />
-                  {[0, 0.12].map((d) => (
-                    <motion.span
-                      key={d}
-                      className="absolute left-1/2 top-[22%] size-24 -translate-x-1/2 rounded-full border-2 border-teal"
-                      initial={{ scale: 0.3, opacity: 0 }}
-                      animate={{ scale: [0.3, 2], opacity: [0, 0.9, 0] }}
-                      transition={{ duration: 0.9, delay: 0.55 + d, ease: "easeOut" }}
-                    />
-                  ))}
-                  <motion.span
-                    className="glass absolute left-1/2 top-5 flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full px-3.5 py-1.5 text-xs font-semibold text-ink"
-                    initial={{ y: -12, opacity: 0 }}
-                    animate={{ y: [-12, 0, 0, -6], opacity: [0, 1, 1, 0] }}
-                    transition={{ duration: 1.5, times: [0, 0.15, 0.8, 1] }}
-                  >
-                    <Sparkles className="size-3.5 text-teal-deep" /> Colocando {fit.label}
-                  </motion.span>
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            {/* Sin foto exacta de la combinación: el accesorio elegido queda a la vista junto al envase */}
+            {/* Sin foto de la combinación: foto real del accesorio elegido, junto al envase */}
             <AnimatePresence mode="wait">
-              {!selected.exact && artFor(variant) && (
-                <motion.div
+              {!selected.exact && accFor(variant) && (
+                <motion.figure
                   key={variant.id}
-                  initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.6, rotate: -8, y: -20 }}
-                  animate={{ opacity: 1, scale: 1, rotate: 0, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ type: "spring", stiffness: 260, damping: 20, delay: reduce ? 0 : 0.9 }}
-                  className="glass absolute right-4 top-4 flex w-[26%] min-w-24 flex-col items-center gap-1 rounded-2xl p-3"
+                  initial={{ opacity: 0, y: -16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 12 }}
+                  transition={{ duration: 0.5, ease }}
+                  className="absolute right-4 top-4 w-[30%] min-w-28 overflow-hidden rounded-2xl bg-white shadow-[0_20px_40px_-20px_rgb(4_22_25/0.35)]"
                 >
-                  <img src={artFor(variant)!.src} alt="" className="aspect-square w-full object-contain drop-shadow-[0_10px_12px_rgb(4_22_25/0.25)]" />
-                  <span className="w-full truncate text-center text-[11px] font-semibold text-ink">+ {artFor(variant)!.label}</span>
-                </motion.div>
+                  <img src={accFor(variant)!} alt={variant.name} className="aspect-square w-full object-contain p-2" />
+                  <figcaption className="border-t border-line px-2.5 py-1.5 text-[11px] font-medium leading-tight text-ink">+ {variant.name}</figcaption>
+                </motion.figure>
               )}
             </AnimatePresence>
-
-            {hasVariants && (
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={variant.id}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  className="glass absolute bottom-4 left-4 max-w-[80%] truncate rounded-full px-3.5 py-1.5 text-xs font-medium"
-                >
-                  {variant.name}
-                  {!selected.exact && <span className="text-muted"> · foto de referencia</span>}
-                </motion.span>
-              </AnimatePresence>
-            )}
           </div>
-          {hasVariants && <p className="mt-3 text-center text-xs text-muted">Elegí un accesorio y miralo colocado en el envase ✦</p>}
         </div>
       </div>
 
@@ -251,7 +153,7 @@ export function ProductView({ product, categoryName }: { product: Product; categ
               >
                 {product.variants.map((v) => {
                   const active = v.id === variant.id;
-                  const art = artFor(v);
+                  const acc = accFor(v);
                   return (
                     <button
                       key={v.id}
@@ -265,7 +167,7 @@ export function ProductView({ product, categoryName }: { product: Product; categ
                         active ? "border-transparent bg-white" : "border-line hover:border-teal-deep/50"
                       } ${v.available ? "" : "opacity-50"}`}
                     >
-                      {art && <img src={art.src} alt="" className="h-8 w-6 shrink-0 object-contain" loading="lazy" />}
+                      {acc && <img src={acc} alt="" className="size-9 shrink-0 rounded-lg bg-white object-contain p-0.5" loading="lazy" />}
                       <span className="min-w-0">
                         <span className="block leading-tight">{v.name}</span>
                         <span className="mt-0.5 block text-xs tabular-nums text-muted">

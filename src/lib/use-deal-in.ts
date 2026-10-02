@@ -8,7 +8,7 @@ import { useEffect, type RefObject } from "react";
 export function useDealIn(ref: RefObject<HTMLElement | null>) {
   useEffect(() => {
     const el = ref.current;
-    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!el) return;
     const cards = [...el.children] as HTMLElement[];
     cards.forEach((c) => (c.style.opacity = "0"));
     const io = new IntersectionObserver(

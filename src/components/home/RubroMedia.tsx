@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { useInView, useReducedMotion } from "motion/react";
+import { useInView } from "motion/react";
+import { useReducedMotion } from "@/lib/reduced-motion";
 
 /**
  * Foto del rubro con video encima: se reproduce al pasar el mouse (computadora)
