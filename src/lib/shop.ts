@@ -1,3 +1,4 @@
+import { accessoryPhoto } from "./accessories";
 import originalCovers from "@/data/original-covers.json";
 import aiCovers from "@/data/ai-covers.json";
 import subcategoryList from "@/data/subcategories.json";
@@ -32,6 +33,8 @@ export type Card = {
   image: string;
   image2: string | null;
   variantCount: number;
+  /** Fotos reales de los accesorios que se pueden elegir (sin repetir). */
+  accessories: string[];
   variantId: string;
   variantName: string;
   minQuantity: number;
@@ -54,6 +57,7 @@ export function toCard(p: Product): Card {
     image: img,
     image2: p.images.find((i) => i !== img) ?? null,
     variantCount: p.variants.length,
+    accessories: ["tapas", "valvulas-y-gatillos"].includes(p.subcategory) ? [] : [...new Set(p.variants.map((v) => accessoryPhoto(v)).filter((x): x is string => !!x))],
     variantId: first.id,
     variantName: first.name,
     minQuantity: first.minQuantity,
