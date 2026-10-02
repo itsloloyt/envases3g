@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useRef } from "react";
-import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform, type MotionValue } from "motion/react";
+import { motion, useMotionValue, useScroll, useSpring, useTransform, type MotionValue } from "motion/react";
+import { useReducedMotion } from "@/lib/reduced-motion";
 import { ArrowRight, MapPin } from "lucide-react";
 import { currency } from "@/lib/catalog";
 import type { Card } from "@/lib/shop";

@@ -4,7 +4,6 @@ import { toCard } from "@/lib/shop";
 import { Hero } from "@/components/home/Hero";
 import { AccessoryShowcase } from "@/components/home/AccessoryShowcase";
 import { Discounts } from "@/components/home/Discounts";
-import { ExpandImage } from "@/components/home/ScrollStory";
 import { Lookbook } from "@/components/home/Lookbook";
 import { Featured, Location, Marquee, Rubros, type Rubro } from "@/components/home/Sections";
 
@@ -31,7 +30,15 @@ const FEATURED = [
 const SHOWCASE = { slug: "omega-200-cc-ambar", keys: ["spray-negra", "crema-oro", "gatillo-negra", "fliptop-negra", "crema-blanca", "spray-plata", "tapa-aluminio"] };
 
 // Rubros con video generado con Higgsfield.
-const RUBRO_VIDEOS = ["cosmetica-y-farmacia", "plastico", "frascos-y-botellas-de-vidrio", "esencias-y-difusores", "accesorios"];
+const RUBRO_COVER: Record<string, string> = {
+  "cosmetica-y-farmacia": "gotero-vidrio-ambar-30cc-con-pipeta",
+  plastico: "body-125-cc-ambar",
+  "frascos-y-botellas-de-vidrio": "botella-bells-375cc-con-corcho",
+  "esencias-y-difusores": "difusor-vidrio-cilindrico-de-150-ml",
+  accesorios: "valvula-crema-rosca-24",
+  alimentos: "especiero-200cc-a038",
+  "combos-y-kits": "combo-difusor-ambiental",
+};
 
 const ORDER = ["cosmetica-y-farmacia", "plastico", "frascos-y-botellas-de-vidrio", "esencias-y-difusores", "accesorios", "alimentos", "combos-y-kits"];
 const BLURBS: Record<string, string> = {
@@ -47,8 +54,8 @@ export default async function Home() {
     .sort((a, b) => ORDER.indexOf(a.slug) - ORDER.indexOf(b.slug))
     .map((c) => {
       const inRubro = products.filter((p) => p.category === c.slug);
-      // Portadas editoriales de cada rubro generadas con Higgsfield.
-      return { slug: c.slug, name: c.name, count: inRubro.length, image: `/rubros/${c.slug}.webp`, video: RUBRO_VIDEOS.includes(c.slug) ? `/video/rubro-${c.slug}.mp4` : undefined, blurb: BLURBS[c.slug] ?? c.text };
+      // Portada minimalista: un producto representativo del rubro.
+      return { slug: c.slug, name: c.name, count: inRubro.length, image: `/portadas/${RUBRO_COVER[c.slug] ?? inRubro[0]?.slug}.webp`, blurb: BLURBS[c.slug] ?? c.text };
     });
 
   const showcase = bySlug.get(SHOWCASE.slug);
@@ -61,7 +68,6 @@ export default async function Home() {
       <Marquee />
       <Rubros rubros={rubros} />
       <Lookbook />
-      <ExpandImage />
       {showcase && (
         <AccessoryShowcase
           slug={showcase.slug}

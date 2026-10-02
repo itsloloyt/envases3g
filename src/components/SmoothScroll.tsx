@@ -9,7 +9,6 @@ export function SmoothScroll() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     lenis = new Lenis({ duration: 1.1, smoothWheel: true });
     let id = 0;
     const raf = (t: number) => {

@@ -1,5 +1,6 @@
 "use client";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
+import { useReducedMotion } from "@/lib/reduced-motion";
 
 /** Transición suave al cambiar de página. */
 export default function Template({ children }: { children: React.ReactNode }) {

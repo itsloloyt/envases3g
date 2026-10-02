@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
+import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
+import { useReducedMotion } from "@/lib/reduced-motion";
 import { ArrowRight } from "lucide-react";
 
 const TEXT =

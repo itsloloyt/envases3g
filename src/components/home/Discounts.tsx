@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useRef } from "react";
-import { motion, useInView, useReducedMotion } from "motion/react";
+import { motion, useInView } from "motion/react";
+import { useReducedMotion } from "@/lib/reduced-motion";
 import { Banknote, BadgePercent, Handshake, Store, Truck } from "lucide-react";
 import { CASH_TIERS } from "@/lib/discounts";
 import { Reveal, SplitHeading, ease } from "../Reveal";
