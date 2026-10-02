@@ -5,9 +5,9 @@ import { motion, useScroll, useSpring, useTransform, type MotionValue } from "mo
 import { useReducedMotion } from "@/lib/reduced-motion";
 
 const SCENES = [
-  { src: "/lookbook/cocina.webp", n: "01", title: "Despensa", text: "Frascos y botellas de vidrio", href: "/productos?rubro=frascos-y-botellas-de-vidrio" },
-  { src: "/lookbook/hogar.webp", n: "02", title: "Aromas", text: "Difusores y esencias", href: "/productos?rubro=esencias-y-difusores" },
-  { src: "/lookbook/accesorios.webp", n: "03", title: "Detalles", text: "Tapas, válvulas y gatillos", href: "/productos?rubro=accesorios" },
+  { src: "/portadas/botella-de-vidrio-cilindrica-500-ml-con-tapa.webp", n: "01", title: "Despensa", text: "Frascos y botellas de vidrio", href: "/productos?rubro=frascos-y-botellas-de-vidrio" },
+  { src: "/portadas/difusor-vidrio-hexagonal-100cc-con-tapa-difusora-plata.webp", n: "02", title: "Aromas", text: "Difusores y esencias", href: "/productos?rubro=esencias-y-difusores" },
+  { src: "/portadas/valvula-spray-rosca-24.webp", n: "03", title: "Detalles", text: "Tapas, válvulas y gatillos", href: "/productos?rubro=accesorios" },
 ];
 
 /** Galería editorial: al hacer scroll la página se fija y las escenas pasan de costado. */
