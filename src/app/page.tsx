@@ -2,7 +2,6 @@ import { getCatalog } from "@/lib/catalog-server";
 import { categories } from "@/lib/catalog";
 import { toCard } from "@/lib/shop";
 import { Hero } from "@/components/home/Hero";
-import { AccessoryShowcase } from "@/components/home/AccessoryShowcase";
 import { Discounts } from "@/components/home/Discounts";
 import { Lookbook } from "@/components/home/Lookbook";
 import { Featured, Location, Marquee, Rubros, type Rubro } from "@/components/home/Sections";
@@ -27,7 +26,6 @@ const FEATURED = [
 ];
 
 // Configurador del inicio: envase con fotos IA de cada accesorio.
-const SHOWCASE = { slug: "omega-200-cc-ambar", keys: ["spray-negra", "crema-oro", "gatillo-negra", "fliptop-negra", "crema-blanca", "spray-plata", "tapa-aluminio"] };
 
 // Rubros con video generado con Higgsfield.
 const RUBRO_COVER: Record<string, string> = {
@@ -58,7 +56,6 @@ export default async function Home() {
       return { slug: c.slug, name: c.name, count: inRubro.length, image: `/portadas/${RUBRO_COVER[c.slug] ?? inRubro[0]?.slug}.webp`, blurb: BLURBS[c.slug] ?? c.text };
     });
 
-  const showcase = bySlug.get(SHOWCASE.slug);
   const hero = pick(HERO);
   const featured = pick(FEATURED);
 
@@ -68,14 +65,6 @@ export default async function Home() {
       <Marquee />
       <Rubros rubros={rubros} />
       <Lookbook />
-      {showcase && (
-        <AccessoryShowcase
-          slug={showcase.slug}
-          name={showcase.name}
-          base={`/ia/${showcase.slug}/solo-envase.webp`}
-          options={SHOWCASE.keys.map((key) => ({ key, photo: `/ia/${showcase.slug}/${key}.webp` }))}
-        />
-      )}
       <Featured products={featured.length ? featured : products.slice(0, 10).map(toCard)} />
       <Discounts />
       <Location />
