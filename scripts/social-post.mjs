@@ -105,7 +105,7 @@ async function writeCopy(items) {
       model: env('ANTHROPIC_MODEL') || 'claude-sonnet-5-5',
       max_tokens: 2000,
       system: `Sos el community manager de Envases 3G. Seguí este contexto de marca y esta guía de redes.\n\n${brand}\n\n---\n${social}`,
-      messages: [{ role: 'user', content: `Hoy publicamos ${kind} en Instagram y Facebook.\nTema: ${plan.pillar} — ${plan.goal}\n\nProductos (datos reales, no inventes otros):\n${items.slice(0, n).map(facts).join('\n')}\n\nDevolvé SOLO un JSON válido con esta forma:\n{"caption": "descripción del post: gancho en la 1ª línea, 60-150 palabras, voseo, 1-3 emojis, CTA a WhatsApp ${WA} o link en bio, 5-8 hashtags al final con #envases3g y #mardelplata",\n "hook": "texto grande de portada, máx 6 palabras",\n "slides": [${n} objetos {"title": "máx 5 palabras", "text": "máx 14 palabras"} en el orden de los productos],\n "cta": "texto de la placa final, máx 6 palabras"}\nUsá solo precios y datos de arriba.` }],
+      messages: [{ role: 'user', content: `Hoy publicamos ${kind} en Instagram y Facebook.\nTema: ${plan.pillar} — ${plan.goal}\n\nProductos (datos reales, no inventes otros):\n${items.slice(0, n).map(facts).join('\n')}\n\nDevolvé SOLO un JSON válido con esta forma:\n{"caption": "descripción del post: gancho en la 1ª línea, 60-150 palabras, voseo, 1-3 emojis, CTA a WhatsApp ${WA} o link en bio, 5-8 hashtags al final con #envases3g y #mardelplata",\n "hook": "gancho de portada que frene el scroll (pregunta, dato o promesa concreta), máx 6 palabras, sin emojis",\n "slides": [${n} objetos {"title": "máx 4 palabras, sin emojis", "text": "máx 9 palabras, sin emojis"} en el orden de los productos],\n "cta": "cierre corto que invite a escribir o guardar, máx 5 palabras, sin emojis"}\nUsá solo precios y datos de arriba.` }],
     }),
   });
   if (!r.ok) { console.warn('Claude falló, uso plantilla:', r.status, await r.text()); return fallback; }
@@ -118,87 +118,127 @@ async function writeCopy(items) {
 }
 
 // ---------- Diseño de placas ----------
+// Estética 2026: foto a sangre completa, tipografía editorial (grotesca + serif itálica de acento),
+// stickers recortados con borde blanco, nada de marcos ni franjas tipo folleto. Ver marketing/ESTILO.md
 let sharp;
 const W = 1080;
+const SANS = 'Bricolage Grotesque, DejaVu Sans, sans-serif';
+const SERIF = 'Instrument Serif, serif';
 
-function wrap(text, max) {
+function wrap(text, max, limit = 4) {
   const lines = [];
   for (const word of String(text || '').split(/\s+/)) {
     const last = lines.at(-1);
     if (last && (last + ' ' + word).length <= max) lines[lines.length - 1] = last + ' ' + word;
     else if (word) lines.push(word);
   }
-  return lines.slice(0, 4);
+  return lines.slice(0, limit);
 }
 
-function textBlock(lines, x, y, size, color, weight = 800, anchor = 'start') {
-  return lines.map((l, i) => `<text x="${x}" y="${y + i * size * 1.15}" font-size="${size}" font-weight="${weight}" fill="${color}" text-anchor="${anchor}" font-family="DejaVu Sans, Arial, sans-serif">${esc(l)}</text>`).join('');
+// Titular: grotesca bold, con la última palabra en serif itálica (el acento editorial que se usa hoy).
+function headline(text, x, y, size, color, accent, anchor = 'start') {
+  const lines = wrap(text, Math.round(1500 / size), 4);
+  return lines.map((l, i) => {
+    const words = l.split(' ');
+    const isLast = i === lines.length - 1 && (words.length > 1 || lines.length > 1);
+    const head = isLast ? (words.length > 1 ? words.slice(0, -1).join(' ') + ' ' : '') : l;
+    const tail = isLast ? `<tspan font-family="${SERIF}" font-style="italic" font-weight="400" fill="${accent}" font-size="${size * 1.12}">${esc(words.at(-1))}</tspan>` : '';
+    return `<text x="${x}" y="${y + i * size * 0.98}" font-family="${SANS}" font-weight="700" font-size="${size}" letter-spacing="${-size * 0.035}" fill="${color}" text-anchor="${anchor}">${esc(head)}${tail}</text>`;
+  }).join('');
 }
+const small = (t, x, y, size, color, anchor = 'start', weight = 400) => `<text x="${x}" y="${y}" font-family="${SANS}" font-weight="${weight}" font-size="${size}" fill="${color}" text-anchor="${anchor}">${esc(t)}</text>`;
 
-async function photoBuffer(url, w, h) {
+async function download(url) {
   const r = await fetch(url, { signal: AbortSignal.timeout(30000) });
   if (!r.ok) throw new Error('Foto HTTP ' + r.status + ' ' + url);
-  const img = await sharp(Buffer.from(await r.arrayBuffer())).resize(w, h, { fit: 'contain', background: C.white }).flatten({ background: C.white }).png().toBuffer();
-  const mask = Buffer.from(`<svg width="${w}" height="${h}"><rect width="${w}" height="${h}" rx="36" fill="#fff"/></svg>`);
-  return sharp(img).composite([{ input: mask, blend: 'dest-in' }]).png().toBuffer();
+  return Buffer.from(await r.arrayBuffer());
+}
+const fullBleed = (buf, H) => sharp(buf).resize(W, H, { fit: 'cover', position: 'attention' }).modulate({ saturation: 1.05 }).png().toBuffer();
+
+// Sticker: recorte circular de la foto con borde blanco grueso, levemente girado.
+async function sticker(buf, d, angle) {
+  const img = await sharp(buf).resize(d, d, { fit: 'cover', position: 'attention' }).png().toBuffer();
+  const ring = Buffer.from(`<svg width="${d}" height="${d}" xmlns="http://www.w3.org/2000/svg"><circle cx="${d / 2}" cy="${d / 2}" r="${d / 2}" fill="#fff"/></svg>`);
+  const round = await sharp(img).composite([{ input: ring, blend: 'dest-in' }]).png().toBuffer();
+  const b = 18, D = d + b * 2;
+  const base = Buffer.from(`<svg width="${D}" height="${D}" xmlns="http://www.w3.org/2000/svg"><circle cx="${D / 2}" cy="${D / 2}" r="${D / 2}" fill="#fff"/></svg>`);
+  // sharp aplica rotate() antes que composite(), por eso se rota en un segundo paso.
+  const flat = await sharp(base).composite([{ input: round, left: b, top: b }]).png().toBuffer();
+  return sharp(flat).rotate(angle, { background: { r: 0, g: 0, b: 0, alpha: 0 } }).png().toBuffer();
 }
 
-const logo = () => sharp('public/brand/logo-3g.png').resize({ height: 90 }).png().toBuffer();
-const footer = (H) => `<rect y="${H - 110}" width="${W}" height="110" fill="${C.deep}"/>` + textBlock([`WhatsApp ${WA}  ·  @envases3gmdq`], W / 2, H - 45, 34, C.white, 700, 'middle');
+const pill = (text, bg, fg, size = 40) => {
+  const w = Math.round(text.length * size * 0.56 + size * 1.4), h = Math.round(size * 1.9);
+  return { w, h, svg: Buffer.from(`<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg"><rect width="${w}" height="${h}" rx="${h / 2}" fill="${bg}"/>${small(text, w / 2, h * 0.66, size, fg, 'middle', 700)}</svg>`) };
+};
 
-// Placa de producto: foto en tarjeta, título, texto y precio.
-async function productSlide(p, s, H, file, tag) {
-  const photoH = Math.round(H * (H > 1400 ? 0.5 : 0.56));
-  const top = H > 1400 ? 300 : 160;
-  const title = wrap(s.title, 22), body = wrap(s.text, 36);
-  const ty = top + photoH + 90;
+// Placa de producto: foto completa, degradé inferior, titular grande y precio como sticker amarillo.
+async function productSlide(p, s, H, file, counter, buf) {
+  const safeBottom = H > 1400 ? 420 : 110; // en reels, los textos quedan fuera de la zona de botones
+  const title = s.title || p.name;
+  const lines = wrap(title, Math.round(1500 / 96), 4).length;
+  const ty = H - safeBottom - 70 - (lines - 1) * 94;
+  const overlay = `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
+    <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0.35" stop-color="${C.night}" stop-opacity="0"/><stop offset="1" stop-color="${C.night}" stop-opacity=".88"/></linearGradient>
+    <linearGradient id="t" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${C.night}" stop-opacity=".35"/><stop offset=".18" stop-color="${C.night}" stop-opacity="0"/></linearGradient></defs>
+    <rect width="${W}" height="${H}" fill="url(#g)"/><rect width="${W}" height="${H}" fill="url(#t)"/>
+    ${small('envases 3g', 64, H > 1400 ? 200 : 92, 34, C.white, 'start', 700)}
+    ${counter ? small(counter, W - 64, H > 1400 ? 200 : 92, 30, C.white, 'end') : ''}
+    ${headline(title, 64, ty, 96, C.white, C.sun)}
+    ${small(s.text || '', 64, ty + (lines - 1) * 94 + 74, 36, '#e6f4f5')}
+  </svg>`;
+  const layers = [{ input: Buffer.from(overlay) }];
   const price = money(p.price);
-  const svg = `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
-    <rect width="${W}" height="${H}" fill="${C.paper}"/>
-    <circle cx="${W - 60}" cy="120" r="220" fill="${C.soft}"/>
-    <rect x="60" y="${top - 20}" width="${W - 120}" height="${photoH + 40}" rx="48" fill="${C.white}"/>
-    ${tag ? `<rect x="60" y="50" width="${tag.length * 22 + 60}" height="64" rx="32" fill="${C.teal}"/>${textBlock([tag], 90, 94, 32, C.white, 700)}` : ''}
-    ${textBlock(title, 70, ty, 64, C.night)}
-    ${textBlock(body, 70, ty + title.length * 74 + 10, 38, C.deep, 500)}
-    ${footer(H)}
-  </svg>`;
-  const pic = await photoBuffer(p.photo, W - 160, photoH);
-  const layers = [{ input: pic, left: 80, top }, { input: await logo(), left: W - 200, top: 40 }];
-  // El precio va encima de la foto, en una etiqueta amarilla.
-  if (price) layers.push({ input: Buffer.from(`<svg width="320" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="100" rx="50" fill="${C.sun}"/>${textBlock(['Desde ' + price], 160, 64, 38, C.night, 800, 'middle')}</svg>`), left: W - 400, top: top + photoH - 130 });
-  await sharp(Buffer.from(svg)).composite(layers).jpeg({ quality: 90 }).toFile(file);
+  if (price) {
+    const tag = pill('desde ' + price, C.sun, C.night, 42);
+    const rot = await sharp(tag.svg).rotate(-6, { background: { r: 0, g: 0, b: 0, alpha: 0 } }).png().toBuffer();
+    layers.push({ input: rot, left: W - tag.w - 70, top: ty - 230 - (lines - 1) * 94 });
+  }
+  await sharp(await fullBleed(buf, H)).composite(layers).jpeg({ quality: 92, mozjpeg: true }).toFile(file);
 }
 
-// Placa de texto (portada o cierre) con colores de marca.
-async function textSlide(big, small, H, file, dark) {
-  const bg = dark ? C.deep : C.teal;
-  const lines = wrap(big, 16);
-  const y = H / 2 - (lines.length * 110) / 2;
+// Portada: fondo oscuro, titular gigante y la foto del producto como sticker. Corta el scroll.
+async function coverSlide(big, sub, H, file, buf) {
   const svg = `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
-    <rect width="${W}" height="${H}" fill="${bg}"/>
-    <circle cx="${W}" cy="${H}" r="420" fill="${C.sun}" opacity=".9"/>
-    <circle cx="0" cy="0" r="260" fill="${C.soft}" opacity=".35"/>
-    ${textBlock(lines, 80, y, 96, C.white)}
-    ${textBlock(wrap(small, 34), 80, y + lines.length * 110 + 40, 42, C.night === bg ? C.white : C.paper, 600)}
-    ${footer(H)}
+    <rect width="${W}" height="${H}" fill="${C.night}"/>
+    <circle cx="${W - 120}" cy="${H * 0.3}" r="360" fill="${C.teal}" opacity=".22"/>
+    ${small('envases 3g', 64, H > 1400 ? 200 : 92, 34, C.white, 'start', 700)}
+    ${headline(big, 64, H * (H > 1400 ? 0.6 : 0.62), 124, C.white, C.sun)}
+    ${small(sub, 64, H - (H > 1400 ? 430 : 90), 36, C.soft, 'start', 700)}
   </svg>`;
-  await sharp(Buffer.from(svg)).composite([{ input: await logo(), left: 80, top: 80 }]).jpeg({ quality: 90 }).toFile(file);
+  const st = await sticker(buf, H > 1400 ? 560 : 470, 8);
+  const meta = await sharp(st).metadata();
+  await sharp(Buffer.from(svg)).composite([{ input: st, left: W - meta.width + 40, top: H > 1400 ? 300 : 90 }]).jpeg({ quality: 92, mozjpeg: true }).toFile(file);
+}
+
+// Cierre: color de marca, llamado a guardar/compartir y contacto.
+async function ctaSlide(big, H, file, buf) {
+  const svg = `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
+    <rect width="${W}" height="${H}" fill="${C.teal}"/>
+    ${small('envases 3g', 64, H > 1400 ? 200 : 92, 34, C.night, 'start', 700)}
+    ${headline(big, 64, H * 0.42, 112, C.night, C.white)}
+    ${small('Moreno 4156 · Mar del Plata · envíos', 64, H * 0.42 + 330, 36, C.night)}
+    ${small('guardalo para después ↗', 64, H - (H > 1400 ? 430 : 90), 34, C.night, 'start', 700)}
+  </svg>`;
+  const chip = pill('WhatsApp ' + WA, C.night, C.white, 44);
+  const st = await sticker(buf, 300, -10);
+  await sharp(Buffer.from(svg)).composite([{ input: chip.svg, left: 64, top: Math.round(H * 0.42 + 390) }, { input: st, left: W - 400, top: Math.round(H * 0.42 + 300) }]).jpeg({ quality: 92, mozjpeg: true }).toFile(file);
 }
 
 function makeReel(frames, file) {
-  // Cada placa 3 s con zoom suave y fundido; pista de audio silenciosa (Instagram la exige en algunos casos).
-  const d = 3, fade = 0.5, fps = 30;
+  // Ritmo actual: cortes secos de ~1,6 s con zoom rápido (punch-in), sin fundidos lentos.
+  // Música: si hay archivos en marketing/audio/ (libres de derechos) se usa uno por día; si no, silencio.
+  const d = 1.6, fps = 30, total = frames.length * d + 0.8;
+  const audios = fs.existsSync('marketing/audio') ? fs.readdirSync('marketing/audio').filter((f) => /\.(mp3|m4a|wav)$/i.test(f)).sort() : [];
   const args = ['-y'];
-  frames.forEach((f) => args.push('-loop', '1', '-t', String(d), '-i', f));
-  args.push('-f', 'lavfi', '-t', String(frames.length * (d - fade) + fade), '-i', 'anullsrc=r=44100:cl=stereo');
-  let filter = frames.map((_, i) => `[${i}:v]scale=1188:2112,zoompan=z='min(zoom+0.0012,1.1)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=${d * fps}:s=1080x1920:fps=${fps},format=yuv420p,setsar=1[v${i}]`).join(';');
-  let last = 'v0';
-  for (let i = 1; i < frames.length; i++) {
-    filter += `;[${last}][v${i}]xfade=transition=fade:duration=${fade}:offset=${(i * (d - fade)).toFixed(2)}[x${i}]`;
-    last = `x${i}`;
-  }
-  args.push('-filter_complex', filter, '-map', `[${last}]`, '-map', `${frames.length}:a`, '-c:v', 'libx264', '-preset', 'medium', '-crf', '21', '-c:a', 'aac', '-shortest', '-movflags', '+faststart', file);
-  execFileSync('ffmpeg', args, { stdio: 'ignore' });
+  frames.forEach((f, i) => args.push('-loop', '1', '-t', String(i === frames.length - 1 ? d + 0.8 : d), '-i', f));
+  if (audios.length) args.push('-i', `marketing/audio/${audios[dayIndex % audios.length]}`);
+  else args.push('-f', 'lavfi', '-t', String(total), '-i', 'anullsrc=r=44100:cl=stereo');
+  // Zoom rápido al inicio de cada placa (punch-in) y corte seco a la siguiente.
+  const filter = frames.map((_, i) => `[${i}:v]fps=${fps},scale=w='trunc(1080*(1+0.07*min(t/0.35\\,1))/2)*2':h=-2:eval=frame,crop=1080:1920,format=yuv420p,setsar=1[v${i}]`).join(';')
+    + ';' + frames.map((_, i) => `[v${i}]`).join('') + `concat=n=${frames.length}:v=1:a=0[v];[${frames.length}:a]afade=t=out:st=${(total - 1).toFixed(2)}:d=1[a]`;
+  args.push('-filter_complex', filter, '-map', '[v]', '-map', '[a]', '-t', String(total), '-c:v', 'libx264', '-preset', 'medium', '-crf', '20', '-c:a', 'aac', '-b:a', '160k', '-movflags', '+faststart', file);
+  execFileSync('ffmpeg', args, { stdio: process.env.DEBUG ? 'inherit' : 'ignore' });
 }
 
 async function generate() {
@@ -207,20 +247,23 @@ async function generate() {
   fs.mkdirSync(OUT, { recursive: true });
   const items = pickProducts(await loadCatalog());
   const copy = await writeCopy(items);
+  const photos = await Promise.all(items.map((p) => download(p.photo)));
   const media = [];
   if (plan.format === 'image') {
-    await productSlide(items[0], copy.slides[0], 1350, `${OUT}/1.jpg`, plan.pillar);
+    await productSlide(items[0], copy.slides[0], 1350, `${OUT}/1.jpg`, null, photos[0]);
     media.push('1.jpg');
   } else {
     const H = plan.format === 'reel' ? 1920 : 1350;
+    const total = copy.slides.length + 2;
+    const num = (i) => `${String(i + 1).padStart(2, '0')}/${String(total).padStart(2, '0')}`;
     const frames = [`${OUT}/0.jpg`];
-    await textSlide(copy.hook, plan.format === 'reel' ? 'Mirá hasta el final 👀' : 'Deslizá →', H, frames[0], false);
+    await coverSlide(copy.hook, plan.format === 'reel' ? 'quedate hasta el final' : 'deslizá →', H, frames[0], photos[0]);
     for (let i = 0; i < copy.slides.length; i++) {
       frames.push(`${OUT}/${i + 1}.jpg`);
-      await productSlide(items[i], copy.slides[i], H, frames.at(-1), `${i + 1}/${copy.slides.length}`);
+      await productSlide(items[i], copy.slides[i], H, frames.at(-1), plan.format === 'reel' ? null : num(i + 1), photos[i]);
     }
     frames.push(`${OUT}/${frames.length}.jpg`);
-    await textSlide(copy.cta, `WhatsApp ${WA} · Moreno 4156, Mar del Plata · Envíos`, H, frames.at(-1), true);
+    await ctaSlide(copy.cta, H, frames.at(-1), photos[1] || photos[0]);
     if (plan.format === 'reel') { makeReel(frames, `${OUT}/reel.mp4`); media.push('reel.mp4', '0.jpg'); }
     else media.push(...frames.map((f) => path.basename(f)));
   }

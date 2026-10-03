@@ -27,7 +27,7 @@ jobs:
           node-version: "22"
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core && mkdir -p ~/.fonts && cp marketing/fonts/*.ttf ~/.fonts && fc-cache -f
       - name: Crear contenido (textos, imágenes, video)
         run: node scripts/social-post.mjs generate
         env:
