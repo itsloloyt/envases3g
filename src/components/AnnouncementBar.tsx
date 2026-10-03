@@ -5,7 +5,7 @@ import { site } from "@/lib/site";
 /** Barra superior animada con descuentos vigentes y datos clave (como la tienda original, renovada). */
 export function AnnouncementBar() {
   const items = [
-    { Icon: BadgePercent, text: `Pagando en efectivo: ${DISCOUNT_HEADLINE}` },
+    { Icon: BadgePercent, text: DISCOUNT_HEADLINE },
     { Icon: Truck, text: "Envíos a todo el país por Correo Argentino" },
     { Icon: Store, text: `Retiro sin cargo en ${site.address}, Mar del Plata` },
     { Icon: BadgePercent, text: "Vidrio · Plástico · Válvulas · Gatillos · Varillas · Esencias · Difusores" },

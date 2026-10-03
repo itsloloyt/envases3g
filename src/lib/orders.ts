@@ -1,5 +1,4 @@
 "use client";
-import type { ShippingQuote } from "./shipping";
 
 /** Pedido tal como lo ve el cliente en /pedido/[numero] (se guarda en este navegador). */
 export type SavedOrder = {
@@ -10,7 +9,7 @@ export type SavedOrder = {
   subtotal: number;
   discount?: { percent: number; amount: number; label: string };
   payment?: string;
-  shipping: Pick<ShippingQuote, "method" | "label" | "detail" | "price">;
+  shipping: { method: string; label: string; detail: string; price: number };
   total: number;
   whatsapp: string;
 };

@@ -61,7 +61,7 @@ export default async function Home() {
 
   return (
     <>
-      <Hero products={hero.length >= 4 ? hero : products.slice(0, 4).map(toCard)} total={products.length} />
+      <Hero products={hero.length >= 4 ? hero : products.slice(0, 4).map(toCard)} />
       <Marquee />
       <Rubros rubros={rubros} />
       <Lookbook />
