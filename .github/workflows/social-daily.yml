@@ -5,9 +5,14 @@ on:
   workflow_dispatch:
     inputs:
       dry_run:
-        description: "Solo probar (no publica)"
+        description: "Solo generar (no publica; descargá el resultado en Artifacts)"
         type: boolean
         default: true
+      format:
+        description: "Forzar formato (vacío = el del día)"
+        type: choice
+        options: ["", image, carousel, reel]
+        default: ""
 permissions:
   contents: write
 concurrency: social-daily
@@ -16,20 +21,44 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - run: node scripts/social-post.mjs
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+      - name: Crear contenido (textos, imágenes, video)
+        run: node scripts/social-post.mjs generate
         env:
-          DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
+          FORMAT: ${{ inputs.format }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: post-del-dia
+          path: marketing/out
+      - name: Subir archivos a la rama redes-media
+        if: ${{ !inputs.dry_run }}
+        id: media
+        run: |
+          DAY=$(date +%F-%H%M)
+          git config --global user.name "envases3g-bot"
+          git config --global user.email "envases3g-bot@users.noreply.github.com"
+          git fetch origin redes-media || true
+          git worktree add -B redes-media ../media origin/redes-media 2>/dev/null || (git worktree add --orphan -b redes-media ../media)
+          mkdir -p ../media/$DAY && cp marketing/out/* ../media/$DAY/
+          cd ../media && git add -A && git commit -qm "Media $DAY" && git push -q origin redes-media
+          echo "base=https://raw.githubusercontent.com/${{ github.repository }}/$(git rev-parse HEAD)/$DAY" >> "$GITHUB_OUTPUT"
+      - name: Publicar en Facebook e Instagram
+        if: ${{ !inputs.dry_run }}
+        run: node scripts/social-post.mjs publish
+        env:
+          MEDIA_BASE_URL: ${{ steps.media.outputs.base }}
           META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
           META_IG_USER_ID: ${{ secrets.META_IG_USER_ID }}
           META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       - name: Guardar historial
-        if: always() && !inputs.dry_run
+        if: ${{ always() && !inputs.dry_run }}
         run: |
-          git config user.name "envases3g-bot"
-          git config user.email "envases3g-bot@users.noreply.github.com"
           git add marketing/posts
-          git diff --cached --quiet || (git commit -m "Post diario $(date +%F) [skip ci]" && git push)
+          git diff --cached --quiet || (git commit -m "Post diario $(date +%F) [skip ci]" && git pull --rebase -q && git push)

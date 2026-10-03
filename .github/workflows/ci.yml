@@ -1,5 +1,8 @@
 name: Verificar sitio
-on: [push, pull_request]
+on:
+  push:
+    branches-ignore: [redes-media]
+  pull_request:
 jobs:
   build:
     runs-on: ubuntu-latest
