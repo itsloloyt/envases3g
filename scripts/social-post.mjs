@@ -35,7 +35,19 @@ const money = (n) => (n ? '$' + Math.round(n).toLocaleString('es-AR') : null);
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 
 // ---------- Catálogo ----------
+// Catálogo, precios y fotos salen de la web publicada en Vercel (lo mismo que ve el cliente).
+// Si la web no responde, se consulta Supabase directamente.
 async function loadCatalog() {
+  try {
+    const r = await fetch(`${SITE}/api/catalogo`, { signal: AbortSignal.timeout(30000) });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const list = await r.json();
+    if (!Array.isArray(list) || !list.length) throw new Error('respuesta vacía');
+    console.log(`Catálogo: ${list.length} productos desde ${SITE}`);
+    return list;
+  } catch (e) {
+    console.warn(`No pude leer ${SITE}/api/catalogo (${e.message}); uso Supabase.`);
+  }
   const cfg = JSON.parse(fs.readFileSync('src/data/supabase-config.json', 'utf8'));
   const url = env('SUPABASE_URL') || cfg.url;
   const key = env('SUPABASE_PUBLISHABLE_KEY') || cfg.publishableKey;
@@ -44,10 +56,18 @@ async function loadCatalog() {
   return (await r.json()).map((row) => row.data);
 }
 
+// Misma portada que muestra la web (src/lib/shop.ts → cover()); las rutas locales se sirven desde Vercel.
+function coverOf(p) {
+  const read = (f) => JSON.parse(fs.readFileSync(`src/data/${f}`, 'utf8'));
+  coverOf.ai ??= read('ai-covers.json');
+  coverOf.orig ??= read('original-covers.json');
+  const src = coverOf.ai[p.slug] || coverOf.orig[p.slug] || p.image;
+  return src?.startsWith('/') ? SITE + src : src;
+}
+
 function pickProducts(products) {
-  const covers = JSON.parse(fs.readFileSync('src/data/original-covers.json', 'utf8'));
   const ok = products
-    .map((p) => ({ ...p, photo: covers[p.slug] || p.image }))
+    .map((p) => ({ ...p, photo: coverOf(p) }))
     .filter((p) => p.available && p.photo)
     .filter((p) => !plan.cats || plan.cats.includes(p.category))
     .sort((a, b) => a.slug.localeCompare(b.slug));

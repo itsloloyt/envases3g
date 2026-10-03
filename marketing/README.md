@@ -3,7 +3,7 @@
 ## Qué hay
 - `.agents/product-marketing.md` — contexto de marca: público, voz (voseo), diferenciales y **pilares por día**.
 - `.claude/skills/` — skills de [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) (MIT): social, content-strategy, copywriting, marketing-plan, ad-creative, offers… Abrí Claude Code en este repo y pedí, por ej.: *"armá el plan de contenidos de noviembre"*, *"5 ideas de reels para difusores"*, *"copy para un anuncio mayorista"*.
-- `scripts/social-post.mjs` — todo el proceso, cada día:
+- `scripts/social-post.mjs` — todo el proceso, cada día (productos, precios y fotos salen de la web en Vercel, `/api/catalogo`, con las mismas portadas que ve el cliente; si no responde, usa Supabase):
   1. elige productos reales del catálogo (Supabase) según el tema del día;
   2. escribe la descripción, los hashtags y los textos de cada placa con Claude (skill `social`);
   3. **diseña las imágenes** con los colores y el logo de la marca (foto del producto, nombre, precio, WhatsApp) y, si toca reel, arma un **video vertical** de ~12 s con zoom y fundidos;
