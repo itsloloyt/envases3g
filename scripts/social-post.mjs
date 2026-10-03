@@ -73,7 +73,7 @@ function pickProducts(products) {
     .sort((a, b) => a.slug.localeCompare(b.slug));
   if (!ok.length) throw new Error('No hay productos para ' + plan.pillar);
   // Rotación determinística: cada semana avanza a otro producto del tema.
-  const main = ok[(Math.floor(dayIndex / 7) * 37) % ok.length];
+  const main = ok[((Math.floor(dayIndex / 7) + Number(env('WEEK_OFFSET') || 0)) * 37) % ok.length];
   const family = ok.filter((p) => p.slug !== main.slug && p.subcategory === main.subcategory);
   const others = ok.filter((p) => p.slug !== main.slug && p.subcategory !== main.subcategory);
   return [main, ...family, ...others].slice(0, 4);
@@ -94,6 +94,8 @@ async function writeCopy(items) {
     slides: items.slice(0, n).map((p) => ({ title: p.name, text: 'Venta minorista y mayorista en Mar del Plata' })),
     cta: 'Pedí por WhatsApp',
   };
+  // COPY_FILE: textos ya escritos (JSON con caption, hook, slides, cta) para usar en lugar de Claude.
+  if (env('COPY_FILE')) { const j = JSON.parse(fs.readFileSync(env('COPY_FILE'), 'utf8')); return { ...fallback, ...j, slides: fallback.slides.map((s, i) => ({ ...s, ...j.slides?.[i] })) }; }
   if (!env('ANTHROPIC_API_KEY')) return fallback;
   const brand = fs.readFileSync('.agents/product-marketing.md', 'utf8');
   const social = fs.readFileSync('.claude/skills/social/SKILL.md', 'utf8').slice(0, 12000);
@@ -135,12 +137,21 @@ function wrap(text, max, limit = 4) {
   return lines.slice(0, limit);
 }
 
+// Unidades cortas ("cc", "ml") quedan pegadas al número.
+function titleLines(text, size) {
+  const lines = wrap(text, Math.round(1500 / size), 4);
+  const lastWord = String(text || '').trim().split(/\s+/).at(-1) || '';
+  if (lastWord.length <= 3 && lines.length > 1 && lines.at(-1) === lastWord) { lines.pop(); lines[lines.length - 1] += ' ' + lastWord; }
+  return lines;
+}
+
 // Titular: grotesca bold, con la última palabra en serif itálica (el acento editorial que se usa hoy).
 function headline(text, x, y, size, color, accent, anchor = 'start') {
-  const lines = wrap(text, Math.round(1500 / size), 4);
+  const lines = titleLines(text, size);
+  const plain = (String(text || '').trim().split(/\s+/).at(-1) || '').length <= 3;
   return lines.map((l, i) => {
     const words = l.split(' ');
-    const isLast = i === lines.length - 1 && (words.length > 1 || lines.length > 1);
+    const isLast = !plain && i === lines.length - 1 && (words.length > 1 || lines.length > 1);
     const head = isLast ? (words.length > 1 ? words.slice(0, -1).join(' ') + ' ' : '') : l;
     const tail = isLast ? `<tspan font-family="${SERIF}" font-style="italic" font-weight="400" fill="${accent}" font-size="${size * 1.12}">${esc(words.at(-1))}</tspan>` : '';
     return `<text x="${x}" y="${y + i * size * 0.98}" font-family="${SANS}" font-weight="700" font-size="${size}" letter-spacing="${-size * 0.035}" fill="${color}" text-anchor="${anchor}">${esc(head)}${tail}</text>`;
@@ -176,7 +187,7 @@ const pill = (text, bg, fg, size = 40) => {
 async function productSlide(p, s, H, file, counter, buf) {
   const safeBottom = H > 1400 ? 420 : 110; // en reels, los textos quedan fuera de la zona de botones
   const title = s.title || p.name;
-  const lines = wrap(title, Math.round(1500 / 96), 4).length;
+  const lines = titleLines(title, 96).length;
   const ty = H - safeBottom - 70 - (lines - 1) * 94;
   const overlay = `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
     <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0.35" stop-color="${C.night}" stop-opacity="0"/><stop offset="1" stop-color="${C.night}" stop-opacity=".88"/></linearGradient>
