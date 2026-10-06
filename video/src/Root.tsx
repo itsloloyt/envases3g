@@ -10,6 +10,7 @@ import { Difusor, difusorDuration } from "./Difusor";
 import { ComoComprar, comoComprarDuration } from "./ComoComprar";
 import { DiaMadre, diaMadreDuration } from "./DiaMadre";
 import { DiaMadreCombos, diaMadreCombosDuration } from "./DiaMadreCombos";
+import { Liquid, liquidDuration, Bento, bentoDuration } from "./Trends";
 import { GeoVs, geoVsDuration, GeoAromas, geoAromasDuration, GeoRubros, geoRubrosDuration } from "./Geo";
 
 export const RemotionRoot: React.FC = () => {
@@ -29,6 +30,8 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="GeoVs" component={GeoVs} durationInFrames={geoVsDuration} fps={30} width={1080} height={1920} />
       <Composition id="GeoAromas" component={GeoAromas} durationInFrames={geoAromasDuration} fps={30} width={1080} height={1920} />
       <Composition id="GeoRubros" component={GeoRubros} durationInFrames={geoRubrosDuration} fps={30} width={1080} height={1920} />
+      <Composition id="Liquid" component={Liquid} durationInFrames={liquidDuration} fps={30} width={1080} height={1920} />
+      <Composition id="Bento" component={Bento} durationInFrames={bentoDuration} fps={30} width={1080} height={1920} />
     </>
   );
 };
