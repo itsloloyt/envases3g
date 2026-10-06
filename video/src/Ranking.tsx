@@ -24,13 +24,13 @@ const Item: React.FC<{ it: (typeof ITEMS)[number] }> = ({ it }) => {
   return (
     <AbsoluteFill style={{ translate: `${shake}px ${-out * 120}px`, opacity: 1 - out, fontFamily: SANS }}>
       {/* Número gigante con contorno */}
-      <div style={{ position: "absolute", left: 40, top: 230, fontSize: 760, fontWeight: 700, lineHeight: 1, letterSpacing: -40, color: "transparent", WebkitTextStroke: `6px ${gold ? C.sun : "rgba(255,255,255,.55)"}`, scale: String(interpolate(slam, [0, 1], [2.6, 1])), opacity: slam, transformOrigin: "left top" }}>
+      <div style={{ position: "absolute", left: 40, top: 320, fontSize: 620, fontWeight: 700, lineHeight: 1, letterSpacing: -40, color: "transparent", WebkitTextStroke: `6px ${gold ? C.sun : "rgba(255,255,255,.55)"}`, scale: String(interpolate(slam, [0, 1], [2.6, 1])), opacity: slam, transformOrigin: "left top" }}>
         {it.n}
       </div>
-      <div style={{ position: "absolute", right: 70, top: 380, width: 600, height: 760, borderRadius: 44, overflow: "hidden", boxShadow: "0 50px 100px rgba(0,0,0,.5)", translate: `${interpolate(card, [0, 1], [700, 0])}px 0`, rotate: `${interpolate(card, [0, 1], [14, 3])}deg`, border: gold ? `8px solid ${C.sun}` : "none" }}>
+      <div style={{ position: "absolute", right: 70, top: 400, width: 600, height: 700, borderRadius: 44, overflow: "hidden", boxShadow: "0 50px 100px rgba(0,0,0,.5)", translate: `${interpolate(card, [0, 1], [700, 0])}px 0`, rotate: `${interpolate(card, [0, 1], [14, 3])}deg`, border: gold ? `8px solid ${C.sun}` : "none" }}>
         <Img src={foto(it.img)} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
       </div>
-      <div style={{ position: "absolute", left: 72, right: 72, top: 1230 }}>
+      <div style={{ position: "absolute", left: 72, right: 72, top: 1150 }}>
         <Kinetic text={it.name} size={86} color={C.white} accent={C.sun} delay={8} stagger={3} />
         <div style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 50, color: C.soft, marginTop: 8, opacity: interpolate(frame, [16, 24], [0, 1], clamp) }}>para {it.use}</div>
         <div style={{ marginTop: 28, display: "inline-block", padding: "18px 40px", borderRadius: 999, background: C.sun, color: C.night, fontSize: 64, fontWeight: 700, scale: String(spring({ frame: frame - 12, fps: 30, config: { damping: 9 } })), rotate: "-3deg" }}>

@@ -248,7 +248,7 @@ const Captions: React.FC<{ text: string; dur: number }> = ({ text, dur }) => {
   const local = frame - 3 - idx * per;
   const s = spring({ frame: local, fps: 30, config: { damping: 12, stiffness: 220, mass: 0.5 } });
   return (
-    <div style={{ position: "absolute", left: 60, right: 60, top: 1290, display: "flex", justifyContent: "center", flexWrap: "wrap", gap: 22, fontFamily: SANS, fontWeight: 700, fontSize: 104, letterSpacing: -2.5, lineHeight: 1.1, scale: String(interpolate(s, [0, 1], [0.8, 1])), opacity: interpolate(s, [0, 1], [0, 1]) }}>
+    <div style={{ position: "absolute", left: 60, right: 60, top: 1260, display: "flex", justifyContent: "center", flexWrap: "wrap", gap: 22, fontFamily: SANS, fontWeight: 700, fontSize: 104, letterSpacing: -2.5, lineHeight: 1.1, scale: String(interpolate(s, [0, 1], [0.8, 1])), opacity: interpolate(s, [0, 1], [0, 1]) }}>
       {chunks[idx].map((w, i) => {
         const hl = w.includes("*");
         const clean = w.replace(/\*/g, "");
@@ -289,7 +289,7 @@ const SceneWrap: React.FC<{ dur: number; children: React.ReactNode }> = ({ dur, 
   const frame = useCurrentFrame();
   const out = interpolate(frame, [dur - 6, dur], [0, 1], { ...clamp, easing: Easing.in(Easing.cubic) });
   return (
-    <AbsoluteFill style={{ alignItems: "center", paddingTop: 330, opacity: 1 - out, translate: `0 ${-out * 80}px`, scale: String(1 - out * 0.06) }}>
+    <AbsoluteFill style={{ alignItems: "center", paddingTop: 420, opacity: 1 - out, translate: `0 ${-out * 80}px`, scale: String((1 - out * 0.06) * 1.12) }}>
       {children}
     </AbsoluteFill>
   );

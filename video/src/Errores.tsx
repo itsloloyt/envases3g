@@ -31,17 +31,17 @@ const Error: React.FC<{ e: (typeof ERRORS)[number]; i: number }> = ({ e, i }) =>
   return (
     <AbsoluteFill style={{ opacity: 1 - out, translate: `${-out * 160}px 0`, fontFamily: SANS }}>
       {/* Mitad error (oscuro) */}
-      <AbsoluteFill style={{ background: C.night, padding: "330px 72px 0" }}>
+      <AbsoluteFill style={{ background: C.night, padding: "0 72px", justifyContent: "center" }}>
         <div style={{ fontSize: 40, color: C.red, fontWeight: 700, marginBottom: 30 }}>ERROR {i + 1}</div>
         <Mark ok={false} delay={4} />
-        <div style={{ marginTop: 60 }}><Kinetic text={e.bad} size={104} color={C.white} accent={C.red} delay={10} stagger={3} /></div>
+        <div style={{ marginTop: 60 }}><Kinetic text={e.bad} size={112} color={C.white} accent={C.red} delay={10} stagger={3} /></div>
       </AbsoluteFill>
       {/* Mitad solución: entra con barrido circular */}
-      <AbsoluteFill style={{ background: C.paper, padding: "330px 72px 0", clipPath: `circle(${wipe * 1.5}% at 90% 20%)` }}>
+      <AbsoluteFill style={{ background: C.paper, padding: "460px 72px 0", clipPath: `circle(${wipe * 1.5}% at 90% 20%)` }}>
         <div style={{ fontSize: 40, color: C.deep, fontWeight: 700, marginBottom: 30 }}>MEJOR ASÍ</div>
         <Mark ok delay={flip + 6} />
-        {frame >= flip ? <div style={{ marginTop: 60 }}><Kinetic text={e.good} size={104} color={C.night} accent={C.deep} delay={flip + 10} stagger={3} /></div> : null}
-        <div style={{ position: "absolute", left: 72, right: 72, bottom: 330, display: "flex", alignItems: "center", gap: 34, background: C.white, borderRadius: 36, padding: 26, boxShadow: "0 30px 60px rgba(4,22,25,.12)", translate: `0 ${interpolate(card, [0, 1], [400, 0])}px` }}>
+        {frame >= flip ? <div style={{ marginTop: 60 }}><Kinetic text={e.good} size={112} color={C.night} accent={C.deep} delay={flip + 10} stagger={3} /></div> : null}
+        <div style={{ position: "absolute", left: 72, right: 72, bottom: 420, display: "flex", alignItems: "center", gap: 34, background: C.white, borderRadius: 36, padding: 26, boxShadow: "0 30px 60px rgba(4,22,25,.12)", translate: `0 ${interpolate(card, [0, 1], [400, 0])}px` }}>
           <Img src={foto(e.img)} style={{ width: 210, height: 210, objectFit: "cover", borderRadius: 24 }} />
           <div style={{ fontSize: 42, fontWeight: 700, color: C.night }}>{e.tag}</div>
         </div>

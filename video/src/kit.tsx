@@ -25,7 +25,7 @@ export const Kinetic: React.FC<{ text: string; size: number; color: string; acce
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", justifyContent: align === "center" ? "center" : "flex-start", columnGap: size * 0.24, lineHeight: 0.98 }}>
+    <div style={{ display: "flex", flexWrap: "wrap", justifyContent: align === "center" ? "center" : "flex-start", columnGap: size * 0.24, lineHeight: 0.98, alignItems: "baseline" }}>
       {text.split(" ").map((w, i) => {
         const s = spring({ frame: frame - delay - i * stagger, fps, config: { damping: 14, stiffness: 180, mass: 0.6 } });
         const acc = w.startsWith("*");
@@ -72,7 +72,7 @@ export const Progress: React.FC<{ color?: string; track?: string }> = ({ color =
 };
 
 export const Handle: React.FC<{ color?: string }> = ({ color = C.white }) => (
-  <div style={{ position: "absolute", top: 200, left: 72, fontFamily: SANS, fontWeight: 700, fontSize: 34, color }}>envases 3g</div>
+  <div style={{ position: "absolute", top: 200, left: 72, fontFamily: SANS, fontWeight: 700, fontSize: 36, color, zIndex: 5 }}>envases 3g</div>
 );
 
 // Cierre común: contacto y llamado a la acción.
@@ -83,12 +83,12 @@ export const Outro: React.FC<{ text: string; bg?: string; ink?: string }> = ({ t
   return (
     <div style={{ position: "absolute", inset: 0, background: bg, clipPath: `circle(${enter}% at 50% 50%)`, fontFamily: SANS }}>
       <Handle color={ink} />
-      <div style={{ position: "absolute", left: 72, right: 72, top: 620 }}>
-        <Kinetic text={text} size={124} color={ink} accent={C.white} delay={3} stagger={4} />
+      <div style={{ position: "absolute", left: 72, right: 72, top: 700 }}>
+        <Kinetic text={text} size={124} color={ink} accent={ink === C.white ? C.sun : C.white} delay={3} stagger={4} />
       </div>
-      <div style={{ position: "absolute", left: 72, top: 1060, display: "flex", flexDirection: "column", gap: 26 }}>
+      <div style={{ position: "absolute", left: 72, top: 1120, display: "flex", flexDirection: "column", gap: 26 }}>
         <div style={{ fontSize: 40, color: ink, opacity: interpolate(frame, [12, 20], [0, 1], clamp) }}>Moreno 4156 · Mar del Plata · envíos</div>
-        <div style={{ alignSelf: "flex-start", padding: "26px 46px", borderRadius: 999, background: ink, color: C.white, fontWeight: 700, fontSize: 50, translate: `${interpolate(chip, [0, 1], [-700, 0])}px 0` }}>WhatsApp 223 598-4362</div>
+        <div style={{ alignSelf: "flex-start", padding: "26px 46px", borderRadius: 999, background: ink, color: bg, fontWeight: 700, fontSize: 50, scale: String(interpolate(chip, [0, 1], [0.6, 1])), opacity: chip, transformOrigin: "left center" }}>WhatsApp 223 598-4362</div>
         <div style={{ fontSize: 36, fontWeight: 700, color: ink, opacity: interpolate(frame, [28, 36], [0, 1], clamp) }}>guardalo para después ↗</div>
       </div>
     </div>

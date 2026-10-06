@@ -11,13 +11,13 @@ const VARIANTS: { name: string; price: number; cap?: string; w: number; bg: stri
   { name: "Tapa ciega blanca", price: 618, cap: "tapa-blanca", w: 215, bg: "#1b8f9a" },
   { name: "Flip Top negra", price: 687, cap: "fliptop-negra", w: 225, bg: "#22b5c1" },
   { name: "Spray blanco", price: 811, cap: "spray-blanca", w: 205, bg: "#2a6f8f" },
-  { name: "Crema premium negra", price: 1526, cap: "crema-negra", w: 330, bg: "#041619" },
+  { name: "Crema premium negra", price: 1526, cap: "crema-negra", w: 300, bg: "#041619" },
   { name: "Spray oro brillo", price: 1589, cap: "spray-oro", w: 215, bg: "#3b2a12" },
 ];
 export const combinacionesDuration = HOOK + VARIANTS.length * STEP + OUT;
 
 // Botella: 1000 px de alto; el pico ocupa ~16 % de la altura y ~44 % del ancho.
-const BOTTLE_H = 980, BOTTLE_TOP = 820, NECK_BOTTOM = BOTTLE_TOP + BOTTLE_H * 0.15;
+const BOTTLE_H = 820, BOTTLE_TOP = 830, NECK_BOTTOM = BOTTLE_TOP + BOTTLE_H * 0.15;
 
 const Cap: React.FC<{ v: (typeof VARIANTS)[number] }> = ({ v }) => {
   const frame = useCurrentFrame();
@@ -29,7 +29,7 @@ const Cap: React.FC<{ v: (typeof VARIANTS)[number] }> = ({ v }) => {
   return (
     <Img
       src={staticFile(`accesorios/${v.cap}.webp`)}
-      style={{ position: "absolute", left: "50%", top: NECK_BOTTOM, width: v.w, translate: `-50% calc(-100% + ${interpolate(drop, [0, 1], [-900, 0])}px)`, rotate: `${Math.sin(twist * 12) * twist * 6}deg`, filter: "drop-shadow(0 18px 24px rgba(0,0,0,.35))" }}
+      style={{ position: "absolute", left: "50%", top: NECK_BOTTOM, width: v.w * (BOTTLE_H / 980), translate: `-50% calc(-100% + ${interpolate(drop, [0, 1], [-900, 0])}px)`, rotate: `${Math.sin(twist * 12) * twist * 6}deg`, filter: "drop-shadow(0 18px 24px rgba(0,0,0,.35))" }}
     />
   );
 };
@@ -40,10 +40,10 @@ const Step: React.FC<{ v: (typeof VARIANTS)[number]; prev: number; i: number }> 
   return (
     <AbsoluteFill>
       <Cap v={v} />
-      <div style={{ position: "absolute", left: 72, top: 270, fontFamily: SANS, color: C.white }}>
+      <div style={{ position: "absolute", left: 72, top: 340, fontFamily: SANS, color: C.white }}>
         <div style={{ fontSize: 34, opacity: 0.75 }}>{String(i + 1).padStart(2, "0")} / 06</div>
         <div style={{ fontSize: 76, fontWeight: 700, letterSpacing: -2, marginTop: 8, translate: `${interpolate(label, [0, 1], [-60, 0])}px 0`, opacity: label }}>{v.name}</div>
-        <Counter from={prev} to={v.price} start={4} dur={14} style={{ display: "inline-block", marginTop: 14, fontSize: 132, fontWeight: 700, letterSpacing: -5, color: C.sun }} />
+        <Counter from={prev || v.price} to={v.price} start={4} dur={14} style={{ display: "inline-block", marginTop: 14, fontSize: 132, fontWeight: 700, letterSpacing: -5, color: C.sun }} />
       </div>
     </AbsoluteFill>
   );
@@ -70,7 +70,7 @@ export const Combinaciones: React.FC = () => {
         </Sequence>
       ))}
       <Sequence durationInFrames={HOOK}>
-        <div style={{ position: "absolute", left: 72, right: 72, top: 300 }}>
+        <div style={{ position: "absolute", left: 72, right: 72, top: 340 }}>
           <Kinetic text="1 envase. 6 *terminaciones.*" size={128} color={C.white} accent={C.sun} delay={4} stagger={5} />
           <div style={{ marginTop: 20, fontFamily: SERIF, fontStyle: "italic", fontSize: 54, color: C.soft, opacity: interpolate(frame, [26, 36], [0, 1], clamp) }}>Body 125 cc ámbar</div>
         </div>
