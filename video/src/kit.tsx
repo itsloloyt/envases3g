@@ -26,9 +26,8 @@ export const Kinetic: React.FC<{ text: string; size: number; color: string; acce
   const { fps } = useVideoConfig();
   return (
     <div style={{ display: "flex", flexWrap: "wrap", justifyContent: align === "center" ? "center" : "flex-start", columnGap: size * 0.24, lineHeight: 0.98, alignItems: "baseline" }}>
-      {text.split(" ").map((w, i) => {
+      {(() => { let on = false; return text.split(" ").map((w) => { const acc = on || w.startsWith("*"); on = acc && !w.endsWith("*"); return [w, acc] as const; }); })().map(([w, acc], i) => {
         const s = spring({ frame: frame - delay - i * stagger, fps, config: { damping: 14, stiffness: 180, mass: 0.6 } });
-        const acc = w.startsWith("*");
         return (
           <span key={i} style={{ display: "inline-block", overflow: "hidden", paddingBottom: size * 0.14 }}>
             <span style={{ display: "inline-block", fontFamily: acc ? SERIF : SANS, fontStyle: acc ? "italic" : "normal", fontWeight: acc ? 400 : 700, fontSize: acc ? size * 1.12 : size, letterSpacing: acc ? 0 : -size * 0.04, color: acc ? accent : color, translate: `0 ${interpolate(s, [0, 1], [size * 1.1, 0])}px`, rotate: `${interpolate(s, [0, 1], [8, 0])}deg`, filter: `blur(${interpolate(s, [0, 1], [10, 0])}px)` }}>

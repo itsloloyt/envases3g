@@ -8,6 +8,7 @@ import { Ticket, ticketDuration } from "./Ticket";
 import { Errores, erroresDuration } from "./Errores";
 import { Difusor, difusorDuration } from "./Difusor";
 import { ComoComprar, comoComprarDuration } from "./ComoComprar";
+import { DiaMadre, diaMadreDuration } from "./DiaMadre";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -21,6 +22,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="Errores" component={Errores} durationInFrames={erroresDuration} fps={30} width={1080} height={1920} />
       <Composition id="Difusor" component={Difusor} durationInFrames={difusorDuration} fps={30} width={1080} height={1920} />
       <Composition id="ComoComprar" component={ComoComprar} durationInFrames={comoComprarDuration} fps={30} width={1080} height={1920} />
+      <Composition id="DiaMadre" component={DiaMadre} durationInFrames={diaMadreDuration} fps={30} width={1080} height={1920} />
     </>
   );
 };
