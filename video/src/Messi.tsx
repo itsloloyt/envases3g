@@ -2,49 +2,77 @@ import React from "react";
 import { AbsoluteFill, Img, staticFile } from "remotion";
 import { SANS, SERIF } from "./kit";
 
-// Placa homenaje "Gracias, 10" (sin fotos ni marcas de terceros): rayas celestes, camiseta con el 10 y la mascota.
-const CELESTE = "#75aadb", BLANCO = "#ffffff", AZUL = "#0b2a4a", ORO = "#e8b923";
-
-const Star: React.FC<{ x: number; y: number; s: number }> = ({ x, y, s }) => (
-  <svg style={{ position: "absolute", left: x, top: y }} width={s} height={s} viewBox="0 0 24 24"><path d="M12 1.5l3.1 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.3l-6.4 3.6 1.5-7.1L1.7 8.9l7.2-.8z" fill={ORO} stroke="#b88a0e" strokeWidth=".8" /></svg>
-);
+// Homenaje editorial: "Hay cosas que no entran en ningún envase."
+// Referencias: piezas de marcas para la despedida (tipografía sobria, un solo objeto, mucho aire).
+const NOCHE = "#0a1624", CELESTE = "#8cc0ea", ORO = "#d9b45a", CREMA = "#f3efe6";
 
 export const GraciasDiez: React.FC = () => (
-  <AbsoluteFill style={{ background: BLANCO, fontFamily: SANS, overflow: "hidden" }}>
-    {/* Rayas verticales celestes y blancas */}
-    <AbsoluteFill style={{ background: `repeating-linear-gradient(90deg, ${CELESTE} 0 120px, ${BLANCO} 120px 240px)`, opacity: 0.9 }} />
-    <AbsoluteFill style={{ background: "radial-gradient(ellipse at 50% 45%, rgba(255,255,255,.0) 30%, rgba(11,42,74,.35) 100%)" }} />
-    {/* Sol de mayo sutil detrás de la camiseta */}
-    <div style={{ position: "absolute", left: 540 - 380, top: 210, width: 760, height: 760, borderRadius: "50%", background: "radial-gradient(circle, rgba(232,185,35,.55), rgba(232,185,35,0) 65%)" }} />
+  <AbsoluteFill style={{ background: NOCHE, fontFamily: SANS, overflow: "hidden" }}>
+    {/* Rayas celestes muy sutiles, como textura */}
+    <AbsoluteFill style={{ background: `repeating-linear-gradient(90deg, rgba(140,192,234,.07) 0 90px, transparent 90px 180px)` }} />
+    {/* Haz de luz cenital sobre el frasco */}
+    <div style={{ position: "absolute", left: 540 - 420, top: -200, width: 840, height: 1300, background: "radial-gradient(ellipse 50% 60% at 50% 40%, rgba(255,240,210,.20), rgba(255,240,210,0) 70%)" }} />
+    <div style={{ position: "absolute", left: 540 - 330, top: 980, width: 660, height: 120, borderRadius: "50%", background: "radial-gradient(ellipse, rgba(255,230,190,.28), rgba(255,230,190,0) 70%)" }} />
 
-    {/* Camiseta de espaldas */}
-    <svg style={{ position: "absolute", left: 190, top: 250, filter: "drop-shadow(0 30px 40px rgba(11,42,74,.35))" }} width="700" height="760" viewBox="0 0 700 760">
+    {/* Frasco de vidrio ámbar dibujado en vectores (nítido a cualquier tamaño) */}
+    <svg style={{ position: "absolute", left: 540 - 170, top: 430, filter: "drop-shadow(0 40px 50px rgba(0,0,0,.6))" }} width="340" height="680" viewBox="0 0 340 680">
       <defs>
-        <clipPath id="shirt"><path d="M210 20 Q350 70 490 20 L640 90 L700 260 L590 300 L560 230 L560 740 Q350 770 140 740 L140 230 L110 300 L0 260 L60 90 Z" /></clipPath>
+        <linearGradient id="amber" x1="0" x2="1">
+          <stop offset="0" stopColor="#2a1206" /><stop offset=".18" stopColor="#6b3410" /><stop offset=".42" stopColor="#a8571c" />
+          <stop offset=".6" stopColor="#7a3c12" /><stop offset=".85" stopColor="#3d1a07" /><stop offset="1" stopColor="#1c0b03" />
+        </linearGradient>
+        <linearGradient id="cap" x1="0" x2="1">
+          <stop offset="0" stopColor="#0d0d0f" /><stop offset=".35" stopColor="#3a3b40" /><stop offset=".5" stopColor="#5a5b61" /><stop offset=".7" stopColor="#25262a" /><stop offset="1" stopColor="#0a0a0b" />
+        </linearGradient>
+        <linearGradient id="labelShade" x1="0" x2="1">
+          <stop offset="0" stopColor="#000" stopOpacity=".5" /><stop offset=".2" stopColor="#000" stopOpacity="0" /><stop offset=".42" stopColor="#fff" stopOpacity=".28" />
+          <stop offset=".62" stopColor="#000" stopOpacity="0" /><stop offset="1" stopColor="#000" stopOpacity=".55" />
+        </linearGradient>
+        <pattern id="stripes" width="44" height="10" patternUnits="userSpaceOnUse"><rect width="22" height="10" fill="#f3efe6" /><rect x="22" width="22" height="10" fill="#8cc0ea" /></pattern>
+        <clipPath id="bodyClip"><path d="M120 120 L120 150 Q40 175 30 250 L30 640 Q30 665 60 668 L280 668 Q310 665 310 640 L310 250 Q300 175 220 150 L220 120 Z" /></clipPath>
       </defs>
-      <g clipPath="url(#shirt)">
-        <rect width="700" height="760" fill={BLANCO} />
-        {[0, 1, 2, 3].map((i) => <rect key={i} x={175 + i * 100} y="0" width="50" height="760" fill={CELESTE} />)}
-        <rect x="0" y="0" width="140" height="760" fill={CELESTE} opacity=".25" />
-        <rect x="560" y="0" width="140" height="760" fill={CELESTE} opacity=".25" />
+      {/* tapa */}
+      <rect x="104" y="20" width="132" height="104" rx="12" fill="url(#cap)" />
+      {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => <rect key={i} x={110 + i * 11.5} y="26" width="3" height="92" fill="rgba(255,255,255,.07)" />)}
+      {/* cuerpo */}
+      <path d="M120 120 L120 150 Q40 175 30 250 L30 640 Q30 665 60 668 L280 668 Q310 665 310 640 L310 250 Q300 175 220 150 L220 120 Z" fill="url(#amber)" />
+      <g clipPath="url(#bodyClip)">
+        {/* etiqueta */}
+        <rect x="30" y="330" width="280" height="230" fill="url(#stripes)" />
+        <rect x="30" y="330" width="280" height="230" fill="none" stroke="#d9b45a" strokeWidth="3" />
+        <text x="170" y="500" textAnchor="middle" fontFamily="InstrumentSerif" fontStyle="italic" fontSize="190" fill="#0a1624">10</text>
+        <rect x="30" y="330" width="280" height="230" fill="url(#labelShade)" />
+        {/* brillos del vidrio */}
+        <rect x="62" y="190" width="18" height="440" rx="9" fill="#fff" opacity=".18" />
+        <rect x="88" y="200" width="6" height="400" rx="3" fill="#fff" opacity=".12" />
+        <rect x="268" y="230" width="10" height="380" rx="5" fill="#fff" opacity=".08" />
+        <ellipse cx="170" cy="668" rx="140" ry="16" fill="#000" opacity=".35" />
       </g>
-      <path d="M210 20 Q350 70 490 20 L640 90 L700 260 L590 300 L560 230 L560 740 Q350 770 140 740 L140 230 L110 300 L0 260 L60 90 Z" fill="none" stroke={AZUL} strokeWidth="5" />
-      <path d="M210 20 Q350 70 490 20" fill="none" stroke={AZUL} strokeWidth="14" />
-      <text x="350" y="205" textAnchor="middle" fontFamily="Bricolage" fontWeight="700" fontSize="84" letterSpacing="6" fill={AZUL}>GRACIAS</text>
-      <text x="350" y="600" textAnchor="middle" fontFamily="Bricolage" fontWeight="700" fontSize="400" letterSpacing="-20" fill={AZUL} stroke={BLANCO} strokeWidth="10" paintOrder="stroke">10</text>
     </svg>
+    {/* reflejo en el piso */}
+    <div style={{ position: "absolute", left: 540 - 200, top: 1095, width: 400, height: 40, borderRadius: "50%", background: "radial-gradient(ellipse, rgba(0,0,0,.6), rgba(0,0,0,0) 70%)" }} />
 
-    <Star x={420} y={150} s={70} />
-    <Star x={505} y={120} s={80} />
-    <Star x={600} y={150} s={70} />
+    {/* Tres estrellas finas */}
+    <div style={{ position: "absolute", left: 0, right: 0, top: 70, display: "flex", justifyContent: "center", gap: 26 }}>
+      {[0, 1, 2].map((i) => (
+        <svg key={i} width="34" height="34" viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z" fill="none" stroke={ORO} strokeWidth="1.3" /></svg>
+      ))}
+    </div>
 
-    {/* Mascota con el pulgar arriba */}
-    <Img src={staticFile("mascota.png")} style={{ position: "absolute", left: 650, top: 830, width: 380, filter: "drop-shadow(0 20px 30px rgba(11,42,74,.35))", rotate: "-6deg" }} />
+    {/* Titular */}
+    <div style={{ position: "absolute", left: 90, right: 90, top: 140, textAlign: "center", color: CREMA }}>
+      <div style={{ fontSize: 84, fontWeight: 700, letterSpacing: -3, lineHeight: 1 }}>Hay cosas que</div>
+      <div style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 92, lineHeight: 1.05, color: CELESTE }}>no entran en ningún envase.</div>
+    </div>
 
-    {/* Texto inferior */}
-    <div style={{ position: "absolute", left: 60, right: 430, top: 1050, color: AZUL }}>
-      <div style={{ fontSize: 96, fontWeight: 700, letterSpacing: -4, lineHeight: 0.95, textShadow: "0 2px 0 #fff" }}>Gracias por tanto.</div>
-      <div style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 50, marginTop: 14, color: AZUL, background: "rgba(255,255,255,.85)", display: "inline-block", padding: "2px 16px", borderRadius: 12 }}>Envases 3G · Mar del Plata</div>
+    {/* Cierre */}
+    <div style={{ position: "absolute", left: 0, right: 0, top: 1165, textAlign: "center", color: CREMA }}>
+      <div style={{ width: 60, height: 2, background: ORO, margin: "0 auto 26px" }} />
+      <div style={{ fontSize: 44, fontWeight: 700, letterSpacing: 10 }}>GRACIAS, CAPITÁN</div>
+    </div>
+    <div style={{ position: "absolute", left: 0, right: 0, bottom: 44, display: "flex", justifyContent: "center", alignItems: "center", gap: 14, color: "rgba(243,239,230,.7)", fontSize: 26, letterSpacing: 2 }}>
+      <Img src={staticFile("logo-3g.png")} style={{ width: 44, height: 44 }} />
+      ENVASES 3G · MAR DEL PLATA
     </div>
   </AbsoluteFill>
 );
