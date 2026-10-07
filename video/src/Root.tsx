@@ -13,6 +13,8 @@ import { DiaMadreCombos, diaMadreCombosDuration } from "./DiaMadreCombos";
 import { Mascota, MASCOTA_LOOP } from "./Mascota";
 import { GraciasDiez } from "./Messi";
 import { GraciasLeoStory } from "./MessiStory";
+import { Muestras, MUESTRAS_SLIDES } from "./Muestras";
+import { Rosca, roscaDuration } from "./Rosca";
 import { Liquid, liquidDuration, Bento, bentoDuration } from "./Trends";
 import { GeoVs, geoVsDuration, GeoAromas, geoAromasDuration, GeoRubros, geoRubrosDuration } from "./Geo";
 
@@ -33,6 +35,8 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="GeoVs" component={GeoVs} durationInFrames={geoVsDuration} fps={30} width={1080} height={1920} />
       <Composition id="GeoAromas" component={GeoAromas} durationInFrames={geoAromasDuration} fps={30} width={1080} height={1920} />
       <Composition id="GeoRubros" component={GeoRubros} durationInFrames={geoRubrosDuration} fps={30} width={1080} height={1920} />
+      <Composition id="Rosca" component={Rosca} durationInFrames={roscaDuration} fps={30} width={1080} height={1920} />
+      <Composition id="Muestras" component={Muestras} durationInFrames={MUESTRAS_SLIDES} fps={30} width={1080} height={1350} />
       <Composition id="Liquid" component={Liquid} durationInFrames={liquidDuration} fps={30} width={1080} height={1920} />
       <Composition id="Bento" component={Bento} durationInFrames={bentoDuration} fps={30} width={1080} height={1920} />
       <Composition id="MascotaSticker" component={Mascota} durationInFrames={MASCOTA_LOOP} fps={30} width={512} height={512} />
