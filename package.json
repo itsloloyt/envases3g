@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "2.116.0",
+    "animateplus": "^2.1.1",
     "lenis": "^1.3.26",
     "lucide-react": "1.45.0",
     "motion": "^13.4.6",

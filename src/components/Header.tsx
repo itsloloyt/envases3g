@@ -12,10 +12,9 @@ import { lockScroll } from "./SmoothScroll";
 import { ease } from "./Reveal";
 
 const nav = [
-  { href: "/productos", label: "Productos" },
+  { href: "/productos", label: "Catálogo" },
   { href: "/#rubros", label: "Rubros" },
-  { href: "/#como-comprar", label: "Cómo comprar" },
-  { href: "/#local", label: "El local" },
+  { href: "/como-comprar", label: "Cómo comprar" },
   { href: "/contacto", label: "Contacto" },
 ];
 
@@ -110,14 +109,6 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-1.5">
-          <Link
-            href="/productos"
-            className={`hidden rounded-full px-5 py-2.5 text-sm font-semibold transition-colors duration-200 sm:inline-flex ${
-              dark ? "bg-white text-ink hover:bg-sun" : "bg-ink text-white hover:bg-teal-deep"
-            }`}
-          >
-            Ver catálogo
-          </Link>
           <button
             type="button"
             onClick={() => setSearch(true)}

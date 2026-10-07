@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useRef } from "react";
-import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform, type MotionValue } from "motion/react";
+import { motion, useMotionValue, useScroll, useSpring, useTransform, type MotionValue } from "motion/react";
+import { useReducedMotion } from "@/lib/reduced-motion";
 import { ArrowRight, MapPin } from "lucide-react";
 import { currency } from "@/lib/catalog";
 import type { Card } from "@/lib/shop";
@@ -15,7 +16,7 @@ const layout = [
   { className: "right-[5%] bottom-[10%] w-[29%] -rotate-[4deg]", depth: 45, delay: 1 },
 ];
 
-export function Hero({ products, total }: { products: Card[]; total: number }) {
+export function Hero({ products }: { products: Card[] }) {
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
   const mx = useMotionValue(0);
@@ -84,7 +85,7 @@ export function Hero({ products, total }: { products: Card[]; total: number }) {
 
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease, delay: 0.75 }} className="mt-9 flex flex-wrap items-center gap-3">
             <Link href="/productos" className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-teal py-4 pl-7 pr-5 text-sm font-bold text-night transition-colors duration-200 hover:bg-sun">
-              Explorar {total} productos
+              Explorar productos
               <span className="grid size-7 place-items-center rounded-full bg-night/15 transition-transform duration-300 group-hover:translate-x-1">
                 <ArrowRight className="size-4" />
               </span>

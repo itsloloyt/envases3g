@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useSyncExternalStore } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
+import { useReducedMotion } from "@/lib/reduced-motion";
 import { Check, MessageCircle, PackageCheck, Printer, Store, Truck } from "lucide-react";
 import { currency } from "@/lib/catalog";
 import { readOrder, type SavedOrder } from "@/lib/orders";
@@ -126,7 +127,7 @@ export function OrderView({ number }: { number: string }) {
                 {order.shipping.label}
                 <span className="block text-xs">{order.shipping.detail}</span>
               </dt>
-              <dd className="tabular-nums">{order.shipping.price ? currency(order.shipping.price) : "Sin cargo"}</dd>
+              <dd className="tabular-nums">{order.shipping.price ? currency(order.shipping.price) : order.shipping.method === "envio" ? "A coordinar" : "Sin cargo"}</dd>
             </div>
             <div className="flex items-baseline justify-between border-t border-line pt-3">
               <dt className="font-semibold">Total</dt>

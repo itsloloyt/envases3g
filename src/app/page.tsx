@@ -2,15 +2,13 @@ import { getCatalog } from "@/lib/catalog-server";
 import { categories } from "@/lib/catalog";
 import { toCard } from "@/lib/shop";
 import { Hero } from "@/components/home/Hero";
-import { AccessoryShowcase } from "@/components/home/AccessoryShowcase";
 import { Discounts } from "@/components/home/Discounts";
-import { ExpandImage } from "@/components/home/ScrollStory";
 import { Lookbook } from "@/components/home/Lookbook";
 import { Featured, Location, Marquee, Rubros, type Rubro } from "@/components/home/Sections";
 
 export const revalidate = 3600;
 
-const HERO = ["frasco-apollo-vidrio-125-ml-ambar-con-tapa-difusora", "gotero-vidrio-ambar-30cc-con-pipeta", "frasco-boticario-vidrio-10cc-20cc-30cc-50cc-con-gota-gota", "body-125-cc-ambar"];
+const HERO = ["difusor-vidrio-hexagonal-100cc-con-tapa-difusora-plata", "gotero-vidrio-ambar-30cc-con-pipeta", "omega-200-cc-ambar", "body-125-cc-ambar"];
 
 const FEATURED = [
   "omega-200-cc-ambar",
@@ -28,10 +26,17 @@ const FEATURED = [
 ];
 
 // Configurador del inicio: envase con fotos IA de cada accesorio.
-const SHOWCASE = { slug: "omega-200-cc-ambar", keys: ["spray-negra", "crema-oro", "gatillo-negra", "fliptop-negra", "crema-blanca", "spray-plata", "tapa-aluminio"] };
 
 // Rubros con video generado con Higgsfield.
-const RUBRO_VIDEOS = ["cosmetica-y-farmacia", "plastico", "frascos-y-botellas-de-vidrio", "esencias-y-difusores", "accesorios"];
+const RUBRO_COVER: Record<string, string> = {
+  "cosmetica-y-farmacia": "gotero-vidrio-ambar-30cc-con-pipeta",
+  plastico: "body-125-cc-ambar",
+  "frascos-y-botellas-de-vidrio": "botella-bells-375cc-con-corcho",
+  "esencias-y-difusores": "difusor-vidrio-cilindrico-de-150-ml",
+  accesorios: "valvula-crema-rosca-24",
+  alimentos: "especiero-200cc-a038",
+  "combos-y-kits": "combo-difusor-ambiental",
+};
 
 const ORDER = ["cosmetica-y-farmacia", "plastico", "frascos-y-botellas-de-vidrio", "esencias-y-difusores", "accesorios", "alimentos", "combos-y-kits"];
 const BLURBS: Record<string, string> = {
@@ -47,29 +52,19 @@ export default async function Home() {
     .sort((a, b) => ORDER.indexOf(a.slug) - ORDER.indexOf(b.slug))
     .map((c) => {
       const inRubro = products.filter((p) => p.category === c.slug);
-      // Portadas editoriales de cada rubro generadas con Higgsfield.
-      return { slug: c.slug, name: c.name, count: inRubro.length, image: `/rubros/${c.slug}.webp`, video: RUBRO_VIDEOS.includes(c.slug) ? `/video/rubro-${c.slug}.mp4` : undefined, blurb: BLURBS[c.slug] ?? c.text };
+      // Portada minimalista: un producto representativo del rubro.
+      return { slug: c.slug, name: c.name, count: inRubro.length, image: `/portadas/${RUBRO_COVER[c.slug] ?? inRubro[0]?.slug}.webp`, blurb: BLURBS[c.slug] ?? c.text };
     });
 
-  const showcase = bySlug.get(SHOWCASE.slug);
   const hero = pick(HERO);
   const featured = pick(FEATURED);
 
   return (
     <>
-      <Hero products={hero.length >= 4 ? hero : products.slice(0, 4).map(toCard)} total={products.length} />
+      <Hero products={hero.length >= 4 ? hero : products.slice(0, 4).map(toCard)} />
       <Marquee />
       <Rubros rubros={rubros} />
       <Lookbook />
-      <ExpandImage />
-      {showcase && (
-        <AccessoryShowcase
-          slug={showcase.slug}
-          name={showcase.name}
-          base={`/ia/${showcase.slug}/solo-envase.webp`}
-          options={SHOWCASE.keys.map((key) => ({ key, photo: `/ia/${showcase.slug}/${key}.webp` }))}
-        />
-      )}
       <Featured products={featured.length ? featured : products.slice(0, 10).map(toCard)} />
       <Discounts />
       <Location />

@@ -1,7 +1,9 @@
 "use client";
+import { useDealIn } from "@/lib/use-deal-in";
 import Link from "next/link";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
-import { animate, motion, useInView, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { animate, motion, useInView, useScroll, useTransform } from "motion/react";
+import { useReducedMotion } from "@/lib/reduced-motion";
 import { ArrowRight, ArrowUpRight, Clock, Mail, MapPin, MessageCircle, Package, Phone, ShoppingBag, Store } from "lucide-react";
 import type { Card } from "@/lib/shop";
 import { site, waLink } from "@/lib/site";
@@ -118,6 +120,7 @@ export function Rubros({ rubros }: { rubros: Rubro[] }) {
 /* ───────────────────────── Destacados (carrusel) ───────────────────────── */
 export function Featured({ products }: { products: Card[] }) {
   const rail = useRef<HTMLDivElement>(null);
+  useDealIn(rail);
   const scroll = (dir: 1 | -1) => rail.current?.scrollBy({ left: dir * rail.current.clientWidth * 0.8, behavior: "smooth" });
   return (
     <section className="py-20">

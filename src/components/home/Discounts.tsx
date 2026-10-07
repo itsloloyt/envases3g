@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useRef } from "react";
-import { motion, useInView, useReducedMotion } from "motion/react";
+import { motion, useInView } from "motion/react";
+import { useReducedMotion } from "@/lib/reduced-motion";
 import { Banknote, BadgePercent, Handshake, Store, Truck } from "lucide-react";
 import { CASH_TIERS } from "@/lib/discounts";
 import { Reveal, SplitHeading, ease } from "../Reveal";
@@ -77,7 +78,7 @@ export function Discounts() {
 
         <Reveal delay={0.15} className="lg:col-span-5">
           <div className="relative mx-auto aspect-square max-w-md overflow-hidden rounded-[36px] ring-1 ring-white/15 shadow-[0_40px_100px_-30px_rgb(34_181_193/0.5)]">
-            <video src="/video/omega-ambar.mp4" poster="/ia/omega-200-cc-ambar/crema-oro.webp" autoPlay muted loop playsInline preload="metadata" className="size-full object-cover" aria-label="Video del envase Omega 200 ámbar con válvula dorada" />
+            <img src="/portadas/omega-200-cc-ambar.webp" alt="Envase Omega 200 ámbar" loading="lazy" className="size-full object-cover" />
             <span className="glass absolute bottom-4 left-4 rounded-full px-3.5 py-1.5 text-xs font-semibold text-ink">Omega 200 ámbar · válvula cremera dorada</span>
           </div>
         </Reveal>

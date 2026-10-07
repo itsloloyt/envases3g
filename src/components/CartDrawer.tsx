@@ -6,8 +6,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { ArrowLeft, Minus, Plus, ShieldCheck, ShoppingBag, Trash2, Truck, X } from "lucide-react";
 import { cartCount, cartTotal, useCart } from "@/store/cart";
 import { currency } from "@/lib/catalog";
-import { waLink } from "@/lib/site";
-import { estimateWeightKg, quoteShipping, type ShippingMethod } from "@/lib/shipping";
+import { site, waLink } from "@/lib/site";
 import { saveOrder } from "@/lib/orders";
 import { discountFor, nextTier, PAYMENT_LABEL, type PaymentMethod } from "@/lib/discounts";
 import { lockScroll } from "./SmoothScroll";
@@ -15,6 +14,12 @@ import { ease } from "./Reveal";
 
 type Step = "cart" | "checkout";
 type Receipt = { number: string; total: number; items: { name: string; variant: string; quantity: number; unitPrice: number; subtotal: number }[] };
+
+type Delivery = "retiro" | "envio";
+const DELIVERY: Record<Delivery, { label: string; detail: string }> = {
+  retiro: { label: "Retiro en el local", detail: `${site.address}, Mar del Plata · sin cargo` },
+  envio: { label: "Envío", detail: "Costo según peso y tamaño: lo coordinamos por WhatsApp" },
+};
 
 export function CartDrawer() {
   const pathname = usePathname();
@@ -24,14 +29,13 @@ export function CartDrawer() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [postcode, setPostcode] = useState("");
-  const [method, setMethod] = useState<ShippingMethod>("retiro");
-  const [payment, setPayment] = useState<PaymentMethod>("efectivo");
+  const [method, setMethod] = useState<Delivery>("retiro");
+  const [chosenPayment, setPayment] = useState<PaymentMethod>("efectivo");
+  // Efectivo solo se puede retirando en el local; los envíos se pagan por transferencia.
+  const payment: PaymentMethod = method === "envio" ? "transferencia" : chosenPayment;
   const pending = useRef<{ signature: string; id: string } | null>(null);
 
-  const weight = items.reduce((kg, i) => kg + estimateWeightKg(i.name, i.subcategory ?? "", i.quantity), 0);
-  const quotes = quoteShipping(postcode, weight);
-  const shipping = quotes.find((q) => q.method === method) ?? quotes[0];
-  const needsAddress = shipping.method === "local" || shipping.method === "correo-domicilio";
+  const shipping = DELIVERY[method];
 
   useEffect(() => {
     lockScroll(open);
@@ -68,15 +72,15 @@ export function CartDrawer() {
       const saved = result as Receipt;
       const units = saved.items.reduce((n, i) => n + i.quantity, 0);
       const disc = discountFor(saved.total, units, payment);
-      const total = saved.total - disc.amount + shipping.price;
+      const total = saved.total - disc.amount;
       const delivery =
-        shipping.method === "retiro"
-          ? "Retiro en el local"
-          : `${shipping.label} (${currency(shipping.price)} estimado)${address ? ` — ${address}` : ""}${postcode ? ` — CP ${postcode}` : ""}`;
+        method === "retiro"
+          ? `Retiro en el local (${site.address})`
+          : `Envío — costo a coordinar${address ? ` — ${address}` : ""}${postcode ? ` — CP ${postcode}` : ""}`;
       const message =
         `Hola Envases 3G, soy ${body.name}. Mi pedido es ${saved.number}.\n\n` +
         saved.items.map((i) => `${i.quantity} × ${i.name} (${i.variant})\n${currency(i.unitPrice)} c/u — ${currency(i.subtotal)}`).join("\n\n") +
-        `\n\nProductos: ${currency(saved.total)}${disc.amount ? `\nDescuento ${disc.percent}% pagando en efectivo: -${currency(disc.amount)}` : ""}\nEntrega: ${delivery}\nPago: ${PAYMENT_LABEL[payment]}\nTotal: ${currency(total)}\nTeléfono: ${body.phone}`;
+        `\n\nProductos: ${currency(saved.total)}${disc.amount ? `\nDescuento ${disc.percent}% pagando por ${payment}: -${currency(disc.amount)}` : ""}\nEntrega: ${delivery}\nPago: ${PAYMENT_LABEL[payment]}\nTotal: ${currency(total)}\nTeléfono: ${body.phone}`;
       const lineFor = (name: string, variant: string) => items.find((i) => i.name === name && i.variantName === variant);
       saveOrder({
         number: saved.number,
@@ -84,9 +88,9 @@ export function CartDrawer() {
         customer: { name: body.name, phone: body.phone, postcode: postcode || undefined, address: address || undefined },
         items: saved.items.map((i) => ({ ...i, image: lineFor(i.name, i.variant)?.image ?? null, slug: lineFor(i.name, i.variant)?.slug })),
         subtotal: saved.total,
-        discount: disc.amount ? { percent: disc.percent, amount: disc.amount, label: `${disc.percent}% OFF pagando en efectivo` } : undefined,
+        discount: disc.amount ? { percent: disc.percent, amount: disc.amount, label: `${disc.percent}% OFF pagando por ${payment}` } : undefined,
         payment: PAYMENT_LABEL[payment],
-        shipping: { method: shipping.method, label: shipping.label, detail: shipping.detail, price: shipping.price },
+        shipping: { method, label: shipping.label, detail: shipping.detail, price: 0 },
         total,
         whatsapp: waLink(message),
       });
@@ -213,7 +217,7 @@ export function CartDrawer() {
                         {next && (
                           <div className="mt-3">
                             <p className="text-xs text-muted">
-                              Sumá <strong className="text-ink">{next.missing} u.</strong> más y obtenés <strong className="text-teal-deep">{next.percent}% OFF</strong> pagando en efectivo
+                              Sumá <strong className="text-ink">{next.missing} u.</strong> más y obtenés <strong className="text-teal-deep">{next.percent}% OFF</strong> pagando en efectivo (retiro en el local)
                             </p>
                             <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-line">
                               <motion.div className="h-full rounded-full bg-gradient-to-r from-teal to-sun" initial={false} animate={{ width: `${Math.min(100, (count / (count + next.missing)) * 100)}%` }} transition={{ type: "spring", stiffness: 120, damping: 20 }} />
@@ -241,59 +245,37 @@ export function CartDrawer() {
                       <legend className="flex items-center gap-2 px-1 text-sm font-semibold">
                         <Truck className="size-4 text-teal-deep" /> Entrega
                       </legend>
-                      <label className="block">
-                        <span className="mb-1.5 block text-xs text-muted">Código postal (para calcular el envío)</span>
-                        <input
-                          value={postcode}
-                          onChange={(e) => setPostcode(e.target.value.replace(/\D/g, "").slice(0, 4))}
-                          inputMode="numeric"
-                          autoComplete="postal-code"
-                          placeholder="Ej.: 7600"
-                          className="w-full rounded-xl border border-line px-3 py-2.5 text-base outline-none focus:border-teal-deep"
-                        />
-                      </label>
-                      <div className="mt-3 space-y-2" role="radiogroup" aria-label="Forma de entrega">
-                        <AnimatePresence initial={false}>
-                          {quotes.map((q) => (
-                            <motion.label
-                              key={q.method}
-                              layout
-                              initial={{ opacity: 0, y: -6 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0 }}
-                              className={`flex cursor-pointer items-center gap-3 rounded-xl border p-3 text-sm transition-colors ${
-                                shipping.method === q.method ? "border-teal-deep bg-teal/5" : "border-line hover:border-ink/30"
-                              }`}
-                            >
-                              <input type="radio" name="shipping" checked={shipping.method === q.method} onChange={() => setMethod(q.method)} className="size-4 accent-[var(--teal-deep)]" />
-                              <span className="flex-1">
-                                <span className="block font-medium">{q.label}</span>
-                                <span className="block text-xs text-muted">{q.detail}</span>
-                              </span>
-                              <span className="font-semibold tabular-nums">{q.price ? currency(q.price) : "Gratis"}</span>
-                            </motion.label>
-                          ))}
-                        </AnimatePresence>
+                      <div className="space-y-2" role="radiogroup" aria-label="Forma de entrega">
+                        {(Object.keys(DELIVERY) as Delivery[]).map((m) => (
+                          <label key={m} className={`flex cursor-pointer items-center gap-3 rounded-xl border p-3 text-sm transition-colors ${method === m ? "border-teal-deep bg-teal/5" : "border-line hover:border-ink/30"}`}>
+                            <input type="radio" name="shipping" checked={method === m} onChange={() => setMethod(m)} className="size-4 accent-[var(--teal-deep)]" />
+                            <span className="flex-1">
+                              <span className="block font-medium">{DELIVERY[m].label}</span>
+                              <span className="block text-xs text-muted">{DELIVERY[m].detail}</span>
+                            </span>
+                          </label>
+                        ))}
                       </div>
-                      {postcode.length === 4 && quotes.length === 1 && <p className="mt-2 text-xs text-muted">No pudimos cotizar ese código postal: lo coordinamos por WhatsApp.</p>}
-                      {needsAddress && (
-                        <label className="mt-3 block">
-                          <span className="mb-1.5 block text-xs text-muted">Dirección de entrega</span>
+                      {method === "envio" && (
+                        <div className="mt-3 grid grid-cols-[1fr_7rem] gap-2">
                           <input name="address" required autoComplete="street-address" placeholder="Calle, número, ciudad" className="w-full rounded-xl border border-line px-3 py-2.5 text-base outline-none focus:border-teal-deep" />
-                        </label>
+                          <input value={postcode} onChange={(e) => setPostcode(e.target.value.replace(/D/g, "").slice(0, 4))} required inputMode="numeric" autoComplete="postal-code" placeholder="CP" className="w-full rounded-xl border border-line px-3 py-2.5 text-base outline-none focus:border-teal-deep" />
+                        </div>
                       )}
-                      {shipping.price > 0 && <p className="mt-2 text-xs text-muted">Peso estimado {weight.toFixed(1)} kg · costo orientativo, se confirma al despachar.</p>}
                     </fieldset>
                     <fieldset className="rounded-2xl border border-line bg-white p-4">
                       <legend className="px-1 text-sm font-semibold">Forma de pago</legend>
                       <div className="grid grid-cols-2 gap-2">
                         {(["efectivo", "transferencia"] as const).map((m) => {
                           const d = discountFor(total, count, m);
+                          const off = m === "efectivo" && method === "envio";
                           return (
-                            <label key={m} className={`cursor-pointer rounded-xl border p-3 text-sm transition-colors ${payment === m ? "border-teal-deep bg-teal/5" : "border-line hover:border-ink/30"}`}>
-                              <input type="radio" name="payment" className="sr-only" checked={payment === m} onChange={() => setPayment(m)} />
-                              <span className="block font-medium">{PAYMENT_LABEL[m]}</span>
-                              <span className={`block text-xs ${d.percent ? "font-semibold text-teal-deep" : "text-muted"}`}>{d.percent ? `${d.percent}% OFF aplicado` : m === "efectivo" ? "Descuento desde 20 u." : "Se coordina por WhatsApp"}</span>
+                            <label key={m} className={`rounded-xl border p-3 text-sm transition-colors ${off ? "cursor-not-allowed opacity-45" : "cursor-pointer"} ${payment === m ? "border-teal-deep bg-teal/5" : "border-line hover:border-ink/30"}`}>
+                              <input type="radio" name="payment" className="sr-only" disabled={off} checked={payment === m} onChange={() => setPayment(m)} />
+                              <span className="block font-medium">{m === "efectivo" ? "Efectivo" : "Transferencia"}</span>
+                              <span className={`block text-xs ${d.percent && !off ? "font-semibold text-teal-deep" : "text-muted"}`}>
+                                {off ? "Solo retirando en el local" : d.percent ? `${d.percent}% OFF aplicado` : m === "efectivo" ? "10% OFF desde 20 u." : "10% OFF desde 100 u."}
+                              </span>
                             </label>
                           );
                         })}
@@ -301,9 +283,9 @@ export function CartDrawer() {
                     </fieldset>
                     <div className="space-y-1.5 rounded-2xl bg-paper-2 p-4 text-sm">
                       <p className="flex justify-between"><span className="text-muted">Productos</span><span className="tabular-nums">{currency(total)}</span></p>
-                      {disc.amount > 0 && <p className="flex justify-between font-semibold text-teal-deep"><span>Descuento {disc.percent}% efectivo</span><span className="tabular-nums">-{currency(disc.amount)}</span></p>}
-                      <p className="flex justify-between"><span className="text-muted">Envío</span><span className="tabular-nums">{shipping.price ? currency(shipping.price) : "Sin cargo"}</span></p>
-                      <p className="flex justify-between border-t border-line pt-2 font-semibold"><span>Total</span><span className="tabular-nums">{currency(total - disc.amount + shipping.price)}</span></p>
+                      {disc.amount > 0 && <p className="flex justify-between font-semibold text-teal-deep"><span>Descuento {disc.percent}% {payment}</span><span className="tabular-nums">-{currency(disc.amount)}</span></p>}
+                      <p className="flex justify-between"><span className="text-muted">Entrega</span><span>{method === "retiro" ? "Retiro sin cargo" : "Envío a coordinar"}</span></p>
+                      <p className="flex justify-between border-t border-line pt-2 font-semibold"><span>Total</span><span className="tabular-nums">{currency(total - disc.amount)}</span></p>
                     </div>
                     <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-line bg-white p-4 text-sm">
                       <input type="checkbox" name="consent" required disabled={busy} className="mt-0.5 size-4 accent-[var(--teal-deep)]" />
@@ -320,7 +302,7 @@ export function CartDrawer() {
                       <ShieldCheck className="size-4 text-teal-deep" /> No pagás nada ahora: registramos tu orden y la confirmamos por WhatsApp.
                     </div>
                     <button disabled={busy} className="flex w-full items-center justify-center gap-2 rounded-full bg-ink py-4 text-sm font-semibold text-white transition-colors duration-200 hover:bg-teal-deep disabled:opacity-60">
-                      {busy ? "Guardando tu pedido…" : `Confirmar pedido · ${currency(total - disc.amount + shipping.price)}`}
+                      {busy ? "Guardando tu pedido…" : `Confirmar pedido · ${currency(total - disc.amount)}`}
                     </button>
                   </div>
                 </motion.form>

@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
-import { motion, useMotionTemplate, useMotionValue, useReducedMotion, useSpring, useTransform } from "motion/react";
+import { motion, useMotionTemplate, useMotionValue, useSpring, useTransform } from "motion/react";
+import { useReducedMotion } from "@/lib/reduced-motion";
 import { ArrowUpRight, Plus } from "lucide-react";
 import { currency } from "@/lib/catalog";
 import type { Card } from "@/lib/shop";
@@ -77,6 +78,14 @@ export function ProductCard({ p, priority = false }: { p: Card; priority?: boole
             {p.maxPrice !== p.price && <span className="text-muted">desde </span>}
             <span className="font-semibold">{currency(p.price)}</span>
           </p>
+          {p.accessories.length > 0 && (
+            <div className="mt-2 flex items-center gap-1" aria-label={`${p.accessories.length} accesorios disponibles`}>
+              {p.accessories.slice(0, 4).map((src, i) => (
+                <img key={src} src={src} alt="" loading="lazy" style={{ transitionDelay: `${i * 40}ms` }} className="size-7 rounded-full border border-white bg-white object-contain p-0.5 shadow-sm transition-transform duration-300 group-hover:-translate-y-0.5" />
+              ))}
+              {p.accessories.length > 4 && <span className="ml-0.5 text-[11px] font-medium text-muted">+{p.accessories.length - 4}</span>}
+            </div>
+          )}
         </div>
         {single && p.available && (
           <button

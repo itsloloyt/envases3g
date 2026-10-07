@@ -25,7 +25,7 @@ export function FlyToCart() {
       const t = targets[targets.length - 1]?.getBoundingClientRect();
       const to = t ? { x: t.left + t.width / 2, y: t.top + t.height / 2 } : { x: window.innerWidth - 40, y: 40 };
       const id = Date.now();
-      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) setFlights((f) => [...f, { id, src, from: rect, to, name }]);
+      setFlights((f) => [...f, { id, src, from: rect, to, name }]);
       setToast({ id, name });
       setTimeout(() => setFlights((f) => f.filter((x) => x.id !== id)), 900);
       setTimeout(() => setToast((t2) => (t2?.id === id ? null : t2)), 3200);
