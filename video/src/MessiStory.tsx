@@ -29,7 +29,7 @@ const Stars: React.FC = () => (
 const Flag: React.FC = () => {
   const wave = (yy: number) => `M0 ${yy} C 120 ${yy - 40}, 240 ${yy + 40}, 360 ${yy} S 600 ${yy - 40}, 700 ${yy}`;
   return (
-    <svg width="760" height="520" viewBox="0 0 760 520" style={{ position: "absolute", left: -60, top: 1080, rotate: "-12deg", filter: "blur(3px) drop-shadow(0 20px 30px rgba(0,0,0,.5))" }}>
+    <svg width="760" height="520" viewBox="0 0 760 520" style={{ position: "absolute", left: -330, top: 1330, rotate: "-14deg", scale: ".8", filter: "blur(3px) drop-shadow(0 20px 30px rgba(0,0,0,.5))" }}>
       <defs>
         <clipPath id="flagClip"><path d={`${wave(60)} L700 420 C 600 460, 480 380, 360 420 S 120 460, 0 420 Z`} /></clipPath>
         <linearGradient id="fold" x1="0" x2="1"><stop offset="0" stopColor="#000" stopOpacity=".35" /><stop offset=".25" stopColor="#fff" stopOpacity=".15" /><stop offset=".5" stopColor="#000" stopOpacity=".3" /><stop offset=".75" stopColor="#fff" stopOpacity=".12" /><stop offset="1" stopColor="#000" stopOpacity=".4" /></linearGradient>
@@ -74,6 +74,34 @@ const Crowd: React.FC = () => (
   </svg>
 );
 
+// "10" dibujado con estrellas unidas por líneas finas (constelación).
+const C10: [number, number][][] = [
+  [[300, 1250], [360, 1195], [360, 1310], [360, 1425], [360, 1530]],
+  [[620, 1195], [700, 1210], [760, 1290], [775, 1370], [755, 1460], [690, 1525], [610, 1530], [545, 1470], [520, 1370], [540, 1270], [620, 1195]],
+];
+const Constellation: React.FC = () => (
+  <svg width={W} height={H} style={{ position: "absolute", left: 90, top: -40 }}>
+    <defs>
+      <radialGradient id="glow"><stop offset="0" stopColor="#fff" stopOpacity="1" /><stop offset=".25" stopColor="#cfe3ff" stopOpacity=".7" /><stop offset="1" stopColor="#9cc4ff" stopOpacity="0" /></radialGradient>
+      <filter id="soft"><feGaussianBlur stdDeviation="1.2" /></filter>
+    </defs>
+    {/* halo general */}
+    {C10.map((pts, k) => (
+      <polyline key={k} points={pts.map((p) => p.join(",")).join(" ")} fill="none" stroke="#d9e8ff" strokeOpacity=".55" strokeWidth="2" filter="url(#soft)" />
+    ))}
+    {C10.flat().map(([x, y], i) => {
+      const big = i % 3 === 0;
+      return (
+        <g key={i}>
+          <circle cx={x} cy={y} r={big ? 30 : 20} fill="url(#glow)" />
+          <circle cx={x} cy={y} r={big ? 5 : 3.5} fill="#fff" />
+          {big ? <path d={`M${x - 24} ${y} H${x + 24} M${x} ${y - 24} V${y + 24}`} stroke="#fff" strokeOpacity=".7" strokeWidth="1.2" /> : null}
+        </g>
+      );
+    })}
+  </svg>
+);
+
 export const GraciasLeoStory: React.FC = () => (
   <AbsoluteFill style={{ background: "linear-gradient(180deg, #050b1c 0%, #0b1a3a 45%, #1a2f63 70%, #2a1d3d 100%)", overflow: "hidden" }}>
     {/* Vía láctea */}
@@ -89,25 +117,8 @@ export const GraciasLeoStory: React.FC = () => (
 
     <Flag />
 
-    {/* Foco de luz detrás de la camiseta */}
-    <div style={{ position: "absolute", left: 540 - 380, top: 1000, width: 760, height: 760, borderRadius: "50%", background: "radial-gradient(circle, rgba(255,235,200,.35), rgba(255,235,200,0) 60%)" }} />
-    {/* Camiseta 10 en alto */}
-    <div style={{ position: "absolute", left: 540 - 230, top: 1115, width: 460, height: 460, rotate: "4deg", filter: "drop-shadow(0 30px 40px rgba(0,0,0,.55))" }}>
-      <svg width="460" height="460" viewBox="0 0 700 700">
-        <defs>
-          <clipPath id="shirt2"><path d="M210 20 Q350 70 490 20 L640 90 L700 260 L590 300 L560 230 L560 680 Q350 700 140 680 L140 230 L110 300 L0 260 L60 90 Z" /></clipPath>
-          <linearGradient id="shirtShade" x1="0" x2="1"><stop offset="0" stopColor="#000" stopOpacity=".35" /><stop offset=".45" stopColor="#fff" stopOpacity=".1" /><stop offset="1" stopColor="#000" stopOpacity=".45" /></linearGradient>
-        </defs>
-        <g clipPath="url(#shirt2)">
-          <rect width="700" height="700" fill="#f4f6f8" />
-          {[0, 1, 2, 3].map((i) => <rect key={i} x={175 + i * 100} width="50" height="700" fill={CEL} />)}
-          <text x="350" y="560" textAnchor="middle" fontFamily="Bricolage" fontWeight="700" fontSize="380" letterSpacing="-20" fill="#0b1a3a">10</text>
-          <rect width="700" height="700" fill="url(#shirtShade)" />
-          {[200, 330, 470].map((x, i) => <path key={i} d={`M${x} 60 Q${x + 30} 350 ${x - 10} 690`} stroke="#000" strokeOpacity=".12" strokeWidth="26" fill="none" />)}
-        </g>
-      </svg>
-    </div>
-
+    {/* El 10 como constelación */}
+    <Constellation />
     <Crowd />
     <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: 380, background: "linear-gradient(rgba(5,8,15,0), rgba(5,8,15,.85))" }} />
 
