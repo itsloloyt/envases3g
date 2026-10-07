@@ -1,9 +1,9 @@
 {
   "totalAccessoryVariants": 3086,
-  "completed": 12,
-  "remaining": 3074,
+  "completed": 15,
+  "remaining": 3071,
   "sourceLinked": 3086,
-  "sourceSharedReferences": 2610,
+  "sourceSharedReferences": 2608,
   "missing": [
     {
       "productSlug": "aceite-aromatico-premium-puro",
@@ -974,22 +974,8 @@
     {
       "productSlug": "body-125-cc-cristal",
       "productName": "Body 125 cc Cristal",
-      "variantId": "11178030",
-      "variantName": "Flip top negra",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/fea5587d750ec9b938c7428a551395b33d404522eb743ffd8ad9b3e68844a43c99432.jpeg"
-    },
-    {
-      "productSlug": "body-125-cc-cristal",
-      "productName": "Body 125 cc Cristal",
       "variantId": "11178031",
       "variantName": "Crema premium negra",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/fea5587d750ec9b938c7428a551395b33d404522eb743ffd8ad9b3e68844a43c99432.jpeg"
-    },
-    {
-      "productSlug": "body-125-cc-cristal",
-      "productName": "Body 125 cc Cristal",
-      "variantId": "11178032",
-      "variantName": "Crema premium blanca",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/fea5587d750ec9b938c7428a551395b33d404522eb743ffd8ad9b3e68844a43c99432.jpeg"
     },
     {
@@ -1018,13 +1004,6 @@
       "productName": "Body 125 cc Cristal",
       "variantId": "17487505",
       "variantName": "Gota Gota natural estriad",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/fea5587d750ec9b938c7428a551395b33d404522eb743ffd8ad9b3e68844a43c99432.jpeg"
-    },
-    {
-      "productSlug": "body-125-cc-cristal",
-      "productName": "Body 125 cc Cristal",
-      "variantId": "17839461",
-      "variantName": "Tapa ciega",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/fea5587d750ec9b938c7428a551395b33d404522eb743ffd8ad9b3e68844a43c99432.jpeg"
     },
     {
