@@ -8,7 +8,7 @@ import { Featured, Location, Marquee, Rubros, type Rubro } from "@/components/ho
 
 export const revalidate = 3600;
 
-const HERO = ["frasco-apollo-vidrio-125-ml-ambar-con-tapa-difusora", "gotero-vidrio-ambar-30cc-con-pipeta", "frasco-boticario-vidrio-10cc-20cc-30cc-50cc-con-gota-gota", "body-125-cc-ambar"];
+const HERO = ["difusor-vidrio-hexagonal-100cc-con-tapa-difusora-plata", "gotero-vidrio-ambar-30cc-con-pipeta", "omega-200-cc-ambar", "body-125-cc-ambar"];
 
 const FEATURED = [
   "omega-200-cc-ambar",

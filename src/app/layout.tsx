@@ -9,6 +9,7 @@ import { WhatsAppFab } from "@/components/WhatsAppFab";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { MobileNav } from "@/components/MobileNav";
 import { FlyToCart } from "@/components/FlyToCart";
+import { Mascot } from "@/components/Mascot";
 import { site } from "@/lib/site";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
@@ -43,6 +44,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <WhatsAppFab />
         <MobileNav />
         <FlyToCart />
+        <Mascot />
       </body>
     </html>
   );
