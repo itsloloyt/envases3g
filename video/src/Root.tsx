@@ -12,6 +12,7 @@ import { DiaMadre, diaMadreDuration } from "./DiaMadre";
 import { DiaMadreCombos, diaMadreCombosDuration } from "./DiaMadreCombos";
 import { Mascota, MASCOTA_LOOP } from "./Mascota";
 import { GraciasDiez } from "./Messi";
+import { GraciasLeoStory } from "./MessiStory";
 import { Liquid, liquidDuration, Bento, bentoDuration } from "./Trends";
 import { GeoVs, geoVsDuration, GeoAromas, geoAromasDuration, GeoRubros, geoRubrosDuration } from "./Geo";
 
@@ -36,6 +37,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="Bento" component={Bento} durationInFrames={bentoDuration} fps={30} width={1080} height={1920} />
       <Composition id="MascotaSticker" component={Mascota} durationInFrames={MASCOTA_LOOP} fps={30} width={512} height={512} />
       <Composition id="GraciasDiez" component={GraciasDiez} durationInFrames={1} fps={30} width={1080} height={1350} />
+      <Composition id="GraciasLeoStory" component={GraciasLeoStory} durationInFrames={1} fps={30} width={1080} height={1920} />
     </>
   );
 };
