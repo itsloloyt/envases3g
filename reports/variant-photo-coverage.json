@@ -1,9 +1,9 @@
 {
-  "totalAccessoryVariants": 3086,
+  "totalAccessoryVariants": 3105,
   "completed": 15,
-  "remaining": 3071,
-  "sourceLinked": 3086,
-  "sourceSharedReferences": 2608,
+  "remaining": 3090,
+  "sourceLinked": 3083,
+  "sourceSharedReferences": 2605,
   "missing": [
     {
       "productSlug": "aceite-aromatico-premium-puro",
@@ -212,203 +212,217 @@
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "38759097",
-      "variantName": "30ml / CHERRY",
+      "variantName": "10ml / ANANA",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "38759098",
-      "variantName": "30ml / COCO",
+      "variantName": "30ml / CHERRY",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "38759099",
-      "variantName": "30ml / CONIGLIO",
+      "variantName": "30ml / COCO",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "39670830",
-      "variantName": "30ml / FLORES BLANCAS",
+      "variantName": "30ml / CONIGLIO",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "39670831",
-      "variantName": "30ml / FRESIAS",
+      "variantName": "30ml / FLORES BLANCAS",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "41953481",
-      "variantName": "30ml / GARDENIA",
+      "variantName": "30ml / FRESIAS",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "41953482",
-      "variantName": "30ml / JAZMIN",
+      "variantName": "30ml / GARDENIA",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "41953483",
-      "variantName": "30ml / LIMON CARAMELO",
+      "variantName": "30ml / JAZMIN",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "41953484",
-      "variantName": "30ml / LOTO",
+      "variantName": "30ml / LIMON CARAMELO",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "49974486",
-      "variantName": "30ml / MANZANA CANELA",
+      "variantName": "30ml / LOTO",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "49974487",
-      "variantName": "30ml / NAG CHAMPA",
+      "variantName": "30ml / MANZANA CANELA",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "53287036",
-      "variantName": "30ml / NARANJA PIMIENTA",
+      "variantName": "30ml / NAG CHAMPA",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "53287037",
-      "variantName": "30ml / NARDO",
+      "variantName": "30ml / NARANJA PIMIENTA",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "53842322",
-      "variantName": "30ml / ROSAS",
+      "variantName": "30ml / NARDO",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "53842323",
-      "variantName": "30ml / TILO",
+      "variantName": "30ml / ROSAS",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "54676775",
-      "variantName": "30ml / VAINILLA",
+      "variantName": "30ml / TILO",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "54676776",
-      "variantName": "30ml / CAMPOS DE LAVANDA",
+      "variantName": "30ml / VAINILLA",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "54676777",
-      "variantName": "30ml / LAVANDA",
+      "variantName": "30ml / CAMPOS DE LAVANDA",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "54676778",
-      "variantName": "30ml / CITRONELA",
+      "variantName": "30ml / LAVANDA",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "54676779",
-      "variantName": "30ml / FLOR DE CEREZO",
+      "variantName": "30ml / CITRONELA",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "54676780",
-      "variantName": "30ml / BAMBU",
+      "variantName": "30ml / FLOR DE CEREZO",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "54676781",
-      "variantName": "30ml / WANAMA",
+      "variantName": "30ml / BAMBU",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "54676782",
-      "variantName": "30ml / MARIA CHER",
+      "variantName": "30ml / WANAMA",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "57723831",
-      "variantName": "30ml / PAPAYA",
+      "variantName": "30ml / MARIA CHER",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "57723832",
-      "variantName": "30ml / PATIO BULRICH",
+      "variantName": "30ml / PAPAYA",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "65922752",
-      "variantName": "30ml / SANDALO BRASIL",
+      "variantName": "30ml / PATIO BULRICH",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "65922753",
-      "variantName": "30ml / MAGNOLIA LIMON",
+      "variantName": "30ml / SANDALO BRASIL",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "65922754",
-      "variantName": "30ml / FRUTOS ROJOS",
+      "variantName": "30ml / MAGNOLIA LIMON",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
       "productSlug": "aceite-aromatico-premium-puro",
       "productName": "Aceite aromático premium PURO",
       "variantId": "65922755",
+      "variantName": "30ml / FRUTOS ROJOS",
+      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
+    },
+    {
+      "productSlug": "aceite-aromatico-premium-puro",
+      "productName": "Aceite aromático premium PURO",
+      "variantId": "66399232",
       "variantName": "30ml / VERBENA",
+      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
+    },
+    {
+      "productSlug": "aceite-aromatico-premium-puro",
+      "productName": "Aceite aromático premium PURO",
+      "variantId": "66399233",
+      "variantName": "30ml / ANANA",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/68e3ab0a244de0e84f93df8cb2121e2f67ca98ed86dbab723f0598c4ebb8169c99432.jpg"
     },
     {
@@ -4692,7 +4706,7 @@
       "productSlug": "florencia-queen-125-cc-cristal-con-tapa-difusora",
       "productName": "Florencia Queen 125 cc cristal con tapa difusora",
       "variantId": "16844979",
-      "variantName": "Difusora aluminio",
+      "variantName": "Difusora aluminio plata",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/7ca416d3e83160117e29e5f4fc7ff73bada39d27d97f32b55ae3d30d9758c8f199432.jpeg"
     },
     {
@@ -4742,6 +4756,13 @@
       "productName": "Florencia Queen 125 cc cristal con tapa difusora",
       "variantId": "25416137",
       "variantName": "Difusora plastica bronce",
+      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/7ca416d3e83160117e29e5f4fc7ff73bada39d27d97f32b55ae3d30d9758c8f199432.jpeg"
+    },
+    {
+      "productSlug": "florencia-queen-125-cc-cristal-con-tapa-difusora",
+      "productName": "Florencia Queen 125 cc cristal con tapa difusora",
+      "variantId": "66045586",
+      "variantName": "Difusora aluminio oro",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/7ca416d3e83160117e29e5f4fc7ff73bada39d27d97f32b55ae3d30d9758c8f199432.jpeg"
     },
     {
@@ -7296,48 +7317,41 @@
       "productSlug": "gotero-colirio-vidrio-premium-ambar",
       "productName": "Gotero colirio vidrio premium ambar",
       "variantId": "49610089",
-      "variantName": "10ml pipeta blanca",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/08b794a68206b1a6ebd85f3bd798422c546a09b5b88a2e8961873a51596983bc99432.jpg"
-    },
-    {
-      "productSlug": "gotero-colirio-vidrio-premium-ambar",
-      "productName": "Gotero colirio vidrio premium ambar",
-      "variantId": "49610090",
       "variantName": "20ml pipeta negra",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/08b794a68206b1a6ebd85f3bd798422c546a09b5b88a2e8961873a51596983bc99432.jpg"
     },
     {
       "productSlug": "gotero-colirio-vidrio-premium-ambar",
       "productName": "Gotero colirio vidrio premium ambar",
-      "variantId": "50658065",
+      "variantId": "49610090",
       "variantName": "20ml pipeta blanca",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/08b794a68206b1a6ebd85f3bd798422c546a09b5b88a2e8961873a51596983bc99432.jpg"
     },
     {
       "productSlug": "gotero-colirio-vidrio-premium-ambar",
       "productName": "Gotero colirio vidrio premium ambar",
-      "variantId": "50687308",
+      "variantId": "50658065",
       "variantName": "30ml pipeta negra",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/08b794a68206b1a6ebd85f3bd798422c546a09b5b88a2e8961873a51596983bc99432.jpg"
     },
     {
       "productSlug": "gotero-colirio-vidrio-premium-ambar",
       "productName": "Gotero colirio vidrio premium ambar",
-      "variantId": "50687309",
+      "variantId": "50687308",
       "variantName": "30ml pipeta blanca",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/08b794a68206b1a6ebd85f3bd798422c546a09b5b88a2e8961873a51596983bc99432.jpg"
     },
     {
       "productSlug": "gotero-colirio-vidrio-premium-ambar",
       "productName": "Gotero colirio vidrio premium ambar",
-      "variantId": "50687310",
+      "variantId": "50687309",
       "variantName": "50ml pipeta negra",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/08b794a68206b1a6ebd85f3bd798422c546a09b5b88a2e8961873a51596983bc99432.jpg"
     },
     {
       "productSlug": "gotero-colirio-vidrio-premium-ambar",
       "productName": "Gotero colirio vidrio premium ambar",
-      "variantId": "50687311",
+      "variantId": "50687310",
       "variantName": "50ml pipeta blanca",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/08b794a68206b1a6ebd85f3bd798422c546a09b5b88a2e8961873a51596983bc99432.jpg"
     },
@@ -7373,55 +7387,48 @@
       "productSlug": "gotero-vidrio-premium-cristal",
       "productName": "Gotero vidrio premium Cristal",
       "variantId": "50689251",
-      "variantName": "10ml pipeta blanca",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/165b01d40b5d97779e6aa2a36e13d7ff50ab829f4ca89cc58099e6167a0b34bd99432.jpg"
-    },
-    {
-      "productSlug": "gotero-vidrio-premium-cristal",
-      "productName": "Gotero vidrio premium Cristal",
-      "variantId": "50689252",
       "variantName": "10ml pipeta negra",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/165b01d40b5d97779e6aa2a36e13d7ff50ab829f4ca89cc58099e6167a0b34bd99432.jpg"
     },
     {
       "productSlug": "gotero-vidrio-premium-cristal",
       "productName": "Gotero vidrio premium Cristal",
-      "variantId": "50689253",
+      "variantId": "50689252",
       "variantName": "20ml pipeta blanca",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/165b01d40b5d97779e6aa2a36e13d7ff50ab829f4ca89cc58099e6167a0b34bd99432.jpg"
     },
     {
       "productSlug": "gotero-vidrio-premium-cristal",
       "productName": "Gotero vidrio premium Cristal",
-      "variantId": "50689254",
+      "variantId": "50689253",
       "variantName": "20ml pipeta negra",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/165b01d40b5d97779e6aa2a36e13d7ff50ab829f4ca89cc58099e6167a0b34bd99432.jpg"
     },
     {
       "productSlug": "gotero-vidrio-premium-cristal",
       "productName": "Gotero vidrio premium Cristal",
-      "variantId": "50689255",
+      "variantId": "50689254",
       "variantName": "30ml pipeta blanca",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/165b01d40b5d97779e6aa2a36e13d7ff50ab829f4ca89cc58099e6167a0b34bd99432.jpg"
     },
     {
       "productSlug": "gotero-vidrio-premium-cristal",
       "productName": "Gotero vidrio premium Cristal",
-      "variantId": "50689256",
+      "variantId": "50689255",
       "variantName": "30ml pipeta negra",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/165b01d40b5d97779e6aa2a36e13d7ff50ab829f4ca89cc58099e6167a0b34bd99432.jpg"
     },
     {
       "productSlug": "gotero-vidrio-premium-cristal",
       "productName": "Gotero vidrio premium Cristal",
-      "variantId": "50689257",
+      "variantId": "50689256",
       "variantName": "50ml pipeta blanca",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/165b01d40b5d97779e6aa2a36e13d7ff50ab829f4ca89cc58099e6167a0b34bd99432.jpg"
     },
     {
       "productSlug": "gotero-vidrio-premium-cristal",
       "productName": "Gotero vidrio premium Cristal",
-      "variantId": "50689258",
+      "variantId": "50689257",
       "variantName": "50ml pipeta negra",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/165b01d40b5d97779e6aa2a36e13d7ff50ab829f4ca89cc58099e6167a0b34bd99432.jpg"
     },
@@ -7674,7 +7681,7 @@
       "productSlug": "heaven-100-cc-ambar-con-tapa-difusora",
       "productName": "Heaven 100 cc ámbar con tapa difusora",
       "variantId": "18050857",
-      "variantName": "Difusora aluminio",
+      "variantName": "Difusora aluminio plata",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/ba58a328e0e0ae8a60c5324a7431b85b7fed9cd904018200a5ea1cf9918b1dbc99432.jpeg"
     },
     {
@@ -7696,6 +7703,20 @@
       "productName": "Heaven 100 cc ámbar con tapa difusora",
       "variantId": "21916594",
       "variantName": "Difusora premium plata",
+      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/ba58a328e0e0ae8a60c5324a7431b85b7fed9cd904018200a5ea1cf9918b1dbc99432.jpeg"
+    },
+    {
+      "productSlug": "heaven-100-cc-ambar-con-tapa-difusora",
+      "productName": "Heaven 100 cc ámbar con tapa difusora",
+      "variantId": "66020271",
+      "variantName": "Difusora aluminio oro",
+      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/ba58a328e0e0ae8a60c5324a7431b85b7fed9cd904018200a5ea1cf9918b1dbc99432.jpeg"
+    },
+    {
+      "productSlug": "heaven-100-cc-ambar-con-tapa-difusora",
+      "productName": "Heaven 100 cc ámbar con tapa difusora",
+      "variantId": "66229325",
+      "variantName": "Difusora bronce",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/ba58a328e0e0ae8a60c5324a7431b85b7fed9cd904018200a5ea1cf9918b1dbc99432.jpeg"
     },
     {
@@ -7884,7 +7905,7 @@
       "productSlug": "heaven-100-cc-blanco-con-tapa-difusora",
       "productName": "Heaven 100 cc blanco con tapa difusora",
       "variantId": "18050891",
-      "variantName": "Difusora aluminio",
+      "variantName": "Difusora aluminio plata",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/7a1fa0f1cc98649b4f320fe622c94b6c739c3496dea88dfda0f329a801380f4699432.jpeg"
     },
     {
@@ -7906,6 +7927,20 @@
       "productName": "Heaven 100 cc blanco con tapa difusora",
       "variantId": "21916680",
       "variantName": "Difusora premium plata",
+      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/7a1fa0f1cc98649b4f320fe622c94b6c739c3496dea88dfda0f329a801380f4699432.jpeg"
+    },
+    {
+      "productSlug": "heaven-100-cc-blanco-con-tapa-difusora",
+      "productName": "Heaven 100 cc blanco con tapa difusora",
+      "variantId": "66020363",
+      "variantName": "Difusora aluminio oro",
+      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/7a1fa0f1cc98649b4f320fe622c94b6c739c3496dea88dfda0f329a801380f4699432.jpeg"
+    },
+    {
+      "productSlug": "heaven-100-cc-blanco-con-tapa-difusora",
+      "productName": "Heaven 100 cc blanco con tapa difusora",
+      "variantId": "66229480",
+      "variantName": "Difusora bronce",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/7a1fa0f1cc98649b4f320fe622c94b6c739c3496dea88dfda0f329a801380f4699432.jpeg"
     },
     {
@@ -8080,7 +8115,7 @@
       "productSlug": "heaven-100-cc-cristal-con-tapa-difusora",
       "productName": "Heaven 100 cc cristal con tapa difusora",
       "variantId": "14161615",
-      "variantName": "Difusora de aluminio",
+      "variantName": "Difusora aluminio plata",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/321c463f3a1a8e15213458c36b00f93e16e7e2c0e4f495173303efe0dd2378c699432.jpeg"
     },
     {
@@ -8116,6 +8151,20 @@
       "productName": "Heaven 100 cc cristal con tapa difusora",
       "variantId": "21916801",
       "variantName": "Difusora premium plata",
+      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/321c463f3a1a8e15213458c36b00f93e16e7e2c0e4f495173303efe0dd2378c699432.jpeg"
+    },
+    {
+      "productSlug": "heaven-100-cc-cristal-con-tapa-difusora",
+      "productName": "Heaven 100 cc cristal con tapa difusora",
+      "variantId": "66017820",
+      "variantName": "Difusora aluminio oro",
+      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/321c463f3a1a8e15213458c36b00f93e16e7e2c0e4f495173303efe0dd2378c699432.jpeg"
+    },
+    {
+      "productSlug": "heaven-100-cc-cristal-con-tapa-difusora",
+      "productName": "Heaven 100 cc cristal con tapa difusora",
+      "variantId": "66229418",
+      "variantName": "Difusora bronce",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/321c463f3a1a8e15213458c36b00f93e16e7e2c0e4f495173303efe0dd2378c699432.jpeg"
     },
     {
@@ -10810,7 +10859,7 @@
       "productSlug": "lyon-125-cc-ambar-con-tapa-difusora",
       "productName": "Lyon 125 cc ambar con tapa difusora",
       "variantId": "18050682",
-      "variantName": "Difusora aluminio",
+      "variantName": "Difusora aluminio plata",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/9bd748166c61e99d478be62fb9c64ed60365c8b40974d668defe5b6fd706ec1399432.jpeg"
     },
     {
@@ -10839,6 +10888,13 @@
       "productName": "Lyon 125 cc ambar con tapa difusora",
       "variantId": "21916940",
       "variantName": "Difusora premium plata",
+      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/9bd748166c61e99d478be62fb9c64ed60365c8b40974d668defe5b6fd706ec1399432.jpeg"
+    },
+    {
+      "productSlug": "lyon-125-cc-ambar-con-tapa-difusora",
+      "productName": "Lyon 125 cc ambar con tapa difusora",
+      "variantId": "66019662",
+      "variantName": "Difusora aluminio oro",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/9bd748166c61e99d478be62fb9c64ed60365c8b40974d668defe5b6fd706ec1399432.jpeg"
     },
     {
@@ -11216,7 +11272,7 @@
       "productSlug": "lyon-250-cc-fume-con-tapa-difusora",
       "productName": "Lyon 250 cc Fumé con tapa difusora",
       "variantId": "23451527",
-      "variantName": "Difusora de aluminio",
+      "variantName": "Difusora aluminio plata",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/305c33e86b756de6ba28933b2c4f0111d8e93edd6d0251ec8439c6f606a82e0f99432.jpg"
     },
     {
@@ -11259,6 +11315,13 @@
       "productName": "Lyon 250 cc Fumé con tapa difusora",
       "variantId": "23451533",
       "variantName": "Difusora plastica bronce",
+      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/305c33e86b756de6ba28933b2c4f0111d8e93edd6d0251ec8439c6f606a82e0f99432.jpg"
+    },
+    {
+      "productSlug": "lyon-250-cc-fume-con-tapa-difusora",
+      "productName": "Lyon 250 cc Fumé con tapa difusora",
+      "variantId": "66045512",
+      "variantName": "Difusora aluminio oro",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/305c33e86b756de6ba28933b2c4f0111d8e93edd6d0251ec8439c6f606a82e0f99432.jpg"
     },
     {
@@ -11419,7 +11482,7 @@
       "productSlug": "lyon-250-cc-negro-con-tapa-difusora",
       "productName": "Lyon 250 cc negro con tapa difusora",
       "variantId": "23451614",
-      "variantName": "Difusora de aluminio",
+      "variantName": "Difusora aluminio plata",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/a963e1e1edb2ac21287ec9957f6d853e565e918741ee1c7081179076897ca2b099432.jpg"
     },
     {
@@ -11462,6 +11525,13 @@
       "productName": "Lyon 250 cc negro con tapa difusora",
       "variantId": "23451620",
       "variantName": "Difusora plastica bronce",
+      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/a963e1e1edb2ac21287ec9957f6d853e565e918741ee1c7081179076897ca2b099432.jpg"
+    },
+    {
+      "productSlug": "lyon-250-cc-negro-con-tapa-difusora",
+      "productName": "Lyon 250 cc negro con tapa difusora",
+      "variantId": "66045497",
+      "variantName": "Difusora aluminio oro",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/a963e1e1edb2ac21287ec9957f6d853e565e918741ee1c7081179076897ca2b099432.jpg"
     },
     {
@@ -12217,7 +12287,7 @@
       "productSlug": "mini-difusor-florencia-70cc",
       "productName": "Mini difusor Florencia 70cc",
       "variantId": "19061930",
-      "variantName": "Difusora aluminio",
+      "variantName": "Difusora aluminio plata",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/036fcbbf1c80b46c9ab1cc67014968400c3e6bb431db0983f7ba6ef8a96fa68699432.jpeg"
     },
     {
@@ -12260,6 +12330,13 @@
       "productName": "Mini difusor Florencia 70cc",
       "variantId": "21916465",
       "variantName": "Difusora premium plata",
+      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/036fcbbf1c80b46c9ab1cc67014968400c3e6bb431db0983f7ba6ef8a96fa68699432.jpeg"
+    },
+    {
+      "productSlug": "mini-difusor-florencia-70cc",
+      "productName": "Mini difusor Florencia 70cc",
+      "variantId": "66045576",
+      "variantName": "Difusora aluminio oro",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/036fcbbf1c80b46c9ab1cc67014968400c3e6bb431db0983f7ba6ef8a96fa68699432.jpeg"
     },
     {
@@ -12518,69 +12595,62 @@
       "productSlug": "omega-125-cc-cristal",
       "productName": "Omega 125 cc Cristal",
       "variantId": "17633088",
-      "variantName": "Crema Oro pico negro",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/d463492403428dbf89c07c2090d435d9cbf9a946aefd01daccbe1a7a6217197099432.jpeg"
-    },
-    {
-      "productSlug": "omega-125-cc-cristal",
-      "productName": "Omega 125 cc Cristal",
-      "variantId": "17633089",
       "variantName": "Crema Plata pico negro",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/d463492403428dbf89c07c2090d435d9cbf9a946aefd01daccbe1a7a6217197099432.jpeg"
     },
     {
       "productSlug": "omega-125-cc-cristal",
       "productName": "Omega 125 cc Cristal",
-      "variantId": "17633090",
+      "variantId": "17633089",
       "variantName": "Spray Oro pico natural",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/d463492403428dbf89c07c2090d435d9cbf9a946aefd01daccbe1a7a6217197099432.jpeg"
     },
     {
       "productSlug": "omega-125-cc-cristal",
       "productName": "Omega 125 cc Cristal",
-      "variantId": "17633091",
+      "variantId": "17633090",
       "variantName": "Spray Plata pico natural",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/d463492403428dbf89c07c2090d435d9cbf9a946aefd01daccbe1a7a6217197099432.jpeg"
     },
     {
       "productSlug": "omega-125-cc-cristal",
       "productName": "Omega 125 cc Cristal",
-      "variantId": "17633092",
+      "variantId": "17633091",
       "variantName": "Spray Oro pico negro",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/d463492403428dbf89c07c2090d435d9cbf9a946aefd01daccbe1a7a6217197099432.jpeg"
     },
     {
       "productSlug": "omega-125-cc-cristal",
       "productName": "Omega 125 cc Cristal",
-      "variantId": "17633093",
+      "variantId": "17633092",
       "variantName": "Spray Plata pico negro",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/d463492403428dbf89c07c2090d435d9cbf9a946aefd01daccbe1a7a6217197099432.jpeg"
     },
     {
       "productSlug": "omega-125-cc-cristal",
       "productName": "Omega 125 cc Cristal",
-      "variantId": "17633094",
+      "variantId": "17633093",
       "variantName": "Disk top",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/d463492403428dbf89c07c2090d435d9cbf9a946aefd01daccbe1a7a6217197099432.jpeg"
     },
     {
       "productSlug": "omega-125-cc-cristal",
       "productName": "Omega 125 cc Cristal",
-      "variantId": "18246144",
+      "variantId": "17633094",
       "variantName": "Gatillo mini natural",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/d463492403428dbf89c07c2090d435d9cbf9a946aefd01daccbe1a7a6217197099432.jpeg"
     },
     {
       "productSlug": "omega-125-cc-cristal",
       "productName": "Omega 125 cc Cristal",
-      "variantId": "19449900",
+      "variantId": "18246144",
       "variantName": "Spray natural",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/d463492403428dbf89c07c2090d435d9cbf9a946aefd01daccbe1a7a6217197099432.jpeg"
     },
     {
       "productSlug": "omega-125-cc-cristal",
       "productName": "Omega 125 cc Cristal",
-      "variantId": "20498273",
+      "variantId": "19449900",
       "variantName": "Tapa ciega aluminio",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/d463492403428dbf89c07c2090d435d9cbf9a946aefd01daccbe1a7a6217197099432.jpeg"
     },
@@ -12609,7 +12679,7 @@
       "productSlug": "omega-125-cc-cristal-con-tapa-difusora",
       "productName": "Omega 125 cc cristal con tapa difusora",
       "variantId": "21917043",
-      "variantName": "Difusora aluminio",
+      "variantName": "Difusora aluminio plata",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/42feb12eccdd8cc6300860199357dc5af15a3bc417392d346429f53b61b5a72499432.jpeg"
     },
     {
@@ -12624,6 +12694,13 @@
       "productName": "Omega 125 cc cristal con tapa difusora",
       "variantId": "21917045",
       "variantName": "Difusora premium plata",
+      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/42feb12eccdd8cc6300860199357dc5af15a3bc417392d346429f53b61b5a72499432.jpeg"
+    },
+    {
+      "productSlug": "omega-125-cc-cristal-con-tapa-difusora",
+      "productName": "Omega 125 cc cristal con tapa difusora",
+      "variantId": "66020024",
+      "variantName": "Difusora aluminio oro",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/42feb12eccdd8cc6300860199357dc5af15a3bc417392d346429f53b61b5a72499432.jpeg"
     },
     {
@@ -13141,7 +13218,7 @@
       "productSlug": "omega-200-cc-cristal-con-tapa-difusora",
       "productName": "Omega 200 cc cristal con tapa difusora",
       "variantId": "21950016",
-      "variantName": "Difusora aluminio",
+      "variantName": "Difusora aluminio plata",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/7b5018dc41ae92276d103cbca2a4ea358d5421f780f6b22982b2044854bbdae199432.jpeg"
     },
     {
@@ -13156,6 +13233,13 @@
       "productName": "Omega 200 cc cristal con tapa difusora",
       "variantId": "21950018",
       "variantName": "Difusora premium plata",
+      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/7b5018dc41ae92276d103cbca2a4ea358d5421f780f6b22982b2044854bbdae199432.jpeg"
+    },
+    {
+      "productSlug": "omega-200-cc-cristal-con-tapa-difusora",
+      "productName": "Omega 200 cc cristal con tapa difusora",
+      "variantId": "66019164",
+      "variantName": "Difusora aluminio oro",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/7b5018dc41ae92276d103cbca2a4ea358d5421f780f6b22982b2044854bbdae199432.jpeg"
     },
     {
@@ -14170,7 +14254,7 @@
       "productSlug": "omega-300-cc-soap-blanco-difusor",
       "productName": "Omega 300 cc Soap Blanco Difusor",
       "variantId": "28000907",
-      "variantName": "Difusora aluminio",
+      "variantName": "Difusora aluminio plata",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/0febddaebaf87a96cb52904f24ec2565250afc5047641c832a2c94df8d691b9999432.jpg"
     },
     {
@@ -14213,6 +14297,13 @@
       "productName": "Omega 300 cc Soap Blanco Difusor",
       "variantId": "28000944",
       "variantName": "Difusora plastica bronce",
+      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/0febddaebaf87a96cb52904f24ec2565250afc5047641c832a2c94df8d691b9999432.jpg"
+    },
+    {
+      "productSlug": "omega-300-cc-soap-blanco-difusor",
+      "productName": "Omega 300 cc Soap Blanco Difusor",
+      "variantId": "66045474",
+      "variantName": "Difusora aluminio oro",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/0febddaebaf87a96cb52904f24ec2565250afc5047641c832a2c94df8d691b9999432.jpg"
     },
     {
@@ -14996,7 +15087,7 @@
       "productSlug": "omega-soap-300-cc-ambar-con-tapa-difusora",
       "productName": "Omega Soap 300 cc Ambar con tapa difusora",
       "variantId": "13715811",
-      "variantName": "Difusora aluminio",
+      "variantName": "Difusora aluminio plata",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/0c95cc356e129bd27075844108d2e8485e1fcc5b43e69b3819e7e5f639da3e4e99432.jpeg"
     },
     {
@@ -15032,6 +15123,13 @@
       "productName": "Omega Soap 300 cc Ambar con tapa difusora",
       "variantId": "21951468",
       "variantName": "Difusora premium plata",
+      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/0c95cc356e129bd27075844108d2e8485e1fcc5b43e69b3819e7e5f639da3e4e99432.jpeg"
+    },
+    {
+      "productSlug": "omega-soap-300-cc-ambar-con-tapa-difusora",
+      "productName": "Omega Soap 300 cc Ambar con tapa difusora",
+      "variantId": "66018649",
+      "variantName": "Difusora aluminio oro",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/0c95cc356e129bd27075844108d2e8485e1fcc5b43e69b3819e7e5f639da3e4e99432.jpeg"
     },
     {
@@ -15199,7 +15297,7 @@
       "productSlug": "omega-soap-300-cc-cristal-con-tapa-difusora",
       "productName": "Omega Soap 300 cc Cristal con tapa difusora",
       "variantId": "13715839",
-      "variantName": "Difusora aluminio",
+      "variantName": "Difusora aluminio plata",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/5419d23666d8cb9e741bbaa5e0ea9565a7d56becd842cd98d3f4f2b0675d002c99432.jpeg"
     },
     {
@@ -15235,6 +15333,13 @@
       "productName": "Omega Soap 300 cc Cristal con tapa difusora",
       "variantId": "21950735",
       "variantName": "Difusora premium plata",
+      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/5419d23666d8cb9e741bbaa5e0ea9565a7d56becd842cd98d3f4f2b0675d002c99432.jpeg"
+    },
+    {
+      "productSlug": "omega-soap-300-cc-cristal-con-tapa-difusora",
+      "productName": "Omega Soap 300 cc Cristal con tapa difusora",
+      "variantId": "66018554",
+      "variantName": "Difusora aluminio oro",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/5419d23666d8cb9e741bbaa5e0ea9565a7d56becd842cd98d3f4f2b0675d002c99432.jpeg"
     },
     {
@@ -17992,7 +18097,7 @@
       "productSlug": "round-150-cc-natural-con-tapa-difusora",
       "productName": "Round 150 cc natural con tapa difusora",
       "variantId": "21951071",
-      "variantName": "Difusora aluminio",
+      "variantName": "Difusora aluminio plata",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/e50c5c209b320c53a4a6ac028013d8c5956831522f0485fa1706a3e298b9690799432.jpeg"
     },
     {
@@ -18007,6 +18112,13 @@
       "productName": "Round 150 cc natural con tapa difusora",
       "variantId": "21951073",
       "variantName": "Difusora premium plata",
+      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/e50c5c209b320c53a4a6ac028013d8c5956831522f0485fa1706a3e298b9690799432.jpeg"
+    },
+    {
+      "productSlug": "round-150-cc-natural-con-tapa-difusora",
+      "productName": "Round 150 cc natural con tapa difusora",
+      "variantId": "66020128",
+      "variantName": "Difusora aluminio oro",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/e50c5c209b320c53a4a6ac028013d8c5956831522f0485fa1706a3e298b9690799432.jpeg"
     },
     {
@@ -18356,7 +18468,7 @@
       "productSlug": "sevilla-200-cc-blanco-con-tapa-difusora",
       "productName": "Sevilla 200 cc blanco con tapa difusora",
       "variantId": "21951409",
-      "variantName": "Difusora aluminio",
+      "variantName": "Difusora aluminio plata",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/7983f051ee3a802530c6f7f833244a40ae37938ed43aa964899fe7b545280eb699432.jpeg"
     },
     {
@@ -18371,6 +18483,13 @@
       "productName": "Sevilla 200 cc blanco con tapa difusora",
       "variantId": "21951411",
       "variantName": "Difusora premium plata",
+      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/7983f051ee3a802530c6f7f833244a40ae37938ed43aa964899fe7b545280eb699432.jpeg"
+    },
+    {
+      "productSlug": "sevilla-200-cc-blanco-con-tapa-difusora",
+      "productName": "Sevilla 200 cc blanco con tapa difusora",
+      "variantId": "66019088",
+      "variantName": "Difusora aluminio oro",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/7983f051ee3a802530c6f7f833244a40ae37938ed43aa964899fe7b545280eb699432.jpeg"
     },
     {
@@ -19763,7 +19882,7 @@
       "productSlug": "times-125-cc-natural-soft-touch-con-tapa-difusora",
       "productName": "Times 125 cc Natural soft touch con tapa difusora",
       "variantId": "18770803",
-      "variantName": "Difusora aluminio",
+      "variantName": "Difusora aluminio plata",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/f1c638f54942ba2422b8a0f64d076e1dec2e9a42703c3e1a6d1b2036f09c516799432.jpeg"
     },
     {
@@ -19813,6 +19932,13 @@
       "productName": "Times 125 cc Natural soft touch con tapa difusora",
       "variantId": "25415817",
       "variantName": "Difusora plástica bronce",
+      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/f1c638f54942ba2422b8a0f64d076e1dec2e9a42703c3e1a6d1b2036f09c516799432.jpeg"
+    },
+    {
+      "productSlug": "times-125-cc-natural-soft-touch-con-tapa-difusora",
+      "productName": "Times 125 cc Natural soft touch con tapa difusora",
+      "variantId": "66020542",
+      "variantName": "Difusora aluminio oro",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/f1c638f54942ba2422b8a0f64d076e1dec2e9a42703c3e1a6d1b2036f09c516799432.jpeg"
     },
     {
@@ -20344,7 +20470,7 @@
       "productSlug": "venecia-125-cc-fume-con-tapa-difusora",
       "productName": "Venecia 125 cc Fumé con tapa difusora",
       "variantId": "23451389",
-      "variantName": "Difusora de aluminio",
+      "variantName": "Difusora aluminio plata",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/921d049f9c9183bef9912cf15e3ed8ec5d00169a25e68fb725f843ccae08090699432.jpg"
     },
     {
@@ -20387,6 +20513,13 @@
       "productName": "Venecia 125 cc Fumé con tapa difusora",
       "variantId": "23451395",
       "variantName": "Difusora plastica bronce",
+      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/921d049f9c9183bef9912cf15e3ed8ec5d00169a25e68fb725f843ccae08090699432.jpg"
+    },
+    {
+      "productSlug": "venecia-125-cc-fume-con-tapa-difusora",
+      "productName": "Venecia 125 cc Fumé con tapa difusora",
+      "variantId": "66045566",
+      "variantName": "Difusora aluminio oro",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/921d049f9c9183bef9912cf15e3ed8ec5d00169a25e68fb725f843ccae08090699432.jpg"
     },
     {
