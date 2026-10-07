@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
-import { motion, useMotionTemplate, useMotionValue, useSpring, useTransform } from "motion/react";
+import { useRef } from "react";
+import { motion, useInView, useMotionTemplate, useMotionValue, useSpring, useTransform } from "motion/react";
 import { useReducedMotion } from "@/lib/reduced-motion";
 import { ArrowUpRight, Plus } from "lucide-react";
 import { currency } from "@/lib/catalog";
@@ -12,6 +13,8 @@ export function ProductCard({ p, priority = false }: { p: Card; priority?: boole
   const add = useCart((s) => s.add);
   const single = p.variantCount === 1;
   const reduce = useReducedMotion();
+  const frame = useRef<HTMLAnchorElement>(null);
+  const shown = useInView(frame, { once: true, margin: "0px 0px -40px 0px" });
   // Inclinación 3D suave que sigue al mouse.
   const mx = useMotionValue(0.5);
   const my = useMotionValue(0.5);
@@ -42,19 +45,29 @@ export function ProductCard({ p, priority = false }: { p: Card; priority?: boole
         }}
       >
       <Link
+        ref={frame}
         href={`/productos/${p.slug}`}
         className="relative block aspect-[3/4] overflow-hidden rounded-[24px] bg-photo transition-[box-shadow,transform] duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_28px_50px_-26px_rgb(4_22_25/0.55)]"
       >
-        <img
-          src={p.image}
-          alt={p.name}
-          loading={priority ? "eager" : "lazy"}
-          decoding="async"
-          className="absolute inset-0 size-full object-cover transition duration-700 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.06]"
-        />
-        {p.image2 && (
-          <img src={p.image2} alt="" loading="lazy" decoding="async" className="absolute inset-0 size-full object-cover opacity-0 transition duration-700 group-hover:opacity-100" />
-        )}
+        {/* Revelado tipo cortina al entrar en pantalla */}
+        <motion.div
+          className="absolute inset-0"
+          initial={reduce ? false : { clipPath: "inset(100% 0% 0% 0%)" }}
+          animate={shown ? { clipPath: "inset(0% 0% 0% 0%)" } : undefined}
+          transition={{ duration: 1.1, ease: [0.76, 0, 0.24, 1] }}
+        >
+          <motion.img
+            src={p.image}
+            alt={p.name}
+            loading={priority ? "eager" : "lazy"}
+            decoding="async"
+            initial={reduce ? false : { scale: 1.25 }}
+            animate={shown ? { scale: 1 } : undefined}
+            transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute inset-0 size-full object-cover"
+          />
+          <img src={p.image} alt="" aria-hidden className="absolute inset-0 size-full object-cover opacity-0 transition duration-700 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.06] group-hover:opacity-100" />
+        </motion.div>
         {!reduce && <motion.span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" style={{ background: glare }} />}
         {!p.available ? (
           <span className="absolute left-3 top-3 rounded-full bg-ink/80 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur">Sin stock</span>

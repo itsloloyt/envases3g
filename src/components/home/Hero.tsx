@@ -8,6 +8,7 @@ import { currency } from "@/lib/catalog";
 import type { Card } from "@/lib/shop";
 import { site } from "@/lib/site";
 import { ease } from "../Reveal";
+import { Magnetic } from "../Magnetic";
 
 const layout = [
   { className: "left-[2%] top-[16%] w-[40%] -rotate-6", depth: 30, delay: 0.55 },
@@ -84,12 +85,14 @@ export function Hero({ products }: { products: Card[] }) {
           </motion.p>
 
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease, delay: 0.75 }} className="mt-9 flex flex-wrap items-center gap-3">
+            <Magnetic>
             <Link href="/productos" className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-teal py-4 pl-7 pr-5 text-sm font-bold text-night transition-colors duration-200 hover:bg-sun">
               Explorar productos
               <span className="grid size-7 place-items-center rounded-full bg-night/15 transition-transform duration-300 group-hover:translate-x-1">
                 <ArrowRight className="size-4" />
               </span>
             </Link>
+            </Magnetic>
             <a href="#local" className="inline-flex items-center gap-2 px-3 py-4 text-sm font-medium text-white/70 transition-colors duration-200 hover:text-white">
               <MapPin className="size-4 text-sun" /> {site.address}
             </a>
