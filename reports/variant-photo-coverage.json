@@ -1,9 +1,9 @@
 {
   "totalAccessoryVariants": 3105,
-  "completed": 15,
-  "remaining": 3090,
+  "completed": 19,
+  "remaining": 3086,
   "sourceLinked": 3083,
-  "sourceSharedReferences": 2605,
+  "sourceSharedReferences": 2601,
   "missing": [
     {
       "productSlug": "aceite-aromatico-premium-puro",
@@ -1268,13 +1268,6 @@
     {
       "productSlug": "body-60-cc-ambar",
       "productName": "Body 60 cc Ambar",
-      "variantId": "39455863",
-      "variantName": "Tapa ciega blanca",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/07e5cd9d15446318930229f333d962789c6e48e8d974878e5d8257214424d87399432.jpg"
-    },
-    {
-      "productSlug": "body-60-cc-ambar",
-      "productName": "Body 60 cc Ambar",
       "variantId": "39455864",
       "variantName": "Flip Top blanca",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/07e5cd9d15446318930229f333d962789c6e48e8d974878e5d8257214424d87399432.jpg"
@@ -1282,29 +1275,8 @@
     {
       "productSlug": "body-60-cc-ambar",
       "productName": "Body 60 cc Ambar",
-      "variantId": "39455865",
-      "variantName": "Crema premium negra",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/07e5cd9d15446318930229f333d962789c6e48e8d974878e5d8257214424d87399432.jpg"
-    },
-    {
-      "productSlug": "body-60-cc-ambar",
-      "productName": "Body 60 cc Ambar",
-      "variantId": "39455866",
-      "variantName": "Spray negra",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/07e5cd9d15446318930229f333d962789c6e48e8d974878e5d8257214424d87399432.jpg"
-    },
-    {
-      "productSlug": "body-60-cc-ambar",
-      "productName": "Body 60 cc Ambar",
       "variantId": "39455867",
       "variantName": "Gota Gota natural",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/07e5cd9d15446318930229f333d962789c6e48e8d974878e5d8257214424d87399432.jpg"
-    },
-    {
-      "productSlug": "body-60-cc-ambar",
-      "productName": "Body 60 cc Ambar",
-      "variantId": "39455868",
-      "variantName": "Flip Top negra",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/07e5cd9d15446318930229f333d962789c6e48e8d974878e5d8257214424d87399432.jpg"
     },
     {
