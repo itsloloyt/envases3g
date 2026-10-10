@@ -13,6 +13,7 @@ import { DiaMadreCombos, diaMadreCombosDuration } from "./DiaMadreCombos";
 import { Mascota, MASCOTA_LOOP } from "./Mascota";
 import { GraciasDiez } from "./Messi";
 import { GraciasLeoStory } from "./MessiStory";
+import { QuienesSomos, quienesDuration } from "./QuienesSomos";
 import { Detras, detrasDuration } from "./Detras";
 import { StopMotion, stopMotionDuration } from "./StopMotion";
 import { Muestras, MUESTRAS_SLIDES } from "./Muestras";
@@ -38,6 +39,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="GeoAromas" component={GeoAromas} durationInFrames={geoAromasDuration} fps={30} width={1080} height={1920} />
       <Composition id="GeoRubros" component={GeoRubros} durationInFrames={geoRubrosDuration} fps={30} width={1080} height={1920} />
       <Composition id="Rosca" component={Rosca} durationInFrames={roscaDuration} fps={30} width={1080} height={1920} />
+      <Composition id="QuienesSomos" component={QuienesSomos} durationInFrames={quienesDuration} fps={30} width={1080} height={1920} />
       <Composition id="Detras" component={Detras} durationInFrames={detrasDuration} fps={30} width={1080} height={1920} />
       <Composition id="StopMotion" component={StopMotion} durationInFrames={stopMotionDuration} fps={30} width={1080} height={1920} />
       <Composition id="Muestras" component={Muestras} durationInFrames={MUESTRAS_SLIDES} fps={30} width={1080} height={1350} />
