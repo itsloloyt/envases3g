@@ -1,9 +1,9 @@
 {
   "totalAccessoryVariants": 3105,
-  "completed": 19,
-  "remaining": 3086,
+  "completed": 23,
+  "remaining": 3082,
   "sourceLinked": 3083,
-  "sourceSharedReferences": 2601,
+  "sourceSharedReferences": 2597,
   "missing": [
     {
       "productSlug": "aceite-aromatico-premium-puro",
@@ -1338,13 +1338,6 @@
     {
       "productSlug": "body-60-cc-blanco",
       "productName": "Body 60 cc Blanco",
-      "variantId": "39456264",
-      "variantName": "Crema premium blanca",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/de30140a16937bb5cd203cd2290c00f6454f59b590e95cf12377c401b21cc10999432.jpg"
-    },
-    {
-      "productSlug": "body-60-cc-blanco",
-      "productName": "Body 60 cc Blanco",
       "variantId": "39456265",
       "variantName": "Spray blanca",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/de30140a16937bb5cd203cd2290c00f6454f59b590e95cf12377c401b21cc10999432.jpg"
@@ -1366,13 +1359,6 @@
     {
       "productSlug": "body-60-cc-blanco",
       "productName": "Body 60 cc Blanco",
-      "variantId": "39456268",
-      "variantName": "Tapa ciega blanca",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/de30140a16937bb5cd203cd2290c00f6454f59b590e95cf12377c401b21cc10999432.jpg"
-    },
-    {
-      "productSlug": "body-60-cc-blanco",
-      "productName": "Body 60 cc Blanco",
       "variantId": "39456269",
       "variantName": "Flip Top blanca",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/de30140a16937bb5cd203cd2290c00f6454f59b590e95cf12377c401b21cc10999432.jpg"
@@ -1387,22 +1373,8 @@
     {
       "productSlug": "body-60-cc-blanco",
       "productName": "Body 60 cc Blanco",
-      "variantId": "39456271",
-      "variantName": "Spray negra",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/de30140a16937bb5cd203cd2290c00f6454f59b590e95cf12377c401b21cc10999432.jpg"
-    },
-    {
-      "productSlug": "body-60-cc-blanco",
-      "productName": "Body 60 cc Blanco",
       "variantId": "39456272",
       "variantName": "Gota Gota natural",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/de30140a16937bb5cd203cd2290c00f6454f59b590e95cf12377c401b21cc10999432.jpg"
-    },
-    {
-      "productSlug": "body-60-cc-blanco",
-      "productName": "Body 60 cc Blanco",
-      "variantId": "39456273",
-      "variantName": "Flip Top negra",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/de30140a16937bb5cd203cd2290c00f6454f59b590e95cf12377c401b21cc10999432.jpg"
     },
     {
