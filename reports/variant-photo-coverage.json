@@ -1,9 +1,9 @@
 {
   "totalAccessoryVariants": 3105,
-  "completed": 23,
-  "remaining": 3082,
+  "completed": 27,
+  "remaining": 3078,
   "sourceLinked": 3083,
-  "sourceSharedReferences": 2597,
+  "sourceSharedReferences": 2594,
   "missing": [
     {
       "productSlug": "aceite-aromatico-premium-puro",
@@ -1100,20 +1100,6 @@
     {
       "productSlug": "body-300-cc-cristal",
       "productName": "Body 300 cc Cristal",
-      "variantId": "11155292",
-      "variantName": "Flip Top negra",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/987a5ea4570fb0626c773d0c5a569307214e0479f218417d5445ee362ad1640599432.jpeg"
-    },
-    {
-      "productSlug": "body-300-cc-cristal",
-      "productName": "Body 300 cc Cristal",
-      "variantId": "17488494",
-      "variantName": "Crema blanca",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/987a5ea4570fb0626c773d0c5a569307214e0479f218417d5445ee362ad1640599432.jpeg"
-    },
-    {
-      "productSlug": "body-300-cc-cristal",
-      "productName": "Body 300 cc Cristal",
       "variantId": "17488495",
       "variantName": "Crema Oro pico negro",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/987a5ea4570fb0626c773d0c5a569307214e0479f218417d5445ee362ad1640599432.jpeg"
@@ -1137,13 +1123,6 @@
       "productName": "Body 300 cc Cristal",
       "variantId": "17488498",
       "variantName": "Crema Plata pico natural",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/987a5ea4570fb0626c773d0c5a569307214e0479f218417d5445ee362ad1640599432.jpeg"
-    },
-    {
-      "productSlug": "body-300-cc-cristal",
-      "productName": "Body 300 cc Cristal",
-      "variantId": "17488499",
-      "variantName": "Spray negra",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/987a5ea4570fb0626c773d0c5a569307214e0479f218417d5445ee362ad1640599432.jpeg"
     },
     {
@@ -1221,13 +1200,6 @@
       "productName": "Body 300 cc Cristal",
       "variantId": "18073832",
       "variantName": "Gatillo mini natural",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/987a5ea4570fb0626c773d0c5a569307214e0479f218417d5445ee362ad1640599432.jpeg"
-    },
-    {
-      "productSlug": "body-300-cc-cristal",
-      "productName": "Body 300 cc Cristal",
-      "variantId": "19411242",
-      "variantName": "Cremera premium blanca",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/987a5ea4570fb0626c773d0c5a569307214e0479f218417d5445ee362ad1640599432.jpeg"
     },
     {
