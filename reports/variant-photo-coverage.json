@@ -1,7 +1,7 @@
 {
   "totalAccessoryVariants": 3105,
-  "completed": 27,
-  "remaining": 3078,
+  "completed": 33,
+  "remaining": 3072,
   "sourceLinked": 3083,
   "sourceSharedReferences": 2594,
   "missing": [
@@ -4953,48 +4953,6 @@
       "variantId": "54205375",
       "variantName": "Spray natural",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/ec5c9c01efeb8d6f98071c8e948bc5c5783eba4f42ffa3af2a44e05bb68aa15199432.jpg"
-    },
-    {
-      "productSlug": "frasco-apollo-vidrio-125-ml-ambar-con-tapa-difusora",
-      "productName": "Frasco Apollo vidrio 125 ml ambar con tapa difusora",
-      "variantId": "54206731",
-      "variantName": "Aluminio oro",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/f54d81dbf38bb1138676cdd8ef63f2abba7fe9684dc9d8ff6dcd3d3061bc22cf99432.jpg"
-    },
-    {
-      "productSlug": "frasco-apollo-vidrio-125-ml-ambar-con-tapa-difusora",
-      "productName": "Frasco Apollo vidrio 125 ml ambar con tapa difusora",
-      "variantId": "54206732",
-      "variantName": "Aluminio plata",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/f54d81dbf38bb1138676cdd8ef63f2abba7fe9684dc9d8ff6dcd3d3061bc22cf99432.jpg"
-    },
-    {
-      "productSlug": "frasco-apollo-vidrio-125-ml-ambar-con-tapa-difusora",
-      "productName": "Frasco Apollo vidrio 125 ml ambar con tapa difusora",
-      "variantId": "54206733",
-      "variantName": "Brillo negra",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/f54d81dbf38bb1138676cdd8ef63f2abba7fe9684dc9d8ff6dcd3d3061bc22cf99432.jpg"
-    },
-    {
-      "productSlug": "frasco-apollo-vidrio-125-ml-ambar-con-tapa-difusora",
-      "productName": "Frasco Apollo vidrio 125 ml ambar con tapa difusora",
-      "variantId": "58624236",
-      "variantName": "Brillo plata",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/f54d81dbf38bb1138676cdd8ef63f2abba7fe9684dc9d8ff6dcd3d3061bc22cf99432.jpg"
-    },
-    {
-      "productSlug": "frasco-apollo-vidrio-125-ml-ambar-con-tapa-difusora",
-      "productName": "Frasco Apollo vidrio 125 ml ambar con tapa difusora",
-      "variantId": "58624237",
-      "variantName": "Brillo oro",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/f54d81dbf38bb1138676cdd8ef63f2abba7fe9684dc9d8ff6dcd3d3061bc22cf99432.jpg"
-    },
-    {
-      "productSlug": "frasco-apollo-vidrio-125-ml-ambar-con-tapa-difusora",
-      "productName": "Frasco Apollo vidrio 125 ml ambar con tapa difusora",
-      "variantId": "58624238",
-      "variantName": "Madera cónica",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/f54d81dbf38bb1138676cdd8ef63f2abba7fe9684dc9d8ff6dcd3d3061bc22cf99432.jpg"
     },
     {
       "productSlug": "frasco-apollo-vidrio-125-ml-cristal-con-tapa-difusora",
