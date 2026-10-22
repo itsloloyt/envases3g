@@ -1,7 +1,7 @@
 {
   "totalAccessoryVariants": 3105,
-  "completed": 33,
-  "remaining": 3072,
+  "completed": 37,
+  "remaining": 3068,
   "sourceLinked": 3083,
   "sourceSharedReferences": 2594,
   "missing": [
@@ -1803,34 +1803,6 @@
       "variantId": "13545422",
       "variantName": "Presentación única",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/254edde0357cfa9e7d6f6ab713fd55541f23100197511b0e60f9c8e4ea1596b199432.jpeg"
-    },
-    {
-      "productSlug": "botella-aceitera-vinagrera-250ml",
-      "productName": "Botella Aceitera / Vinagrera 250ml",
-      "variantId": "62195668",
-      "variantName": "Aceite",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/f3fd84cae627da34d9efa88fd3fcd2b35125e4aa82e09616e09437d8f10a20f399432.jpg"
-    },
-    {
-      "productSlug": "botella-aceitera-vinagrera-250ml",
-      "productName": "Botella Aceitera / Vinagrera 250ml",
-      "variantId": "62195669",
-      "variantName": "Vinagre",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/f3fd84cae627da34d9efa88fd3fcd2b35125e4aa82e09616e09437d8f10a20f399432.jpg"
-    },
-    {
-      "productSlug": "botella-aceitera-vinagrera-250ml",
-      "productName": "Botella Aceitera / Vinagrera 250ml",
-      "variantId": "62195670",
-      "variantName": "Aceto",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/f3fd84cae627da34d9efa88fd3fcd2b35125e4aa82e09616e09437d8f10a20f399432.jpg"
-    },
-    {
-      "productSlug": "botella-aceitera-vinagrera-250ml",
-      "productName": "Botella Aceitera / Vinagrera 250ml",
-      "variantId": "62195826",
-      "variantName": "Aceite de Oliva",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/f3fd84cae627da34d9efa88fd3fcd2b35125e4aa82e09616e09437d8f10a20f399432.jpg"
     },
     {
       "productSlug": "botella-aceitera-vinagrera-500ml",
