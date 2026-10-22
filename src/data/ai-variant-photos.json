@@ -164,6 +164,82 @@
   "39455865": "/ia/body-60-cc-ambar/crema-negra.webp",
   "39455866": "/ia/body-60-cc-ambar/spray-negra.webp",
   "39455868": "/ia/body-60-cc-ambar/fliptop-negra.webp",
-  "39455870": "/ia/body-60-cc-ambar/spray-natural.webp"
+  "39455870": "/ia/body-60-cc-ambar/spray-natural.webp",
+  "45525387": "/ia/body-60-cc-ambar/fliptop-natural.webp",
+  "45525388": "/ia/body-60-cc-ambar/tapa-negra.webp",
+  "45525389": "/ia/body-60-cc-ambar/tapa-natural.webp"
+ },
+ "body-60-cc-cristal": {
+  "39267004": "/portadas/body-60-cc-cristal.webp",
+  "39267005": "/ia/body-60-cc-cristal/crema-blanca.webp",
+  "39267006": "/ia/body-60-cc-cristal/spray-blanca.webp",
+  "39267007": "/ia/body-60-cc-cristal/spray-plata.webp",
+  "39267008": "/ia/body-60-cc-cristal/spray-oro.webp",
+  "39267009": "/ia/body-60-cc-cristal/tapa-blanca.webp",
+  "39267010": "/ia/body-60-cc-cristal/fliptop-blanca.webp",
+  "39267011": "/ia/body-60-cc-cristal/crema-negra.webp",
+  "39267012": "/ia/body-60-cc-cristal/spray-negra.webp",
+  "39267014": "/ia/body-60-cc-cristal/fliptop-negra.webp",
+  "39267016": "/ia/body-60-cc-cristal/spray-natural.webp",
+  "45525772": "/ia/body-60-cc-cristal/fliptop-natural.webp",
+  "45525773": "/ia/body-60-cc-cristal/tapa-negra.webp",
+  "45525774": "/ia/body-60-cc-cristal/tapa-natural.webp"
+ },
+ "body-100-cc-cristal": {
+  "38606558": "/portadas/body-100-cc-cristal.webp",
+  "38606559": "/ia/body-100-cc-cristal/spray-blanca.webp",
+  "38606560": "/ia/body-100-cc-cristal/fliptop-negra.webp",
+  "38606561": "/ia/body-100-cc-cristal/tapa-blanca.webp",
+  "38606562": "/ia/body-100-cc-cristal/spray-plata.webp",
+  "38606563": "/ia/body-100-cc-cristal/spray-oro.webp",
+  "38606564": "/ia/body-100-cc-cristal/crema-blanca.webp",
+  "38606565": "/ia/body-100-cc-cristal/spray-negra.webp",
+  "38606566": "/ia/body-100-cc-cristal/fliptop-blanca.webp",
+  "38606568": "/ia/body-100-cc-cristal/crema-negra.webp",
+  "38606569": "/ia/body-100-cc-cristal/spray-natural.webp"
+ },
+ "botella-vidrio-cuadrada-250-ml-ambar-con-tapa": {
+  "32533732": "/ia/botella-vidrio-cuadrada-250-ml-ambar-con-tapa/tapa.webp"
+ },
+ "botella-vidrio-cuadrada-500-ml-ambar-con-tapa": {
+  "32533693": "/ia/botella-vidrio-cuadrada-500-ml-ambar-con-tapa/tapa.webp"
+ },
+ "venecia-250-cc-fume": {
+  "60411146": "/portadas/venecia-250-cc-fume.webp",
+  "60411147": "/ia/venecia-250-cc-fume/fliptop-negra.webp",
+  "60411148": "/ia/venecia-250-cc-fume/gatillo-negra.webp",
+  "60411149": "/ia/venecia-250-cc-fume/spray-natural.webp",
+  "60411150": "/ia/venecia-250-cc-fume/tapa-negra.webp",
+  "60411151": "/ia/venecia-250-cc-fume/crema-negra.webp",
+  "60411152": "/ia/venecia-250-cc-fume/fliptop-natural.webp",
+  "60411153": "/ia/venecia-250-cc-fume/spray-blanca.webp",
+  "60411154": "/ia/venecia-250-cc-fume/spray-negra.webp",
+  "60411155": "/ia/venecia-250-cc-fume/tapa-blanca.webp",
+  "60411156": "/ia/venecia-250-cc-fume/tapa-natural.webp",
+  "60411157": "/ia/venecia-250-cc-fume/crema-oro.webp",
+  "60411158": "/ia/venecia-250-cc-fume/crema-plata.webp",
+  "60411159": "/ia/venecia-250-cc-fume/crema-oro.webp",
+  "60411160": "/ia/venecia-250-cc-fume/crema-plata.webp",
+  "60411161": "/ia/venecia-250-cc-fume/spray-oro.webp",
+  "60411162": "/ia/venecia-250-cc-fume/spray-plata.webp",
+  "60411163": "/ia/venecia-250-cc-fume/spray-oro.webp",
+  "60411164": "/ia/venecia-250-cc-fume/spray-plata.webp",
+  "60411165": "/ia/venecia-250-cc-fume/disktop.webp",
+  "60411166": "/ia/venecia-250-cc-fume/gatillo-natural.webp",
+  "60411167": "/ia/venecia-250-cc-fume/crema-blanca.webp",
+  "60411168": "/ia/venecia-250-cc-fume/tapa-aluminio.webp"
+ },
+ "heaven-30-cc-ambar": {
+  "27995067": "/portadas/heaven-30-cc-ambar.webp",
+  "27995068": "/ia/heaven-30-cc-ambar/spray-blanca.webp",
+  "27995069": "/ia/heaven-30-cc-ambar/tapa-blanca.webp",
+  "27995070": "/ia/heaven-30-cc-ambar/spray-plata.webp",
+  "27995071": "/ia/heaven-30-cc-ambar/spray-oro.webp",
+  "27995072": "/ia/heaven-30-cc-ambar/fliptop-blanca.webp",
+  "27995073": "/ia/heaven-30-cc-ambar/spray-negra.webp",
+  "27995074": "/ia/heaven-30-cc-ambar/fliptop-negra.webp",
+  "27995075": "/ia/heaven-30-cc-ambar/spray-natural.webp",
+  "45526146": "/ia/heaven-30-cc-ambar/tapa-negra.webp",
+  "45526147": "/ia/heaven-30-cc-ambar/tapa-natural.webp"
  }
 }
