@@ -87,7 +87,6 @@ export function Rubros({ rubros }: { rubros: Rubro[] }) {
           <SplitHeading text="Un envase para cada idea" className="mt-3 font-display text-5xl font-extrabold leading-[1] sm:text-6xl" />
         </div>
         <Reveal delay={0.1}>
-          <p className="max-w-sm text-ink-2">Desde un gotero de 10 cc hasta un bidón de 2 litros. Elegí tu rubro y encontrá el envase, la tapa y el accesorio justo.</p>
         </Reveal>
       </div>
       <div className="grid auto-rows-[190px] grid-cols-2 gap-3 sm:auto-rows-[220px] sm:gap-4 md:grid-cols-8">
@@ -103,7 +102,6 @@ export function Rubros({ rubros }: { rubros: Rubro[] }) {
                 <div>
                   <p className="text-xs text-white/75">{r.count} productos</p>
                   <h3 className={`font-display leading-tight ${i === 0 ? "text-4xl sm:text-5xl" : "text-xl sm:text-2xl"}`}>{r.name}</h3>
-                  {i === 0 && <p className="mt-2 max-w-xs text-sm text-white/80">{r.blurb}</p>}
                 </div>
                 <span className="glass-dark hidden size-11 shrink-0 place-items-center rounded-full transition-transform duration-300 group-hover:rotate-45 sm:grid">
                   <ArrowUpRight className="size-5" />
@@ -171,9 +169,9 @@ export function Featured({ products }: { products: Card[] }) {
 /* ───────────────────────── Cómo comprar ───────────────────────── */
 export function HowToBuy() {
   const steps = [
-    { Icon: ShoppingBag, title: "Elegí tus productos", text: "Navegá el catálogo, filtrá por rubro y sumá al carrito con la variante que necesites." },
-    { Icon: MessageCircle, title: "Confirmá por WhatsApp", text: "Enviás el pedido armado y te confirmamos stock, total y precio por cantidad." },
-    { Icon: Store, title: "Retirá o recibí", text: `Pasás por ${site.address} o coordinamos el envío. Pagás en efectivo o transferencia.` },
+    { Icon: ShoppingBag, title: "Elegí tus productos", text: "Envase y accesorio, al carrito." },
+    { Icon: MessageCircle, title: "Confirmá por WhatsApp", text: "Te confirmamos stock y total." },
+    { Icon: Store, title: "Retirá o recibí", text: `En ${site.address} o por envío.` },
   ];
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 80%", "end 60%"] });
@@ -269,7 +267,6 @@ export function Location() {
         <Reveal className="flex flex-col rounded-[28px] bg-paper-2 p-7 sm:p-10 lg:col-span-2">
           <p className="text-xs uppercase tracking-[0.2em] text-teal-deep">El local</p>
           <h2 className="mt-3 font-display text-5xl font-extrabold leading-[1]">Vení a conocernos</h2>
-          <p className="mt-4 text-ink-2">Mirá los envases en persona, probá tapas y válvulas, y llevate asesoramiento para tu producto.</p>
 
           <ul className="mt-8 space-y-5 text-sm">
             <li className="flex gap-4">

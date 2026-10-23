@@ -25,9 +25,6 @@ export function Discounts() {
             </p>
           </Reveal>
           <SplitHeading text="Más llevás, menos pagás." className="mt-4 font-display text-5xl font-extrabold leading-[1] sm:text-6xl" />
-          <Reveal delay={0.1}>
-            <p className="mt-4 max-w-lg text-white/70">Pagando en efectivo, el descuento se aplica solo en el carrito según la cantidad de unidades de tu pedido.</p>
-          </Reveal>
 
           <div ref={ref} className="mt-10 grid gap-3 sm:grid-cols-3">
             {tiers.map((t, i) => (
@@ -55,17 +52,14 @@ export function Discounts() {
 
           <div className="mt-10 grid gap-3 text-sm sm:grid-cols-2">
             {[
-              { Icon: Banknote, title: "Efectivo", text: "Abonás en el local o al recibir. Con descuento por cantidad." },
-              { Icon: Handshake, title: "Transferencia / a acordar", text: "Coordinamos el pago por WhatsApp." },
-              { Icon: Store, title: "Retiro sin cargo", text: "Moreno 4156, Mar del Plata." },
-              { Icon: Truck, title: "Envíos a todo el país", text: "Correo Argentino a sucursal o domicilio." },
-            ].map(({ Icon, title, text }, i) => (
-              <Reveal key={title} delay={0.1 + i * 0.06} className="flex gap-3 rounded-2xl border border-white/10 p-4">
-                <Icon className="mt-0.5 size-5 shrink-0 text-teal" />
-                <span>
-                  <span className="block font-semibold">{title}</span>
-                  <span className="text-white/60">{text}</span>
-                </span>
+              { Icon: Banknote, title: "Efectivo al retirar" },
+              { Icon: Handshake, title: "Transferencia" },
+              { Icon: Store, title: "Retiro sin cargo" },
+              { Icon: Truck, title: "Envíos a todo el país" },
+            ].map(({ Icon, title }, i) => (
+              <Reveal key={title} delay={0.1 + i * 0.06} className="flex items-center gap-3 rounded-2xl border border-white/10 p-4">
+                <Icon className="size-5 shrink-0 text-teal" />
+                <span className="font-semibold">{title}</span>
               </Reveal>
             ))}
           </div>
