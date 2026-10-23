@@ -34,3 +34,12 @@ Archivos: `marketing/imagenes/muestras/01.png` … `05.png` (4:5)
 > #envases3g #mardelplata #emprendedores #muestras #cosmeticanatural
 
 Precios tomados del catálogo de la web. Revisalos antes de publicar.
+
+## Reel "Tu marca empieza en el envase" (sin precios)
+Archivo: `marketing/videos/TuMarca.mp4` (22 s, 9:16, con voz)
+
+> Tenés la receta, tenés el nombre… ¿y el envase? ✨
+> Vidrio ámbar, cristal y plástico, con goteros, válvulas, tapas y difusores para armar tu línea.
+> Empezás con pocas unidades y crecés a tu ritmo. Escribinos por WhatsApp 223 598-4362 y te asesoramos.
+>
+> #envases3g #mardelplata #emprendedoras #cosmeticanatural #velas #aromas #marcapropia
