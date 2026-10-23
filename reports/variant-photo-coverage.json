@@ -1,7 +1,7 @@
 {
   "totalAccessoryVariants": 3105,
-  "completed": 41,
-  "remaining": 3064,
+  "completed": 46,
+  "remaining": 3059,
   "sourceLinked": 3083,
   "sourceSharedReferences": 2594,
   "missing": [
@@ -19996,41 +19996,6 @@
       "variantId": "25413625",
       "variantName": "Plata pico natural",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/883420da206bd6a38f0c070f99d5906b91bec1baef0150aa74aaa31bf48da7ca99432.jpg"
-    },
-    {
-      "productSlug": "valvulas-spray-r20",
-      "productName": "Válvulas Spray R.20",
-      "variantId": "12182674",
-      "variantName": "Negra",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/f0fc69d38dc8cda851b76da2030fd8a0cbdc98befeea41bcb0de920bd81a6ad099432.jpg"
-    },
-    {
-      "productSlug": "valvulas-spray-r20",
-      "productName": "Válvulas Spray R.20",
-      "variantId": "12182675",
-      "variantName": "Blanca",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/f0fc69d38dc8cda851b76da2030fd8a0cbdc98befeea41bcb0de920bd81a6ad099432.jpg"
-    },
-    {
-      "productSlug": "valvulas-spray-r20",
-      "productName": "Válvulas Spray R.20",
-      "variantId": "24337108",
-      "variantName": "Natural",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/f0fc69d38dc8cda851b76da2030fd8a0cbdc98befeea41bcb0de920bd81a6ad099432.jpg"
-    },
-    {
-      "productSlug": "valvulas-spray-r20",
-      "productName": "Válvulas Spray R.20",
-      "variantId": "45383009",
-      "variantName": "Oro brillo",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/f0fc69d38dc8cda851b76da2030fd8a0cbdc98befeea41bcb0de920bd81a6ad099432.jpg"
-    },
-    {
-      "productSlug": "valvulas-spray-r20",
-      "productName": "Válvulas Spray R.20",
-      "variantId": "45383010",
-      "variantName": "Plata brillo",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/f0fc69d38dc8cda851b76da2030fd8a0cbdc98befeea41bcb0de920bd81a6ad099432.jpg"
     },
     {
       "productSlug": "varilla-de-bambu-13cm-para-difusor-aromatico",
