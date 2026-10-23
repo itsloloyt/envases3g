@@ -1,7 +1,7 @@
-import { Audio, Video } from "@remotion/media";
+import { Audio } from "@remotion/media";
 import { loadFont } from "@remotion/fonts";
 import React from "react";
-import { AbsoluteFill, Easing, Img, interpolate, Sequence, spring, staticFile, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Easing, Img, interpolate, random, Sequence, spring, staticFile, useCurrentFrame } from "remotion";
 import { clamp, Grain, money, SANS, SERIF } from "./kit";
 
 // Reel para barberías y peluquerías: "¿Necesitás atomizadores?".
@@ -26,26 +26,60 @@ const Word: React.FC<{ at: number; children: React.ReactNode; style?: React.CSSP
   );
 };
 
-const Hook: React.FC = () => {
-  const f = useCurrentFrame();
-  const push = interpolate(f, [0, s(3.8)], [1.04, 1.14]);
+// Escenario: el atomizador recortado, centrado abajo, con una nube de rocío que sale del pico.
+// El texto vive siempre arriba (y 300–640) y el envase abajo (y 780–1420): nunca se pisan.
+const BOT = { h: 660, top: 760 };
+const K = BOT.h / 414; // recorte de 182×414, pico en (175, 95)
+const NOZ = { x: 540 - (182 * K) / 2 + 175 * K, y: BOT.top + 95 * K };
+const Mist: React.FC<{ at: number }> = ({ at }) => {
+  const f = useCurrentFrame() - at;
+  if (f < 0 || f > 40) return null;
   return (
-    <AbsoluteFill style={{ background: INK }}>
-      <AbsoluteFill style={{ scale: String(push) }}>
-        <Video src={staticFile("barber/hook.mp4")} muted style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-      </AbsoluteFill>
-      <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(18,13,9,.55) 0%, rgba(18,13,9,0) 40%, rgba(18,13,9,0) 60%, rgba(18,13,9,.7) 100%)" }} />
-      <div style={{ position: "absolute", left: 64, right: 64, top: 300, color: CREAM, fontFamily: DISPLAY, fontSize: 132, lineHeight: 1 }}>
-        <Word at={0}>¿TENÉS</Word> <Word at={s(0.7)}>BARBERÍA</Word><br />
-        <Word at={s(1.2)} style={{ fontFamily: SERIF, fontStyle: "italic", color: GOLD, fontSize: 120 }}>o peluquería?</Word>
-      </div>
-      <div style={{ position: "absolute", left: 64, right: 64, top: 1150, color: CREAM, opacity: f >= s(2.1) ? 1 : 0 }}>
-        <div style={{ fontFamily: SANS, fontSize: 52, fontWeight: 700 }}><Word at={s(2.1)}>Necesitás</Word></div>
-        <div style={{ fontFamily: DISPLAY, fontSize: 150, lineHeight: 0.95, color: GOLD }}><Word at={s(2.55)}>ATOMIZADORES</Word></div>
-      </div>
-    </AbsoluteFill>
+    <>
+      {Array.from({ length: 70 }).map((_, i) => {
+        const r1 = random(`m${i}`), r2 = random(`n${i}`), r3 = random(`o${i}`);
+        const t = Math.max(0, f - r3 * 6);
+        const d = interpolate(t, [0, 30], [0, 260 + r1 * 340], { ...clamp, easing: IN });
+        const ang = (-18 + (r2 - 0.5) * 44) * (Math.PI / 180);
+        const o = interpolate(t, [0, 3, 30], [0, 0.85, 0], clamp);
+        const sz = 6 + r1 * 22 + t * 0.9;
+        return <div key={i} style={{ position: "absolute", left: NOZ.x + Math.cos(ang) * d, top: NOZ.y + Math.sin(ang) * d, width: sz, height: sz, marginLeft: -sz / 2, marginTop: -sz / 2, borderRadius: "50%", background: "rgba(243,234,220,.9)", filter: `blur(${3 + t * 0.25}px)`, opacity: o * 0.7 }} />;
+      })}
+    </>
   );
 };
+const Stage: React.FC<{ mist: number[] }> = ({ mist }) => {
+  const f = useCurrentFrame();
+  const p = spring({ frame: f - 2, fps: 30, config: { damping: 18 } });
+  const kick = mist.reduce((acc, m) => acc + interpolate(f - m, [0, 2, 8], [0, 1, 0], clamp), 0);
+  return (
+    <>
+      <div style={{ position: "absolute", left: 540 - 220, width: 440, top: BOT.top + BOT.h - 40, height: 80, borderRadius: "50%", background: "radial-gradient(ellipse, rgba(0,0,0,.55), transparent 70%)", opacity: p }} />
+      <Img src={staticFile("cut/home-spray-clean.png")} style={{ position: "absolute", left: "50%", top: BOT.top, height: BOT.h, translate: `-50% ${(1 - p) * 160 + kick * 6}px`, opacity: p, filter: "drop-shadow(0 30px 40px rgba(0,0,0,.45))" }} />
+      {mist.map((m) => <Mist key={m} at={m} />)}
+    </>
+  );
+};
+const Swap: React.FC<{ out: number; children: React.ReactNode }> = ({ out, children }) => {
+  const f = useCurrentFrame();
+  const x = interpolate(f, [out, out + 6], [0, 1], { ...clamp, easing: Easing.bezier(0.7, 0, 0.84, 0) });
+  return <div style={{ position: "absolute", left: 64, right: 64, top: 300, textAlign: "center", opacity: 1 - x, translate: `0 ${-x * 40}px` }}>{children}</div>;
+};
+const BG = `radial-gradient(ellipse at 50% 62%, #3a2817 0%, ${INK} 65%)`;
+
+const Hook: React.FC = () => (
+  <AbsoluteFill style={{ background: BG, color: CREAM }}>
+    <Stage mist={[s(2.55), s(3.2)]} />
+    <Swap out={s(2.0)}>
+      <div style={{ fontFamily: DISPLAY, fontSize: 130, lineHeight: 1 }}><Word at={0}>¿TENÉS</Word> <Word at={s(0.7)}>BARBERÍA</Word></div>
+      <div style={{ fontFamily: SERIF, fontStyle: "italic", color: GOLD, fontSize: 120, lineHeight: 1.05 }}><Word at={s(1.2)}>o peluquería?</Word></div>
+    </Swap>
+    <Swap out={999}>
+      <div style={{ fontFamily: SANS, fontSize: 60, fontWeight: 700 }}><Word at={s(2.1)}>Necesitás</Word></div>
+      <div style={{ fontFamily: DISPLAY, fontSize: 150, lineHeight: 1, color: GOLD }}><Word at={s(2.55)}>ATOMIZADORES</Word></div>
+    </Swap>
+  </AbsoluteFill>
+);
 
 const ITEMS = [
   { img: "accesorios/gatillo-negra.webp", name: "Gatillo trigger", sub: "negro · rosca 28", price: 747, at: 3.86 },
@@ -96,23 +130,18 @@ const Price: React.FC = () => {
   );
 };
 
-const Pro: React.FC = () => {
-  const f = useCurrentFrame();
-  return (
-    <AbsoluteFill style={{ background: INK }}>
-      {/* el final de la toma, en cámara lenta */}
-      <Video src={staticFile("barber/hook.mp4")} muted trimBefore={s(2.6)} playbackRate={0.6} style={{ width: "100%", height: "100%", objectFit: "cover", scale: "1.18" }} />
-      <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(18,13,9,.6) 0%, rgba(18,13,9,0) 45%, rgba(18,13,9,.75) 100%)" }} />
-      <div style={{ position: "absolute", left: 64, right: 64, top: 300, color: CREAM, fontFamily: DISPLAY, fontSize: 150, lineHeight: 1 }}>
-        <Word at={0}>RELLENÁS.</Word><br /><Word at={s(0.73)}>ROCIÁS.</Word>
-      </div>
-      <div style={{ position: "absolute", left: 64, right: 64, top: 1130, color: CREAM, opacity: f >= s(1.77) ? 1 : 0 }}>
-        <div style={{ fontFamily: SANS, fontSize: 54, fontWeight: 700 }}><Word at={s(1.77)}>Tu puesto se ve</Word></div>
-        <div style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 140, lineHeight: 1, color: GOLD }}><Word at={s(2.43)}>más profesional</Word></div>
-      </div>
-    </AbsoluteFill>
-  );
-};
+const Pro: React.FC = () => (
+  <AbsoluteFill style={{ background: BG, color: CREAM }}>
+    <Stage mist={[s(0.1), s(0.75)]} />
+    <Swap out={s(1.6)}>
+      <div style={{ fontFamily: DISPLAY, fontSize: 150, lineHeight: 1 }}><Word at={0}>RELLENÁS.</Word> <Word at={s(0.73)}>ROCIÁS.</Word></div>
+    </Swap>
+    <Swap out={999}>
+      <div style={{ fontFamily: SANS, fontSize: 60, fontWeight: 700 }}><Word at={s(1.77)}>Tu puesto se ve</Word></div>
+      <div style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 130, lineHeight: 1.05, color: GOLD }}><Word at={s(2.43)}>más profesional</Word></div>
+    </Swap>
+  </AbsoluteFill>
+);
 
 const Fin: React.FC = () => {
   const f = useCurrentFrame();
