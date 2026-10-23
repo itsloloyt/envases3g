@@ -41,7 +41,7 @@ const Hook: React.FC = () => {
       </div>
       <div style={{ position: "absolute", left: 64, right: 64, top: 1150, color: CREAM, opacity: f >= s(2.1) ? 1 : 0 }}>
         <div style={{ fontFamily: SANS, fontSize: 52, fontWeight: 700 }}><Word at={s(2.1)}>Necesitás</Word></div>
-        <div style={{ fontFamily: DISPLAY, fontSize: 190, lineHeight: 0.95, color: GOLD }}><Word at={s(2.55)}>ATOMIZADORES</Word></div>
+        <div style={{ fontFamily: DISPLAY, fontSize: 150, lineHeight: 0.95, color: GOLD }}><Word at={s(2.55)}>ATOMIZADORES</Word></div>
       </div>
     </AbsoluteFill>
   );
