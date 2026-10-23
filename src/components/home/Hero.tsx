@@ -80,10 +80,6 @@ export function Hero({ products }: { products: Card[] }) {
             </span>
           </h1>
 
-          <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease, delay: 0.6 }} className="mt-6 max-w-md text-lg leading-relaxed text-white/65">
-            Vidrio, plástico y accesorios. Por unidad o por mayor.
-          </motion.p>
-
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease, delay: 0.75 }} className="mt-9 flex flex-wrap items-center gap-3">
             <Magnetic>
             <Link href="/productos" className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-teal py-4 pl-7 pr-5 text-sm font-bold text-night transition-colors duration-200 hover:bg-sun">
@@ -144,7 +140,7 @@ function FloatingCard({ p, i, sx, sy, reduce }: { p: Card; i: number; sx: Motion
   const x = useTransform(sx, (v) => v * l.depth);
   const y = useTransform(sy, (v) => v * l.depth);
   return (
-    <motion.div className={`absolute ${l.className}`} style={reduce ? undefined : { x, y }}>
+    <motion.div className={`absolute ${l.className} ${i > 1 ? "hidden sm:block" : ""}`} style={reduce ? undefined : { x, y }}>
       <motion.div initial={{ opacity: 0, y: 80, scale: 0.85 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 1.1, ease, delay: l.delay }}>
         <motion.div animate={reduce ? undefined : { y: [0, -12, 0] }} transition={{ duration: 5 + i, repeat: Infinity, ease: "easeInOut", delay: i * 0.6 }}>
           <Link
@@ -153,7 +149,7 @@ function FloatingCard({ p, i, sx, sy, reduce }: { p: Card; i: number; sx: Motion
           >
             <div className="relative aspect-[3/4] overflow-hidden rounded-[20px] bg-photo">
               <img src={p.image} alt={p.name} className="size-full object-cover transition duration-700 group-hover:scale-105" />
-              <div className="glass absolute inset-x-2 bottom-2 rounded-2xl px-3 py-2 text-ink">
+              <div className="glass absolute inset-x-2 bottom-2 hidden rounded-2xl px-3 py-2 text-ink sm:block">
                 <p className="truncate text-[12px] font-semibold">{p.name}</p>
                 <p className="text-[12px] tabular-nums text-ink-2">{currency(p.price)}</p>
               </div>
