@@ -72,7 +72,7 @@ export function ProductView({ product, categoryName }: { product: Product; categ
   }
 
   return (
-    <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
+    <div className="grid gap-10 pb-24 lg:grid-cols-12 lg:gap-14 lg:pb-0">
       {/* Visor: foto del envase; al elegir un accesorio cambia con un fundido suave */}
       <div className="min-w-0 lg:col-span-7">
         <div className="lg:sticky lg:top-28">
