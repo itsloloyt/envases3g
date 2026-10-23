@@ -240,6 +240,30 @@
   "27995074": "/ia/heaven-30-cc-ambar/fliptop-negra.webp",
   "27995075": "/ia/heaven-30-cc-ambar/spray-natural.webp",
   "45526146": "/ia/heaven-30-cc-ambar/tapa-negra.webp",
-  "45526147": "/ia/heaven-30-cc-ambar/tapa-natural.webp"
+  "45526147": "/ia/heaven-30-cc-ambar/tapa-natural.webp",
+  "45526148": "/ia/heaven-30-cc-ambar/fliptop-natural.webp",
+  "45526149": "/ia/heaven-30-cc-ambar/crema-negra.webp",
+  "48114457": "/ia/heaven-30-cc-ambar/crema-blanca.webp"
+ },
+ "heaven-60-cc-blanco-con-tapa-difusora-plastica": {
+  "30688659": "/ia/heaven-60-cc-blanco-con-tapa-difusora-plastica/difusora-negra.webp"
+ },
+ "heaven-60-cc-cristal-con-tapa-difusora-plastica": {
+  "30688783": "/ia/heaven-60-cc-cristal-con-tapa-difusora-plastica/difusora-negra.webp"
+ },
+ "body-125-cc-blanca-tapa-difusora-plastica": {
+  "24739358": "/ia/body-125-cc-blanca-tapa-difusora-plastica/difusora-negra.webp"
+ },
+ "body-125-cc-ambar-tapa-difusora-plastica": {
+  "24739232": "/ia/body-125-cc-ambar-tapa-difusora-plastica/difusora-negra.webp",
+  "39917578": "/ia/body-125-cc-ambar-tapa-difusora-plastica/difusora.webp"
+ },
+ "frasco-comprimido-vidrio-70-cc-con-tapa-difusora-de-aluminio": {
+  "24701097": "/ia/frasco-comprimido-vidrio-70-cc-con-tapa-difusora-de-aluminio/difusora-oro.webp",
+  "24701098": "/ia/frasco-comprimido-vidrio-70-cc-con-tapa-difusora-de-aluminio/difusora-plata.webp"
+ },
+ "frasco-comprimido-vidrio-50-cc-con-tapa-difusora-de-aluminio": {
+  "24700980": "/ia/frasco-comprimido-vidrio-50-cc-con-tapa-difusora-de-aluminio/difusora-oro.webp",
+  "24700981": "/ia/frasco-comprimido-vidrio-50-cc-con-tapa-difusora-de-aluminio/difusora-plata.webp"
  }
 }
