@@ -1,7 +1,7 @@
 {
   "totalAccessoryVariants": 3105,
-  "completed": 46,
-  "remaining": 3059,
+  "completed": 50,
+  "remaining": 3055,
   "sourceLinked": 3083,
   "sourceSharedReferences": 2594,
   "missing": [
@@ -4798,34 +4798,6 @@
       "productName": "Frasco Apollo 125 ml ambar",
       "variantId": "54205156",
       "variantName": "Frasco Solo",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/7afbef88c3635f338117b5534cf0ea4b6135ddab6610134e4fadcfa28bc53e2999432.jpg"
-    },
-    {
-      "productSlug": "frasco-apollo-125-ml-ambar",
-      "productName": "Frasco Apollo 125 ml ambar",
-      "variantId": "54205157",
-      "variantName": "Crema negra",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/7afbef88c3635f338117b5534cf0ea4b6135ddab6610134e4fadcfa28bc53e2999432.jpg"
-    },
-    {
-      "productSlug": "frasco-apollo-125-ml-ambar",
-      "productName": "Frasco Apollo 125 ml ambar",
-      "variantId": "54205158",
-      "variantName": "Crema natural",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/7afbef88c3635f338117b5534cf0ea4b6135ddab6610134e4fadcfa28bc53e2999432.jpg"
-    },
-    {
-      "productSlug": "frasco-apollo-125-ml-ambar",
-      "productName": "Frasco Apollo 125 ml ambar",
-      "variantId": "54205159",
-      "variantName": "Spray negro",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/7afbef88c3635f338117b5534cf0ea4b6135ddab6610134e4fadcfa28bc53e2999432.jpg"
-    },
-    {
-      "productSlug": "frasco-apollo-125-ml-ambar",
-      "productName": "Frasco Apollo 125 ml ambar",
-      "variantId": "54205160",
-      "variantName": "Spray natural",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/7afbef88c3635f338117b5534cf0ea4b6135ddab6610134e4fadcfa28bc53e2999432.jpg"
     },
     {
