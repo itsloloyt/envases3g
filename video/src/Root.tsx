@@ -13,6 +13,7 @@ import { DiaMadreCombos, diaMadreCombosDuration } from "./DiaMadreCombos";
 import { Mascota, MASCOTA_LOOP } from "./Mascota";
 import { GraciasDiez } from "./Messi";
 import { GraciasLeoStory } from "./MessiStory";
+import { Comercial, comercialDuration } from "./Comercial";
 import { Marca, marcaDuration } from "./Marca";
 import { Barberia, barberiaDuration } from "./Barberia";
 import { QuienesSomos, quienesDuration } from "./QuienesSomos";
@@ -41,6 +42,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="GeoAromas" component={GeoAromas} durationInFrames={geoAromasDuration} fps={30} width={1080} height={1920} />
       <Composition id="GeoRubros" component={GeoRubros} durationInFrames={geoRubrosDuration} fps={30} width={1080} height={1920} />
       <Composition id="Rosca" component={Rosca} durationInFrames={roscaDuration} fps={30} width={1080} height={1920} />
+      <Composition id="Comercial" component={Comercial} durationInFrames={comercialDuration} fps={30} width={1080} height={1920} />
       <Composition id="Marca" component={Marca} durationInFrames={marcaDuration} fps={30} width={1080} height={1920} />
       <Composition id="Barberia" component={Barberia} durationInFrames={barberiaDuration} fps={30} width={1080} height={1920} />
       <Composition id="QuienesSomos" component={QuienesSomos} durationInFrames={quienesDuration} fps={30} width={1080} height={1920} />
