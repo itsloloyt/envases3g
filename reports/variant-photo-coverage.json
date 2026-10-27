@@ -1,7 +1,7 @@
 {
   "totalAccessoryVariants": 3105,
-  "completed": 50,
-  "remaining": 3055,
+  "completed": 53,
+  "remaining": 3052,
   "sourceLinked": 3083,
   "sourceSharedReferences": 2594,
   "missing": [
@@ -641,27 +641,6 @@
       "variantId": "43245746",
       "variantName": "Presentación única",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/ac1a8cf2de66056276ba4fc53315f99635738bf09f8578dd0b7f521743ea7a0b99432.jpg"
-    },
-    {
-      "productSlug": "bochines-peceras-de-vidrio",
-      "productName": "Bochines - Peceras de vidrio",
-      "variantId": "49389811",
-      "variantName": "Mini Bochin",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/ad31d1ce59bed9a36c103b7e483ec5e21b4f35a4cdaa28c2582e899258cb28d399432.jpg"
-    },
-    {
-      "productSlug": "bochines-peceras-de-vidrio",
-      "productName": "Bochines - Peceras de vidrio",
-      "variantId": "49389812",
-      "variantName": "Bochin",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/ad31d1ce59bed9a36c103b7e483ec5e21b4f35a4cdaa28c2582e899258cb28d399432.jpg"
-    },
-    {
-      "productSlug": "bochines-peceras-de-vidrio",
-      "productName": "Bochines - Peceras de vidrio",
-      "variantId": "49389813",
-      "variantName": "Pecera",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/ad31d1ce59bed9a36c103b7e483ec5e21b4f35a4cdaa28c2582e899258cb28d399432.jpg"
     },
     {
       "productSlug": "body-100-cc-cristal",
