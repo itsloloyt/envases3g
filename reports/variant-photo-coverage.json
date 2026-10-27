@@ -1,9 +1,9 @@
 {
   "totalAccessoryVariants": 3105,
-  "completed": 53,
-  "remaining": 3052,
+  "completed": 55,
+  "remaining": 3050,
   "sourceLinked": 3083,
-  "sourceSharedReferences": 2594,
+  "sourceSharedReferences": 2592,
   "missing": [
     {
       "productSlug": "aceite-aromatico-premium-puro",
@@ -3756,20 +3756,6 @@
       "variantId": "31231399",
       "variantName": "Presentación única",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/7f8835f4ba74895b6d3319d87a3415047fb1562fa782147c11f2b2deda528a1999432.jpg"
-    },
-    {
-      "productSlug": "difusor-vidrio-cilindrico-de-150-ml",
-      "productName": "Difusor vidrio cilíndrico de 150 ml",
-      "variantId": "39596685",
-      "variantName": "Tapa dorada",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/5db59ef4293ca12f18d09aeed4bd99c2e0d5f3f8a8f5060a1fd226bcb1d0021899432.jpg"
-    },
-    {
-      "productSlug": "difusor-vidrio-cilindrico-de-150-ml",
-      "productName": "Difusor vidrio cilíndrico de 150 ml",
-      "variantId": "39596686",
-      "variantName": "Tapa plateada",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/5db59ef4293ca12f18d09aeed4bd99c2e0d5f3f8a8f5060a1fd226bcb1d0021899432.jpg"
     },
     {
       "productSlug": "difusor-vidrio-cuadrado-110cc-con-tapa-difusora-plata",
