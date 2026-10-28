@@ -1,7 +1,7 @@
 {
   "totalAccessoryVariants": 3105,
-  "completed": 55,
-  "remaining": 3050,
+  "completed": 57,
+  "remaining": 3048,
   "sourceLinked": 3083,
   "sourceSharedReferences": 2592,
   "missing": [
@@ -5212,20 +5212,6 @@
       "variantId": "17265972",
       "variantName": "Blanco",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/3f236cb468214814db7a238fb90e9a77eb3e83b4355bd458ca8a6df11c464a7499432.jpeg"
-    },
-    {
-      "productSlug": "frasco-imperial-60cc-vidrio-con-valvula-spray",
-      "productName": "Frasco Imperial 60cc vidrio con valvula spray",
-      "variantId": "54507487",
-      "variantName": "Blanca",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/190ac57abc15a059b398a51cd27f677f90c198d55f9f933d16792dca5312e8c099432.jpg"
-    },
-    {
-      "productSlug": "frasco-imperial-60cc-vidrio-con-valvula-spray",
-      "productName": "Frasco Imperial 60cc vidrio con valvula spray",
-      "variantId": "54507488",
-      "variantName": "Negra",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/190ac57abc15a059b398a51cd27f677f90c198d55f9f933d16792dca5312e8c099432.jpg"
     },
     {
       "productSlug": "frasco-jarabe-250-cc-vidrio-ambar",
