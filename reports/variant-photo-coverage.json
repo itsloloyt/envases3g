@@ -1,7 +1,7 @@
 {
   "totalAccessoryVariants": 3105,
-  "completed": 57,
-  "remaining": 3048,
+  "completed": 59,
+  "remaining": 3046,
   "sourceLinked": 3083,
   "sourceSharedReferences": 2592,
   "missing": [
@@ -6052,20 +6052,6 @@
       "variantId": "23996535",
       "variantName": "Presentación única",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/a70c11cf69a5f65e26237dd15c185fa65698c31fb1822510f3198c56c00e990299432.jpg"
-    },
-    {
-      "productSlug": "frasco-vidrio-alba-800-cc",
-      "productName": "Frasco vidrio Alba 800 cc",
-      "variantId": "20440423",
-      "variantName": "Sin tapa",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/0d9c9ccf4b475e86f8d65b435f94980b177ff4bc538c1bdc26649e4e5f58287199432.jpg"
-    },
-    {
-      "productSlug": "frasco-vidrio-alba-800-cc",
-      "productName": "Frasco vidrio Alba 800 cc",
-      "variantId": "20440424",
-      "variantName": "Tapa axial 70 dorada",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/0d9c9ccf4b475e86f8d65b435f94980b177ff4bc538c1bdc26649e4e5f58287199432.jpg"
     },
     {
       "productSlug": "frasco-vidrio-almendra-290cc",
