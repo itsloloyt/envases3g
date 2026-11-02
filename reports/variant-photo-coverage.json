@@ -1,7 +1,7 @@
 {
   "totalAccessoryVariants": 3105,
-  "completed": 59,
-  "remaining": 3046,
+  "completed": 61,
+  "remaining": 3044,
   "sourceLinked": 3083,
   "sourceSharedReferences": 2592,
   "missing": [
@@ -2867,20 +2867,6 @@
       "variantId": "62197665",
       "variantName": "Presentación única",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/2866cecd6918e8c1b54192ab5e79cd24facc05fb754d8b90223021a4d5b8fe5199432.jpg"
-    },
-    {
-      "productSlug": "botellon-vidrio-growler-1950cc",
-      "productName": "Botellon vidrio Growler 1950cc",
-      "variantId": "11686995",
-      "variantName": "Sin tapa",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/2b35c5cbc252f03bd78c3889000f45c7275379f7d06b2bd623828da066390efb99432.jpg"
-    },
-    {
-      "productSlug": "botellon-vidrio-growler-1950cc",
-      "productName": "Botellon vidrio Growler 1950cc",
-      "variantId": "11687000",
-      "variantName": "Con tapa plastica",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/2b35c5cbc252f03bd78c3889000f45c7275379f7d06b2bd623828da066390efb99432.jpg"
     },
     {
       "productSlug": "boticario-vidrio-satinado-50ml",
