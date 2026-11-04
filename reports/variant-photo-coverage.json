@@ -1,7 +1,7 @@
 {
   "totalAccessoryVariants": 3105,
-  "completed": 61,
-  "remaining": 3044,
+  "completed": 65,
+  "remaining": 3040,
   "sourceLinked": 3083,
   "sourceSharedReferences": 2592,
   "missing": [
@@ -6073,34 +6073,6 @@
       "variantId": "55458874",
       "variantName": "PACK 10 UNID S/TAPA",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/df4d0932e3a8b17ec418261d3f55b55e3a255cf8d0127acfada71ba4b6595b1b99432.jpg"
-    },
-    {
-      "productSlug": "frasco-vidrio-amanecer-250-cc",
-      "productName": "Frasco vidrio Amanecer 250 cc",
-      "variantId": "12761676",
-      "variantName": "Sin tapa",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/29a19574cd5eb809471970117c31f768eae8b3f50a42953a5c4587595ee08c4999432.jpg"
-    },
-    {
-      "productSlug": "frasco-vidrio-amanecer-250-cc",
-      "productName": "Frasco vidrio Amanecer 250 cc",
-      "variantId": "12761677",
-      "variantName": "Tapa axial 63 dorada",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/29a19574cd5eb809471970117c31f768eae8b3f50a42953a5c4587595ee08c4999432.jpg"
-    },
-    {
-      "productSlug": "frasco-vidrio-amanecer-250-cc",
-      "productName": "Frasco vidrio Amanecer 250 cc",
-      "variantId": "12761678",
-      "variantName": "Tapa axial 63 blanca",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/29a19574cd5eb809471970117c31f768eae8b3f50a42953a5c4587595ee08c4999432.jpg"
-    },
-    {
-      "productSlug": "frasco-vidrio-amanecer-250-cc",
-      "productName": "Frasco vidrio Amanecer 250 cc",
-      "variantId": "15683524",
-      "variantName": "Tapa axial 63 negra",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/29a19574cd5eb809471970117c31f768eae8b3f50a42953a5c4587595ee08c4999432.jpg"
     },
     {
       "productSlug": "frasco-vidrio-anchoero-100cc",
