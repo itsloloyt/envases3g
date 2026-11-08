@@ -1,7 +1,7 @@
 {
   "totalAccessoryVariants": 3105,
-  "completed": 65,
-  "remaining": 3040,
+  "completed": 67,
+  "remaining": 3038,
   "sourceLinked": 3083,
   "sourceSharedReferences": 2592,
   "missing": [
@@ -6010,20 +6010,6 @@
       "variantId": "23995633",
       "variantName": "Tapón de goma",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/a5cfe1d1deb6094af356049043042449a8ae5c99967b87e97708c3053b02fd9099432.jpg"
-    },
-    {
-      "productSlug": "frasco-vial-vidrio-5-cc-con-corcho-o-tapon-de-goma",
-      "productName": "Frasco Vial vidrio 5 cc con Corcho o Tapón de goma",
-      "variantId": "23996999",
-      "variantName": "Corcho",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/04506f32df3fb1629ac090fcb170dce9836a4f93aac75cda15e9f0af997e35d199432.jpg"
-    },
-    {
-      "productSlug": "frasco-vial-vidrio-5-cc-con-corcho-o-tapon-de-goma",
-      "productName": "Frasco Vial vidrio 5 cc con Corcho o Tapón de goma",
-      "variantId": "23997000",
-      "variantName": "Tapón de goma",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/04506f32df3fb1629ac090fcb170dce9836a4f93aac75cda15e9f0af997e35d199432.jpg"
     },
     {
       "productSlug": "frasco-vial-vidrio-5-cc-con-tapa-a-rosca",
