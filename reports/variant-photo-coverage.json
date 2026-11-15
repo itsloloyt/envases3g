@@ -1,7 +1,7 @@
 {
   "totalAccessoryVariants": 3105,
-  "completed": 71,
-  "remaining": 3034,
+  "completed": 73,
+  "remaining": 3032,
   "sourceLinked": 3083,
   "sourceSharedReferences": 2592,
   "missing": [
@@ -2699,20 +2699,6 @@
       "variantId": "11686522",
       "variantName": "Tapa plastica",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/f9d56d862242d307c535d006a392182f216cb3c911709e76a32e4bf135118b6299432.jpg"
-    },
-    {
-      "productSlug": "botella-vidrio-jugo-250cc",
-      "productName": "Botella vidrio Jugo 250cc",
-      "variantId": "11686610",
-      "variantName": "Sin tapa",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/0935960bd5005d03769dc2192dd3b7da9a9e628005334a86874dfbbe09d910ba99432.jpg"
-    },
-    {
-      "productSlug": "botella-vidrio-jugo-250cc",
-      "productName": "Botella vidrio Jugo 250cc",
-      "variantId": "11686611",
-      "variantName": "Tapa axial 38 dorada",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/0935960bd5005d03769dc2192dd3b7da9a9e628005334a86874dfbbe09d910ba99432.jpg"
     },
     {
       "productSlug": "botella-vidrio-jugo-250cc",
