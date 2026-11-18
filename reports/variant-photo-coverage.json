@@ -1,7 +1,7 @@
 {
   "totalAccessoryVariants": 3105,
-  "completed": 73,
-  "remaining": 3032,
+  "completed": 77,
+  "remaining": 3028,
   "sourceLinked": 3083,
   "sourceSharedReferences": 2592,
   "missing": [
@@ -2717,20 +2717,6 @@
     {
       "productSlug": "botella-vidrio-jugo-500cc",
       "productName": "Botella vidrio Jugo 500cc",
-      "variantId": "11686638",
-      "variantName": "Sin tapa",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/83465481bbbb6ecfffe736ed99b412574a425d1affdff03bed9ca2d079f6300699432.jpg"
-    },
-    {
-      "productSlug": "botella-vidrio-jugo-500cc",
-      "productName": "Botella vidrio Jugo 500cc",
-      "variantId": "11686639",
-      "variantName": "Tapa axial 38 dorada",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/83465481bbbb6ecfffe736ed99b412574a425d1affdff03bed9ca2d079f6300699432.jpg"
-    },
-    {
-      "productSlug": "botella-vidrio-jugo-500cc",
-      "productName": "Botella vidrio Jugo 500cc",
       "variantId": "52752124",
       "variantName": "Tapa axial 38 blanca",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/83465481bbbb6ecfffe736ed99b412574a425d1affdff03bed9ca2d079f6300699432.jpg"
@@ -2741,20 +2727,6 @@
       "variantId": "52752125",
       "variantName": "Tapa axial 38 negra",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/83465481bbbb6ecfffe736ed99b412574a425d1affdff03bed9ca2d079f6300699432.jpg"
-    },
-    {
-      "productSlug": "botella-vidrio-jugo-910cc",
-      "productName": "Botella vidrio Jugo 910cc",
-      "variantId": "11686655",
-      "variantName": "Sin tapa",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/c5491890fc4be0d5e82bbe98ac9608f11a6ea3be2402a997faab32237d4dba2d99432.jpg"
-    },
-    {
-      "productSlug": "botella-vidrio-jugo-910cc",
-      "productName": "Botella vidrio Jugo 910cc",
-      "variantId": "11686656",
-      "variantName": "Tapa axial 38 dorada",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/c5491890fc4be0d5e82bbe98ac9608f11a6ea3be2402a997faab32237d4dba2d99432.jpg"
     },
     {
       "productSlug": "botella-vidrio-jugo-910cc",
