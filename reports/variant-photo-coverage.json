@@ -1,9 +1,9 @@
 {
   "totalAccessoryVariants": 3105,
-  "completed": 77,
-  "remaining": 3028,
+  "completed": 79,
+  "remaining": 3026,
   "sourceLinked": 3083,
-  "sourceSharedReferences": 2592,
+  "sourceSharedReferences": 2591,
   "missing": [
     {
       "productSlug": "aceite-aromatico-premium-puro",
@@ -2206,13 +2206,6 @@
     {
       "productSlug": "botella-leve-pet-ambar-30-cc",
       "productName": "Botella Leve Pet Ambar 30 cc",
-      "variantId": "19419811",
-      "variantName": "Tapa plastica negra",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/1b3be0206cc45e85e0d54545db6b4bfb1322469298abc500f27dce5c2569403d99432.jpeg"
-    },
-    {
-      "productSlug": "botella-leve-pet-ambar-30-cc",
-      "productName": "Botella Leve Pet Ambar 30 cc",
       "variantId": "22566375",
       "variantName": "Tapa ciega aluminio",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/1b3be0206cc45e85e0d54545db6b4bfb1322469298abc500f27dce5c2569403d99432.jpeg"
@@ -2230,13 +2223,6 @@
       "variantId": "18770441",
       "variantName": "Difusora aluminio plata",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/3b8dfa485bac0290cd41b3e451d8eae9cb16fdec32bc716903e2a09ddbf4e24d99432.jpeg"
-    },
-    {
-      "productSlug": "botella-leve-pet-ambar-50-cc",
-      "productName": "Botella Leve Pet Ambar 50 cc",
-      "variantId": "19419874",
-      "variantName": "Tapa plastica negra",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/02fc1c068414378a8f5ee018a267df820beed8b505a2fc812b5ae105eb92689a99432.jpeg"
     },
     {
       "productSlug": "botella-leve-pet-ambar-50-cc",
