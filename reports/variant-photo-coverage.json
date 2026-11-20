@@ -1,7 +1,7 @@
 {
   "totalAccessoryVariants": 3105,
-  "completed": 79,
-  "remaining": 3026,
+  "completed": 80,
+  "remaining": 3025,
   "sourceLinked": 3083,
   "sourceSharedReferences": 2591,
   "missing": [
@@ -2012,13 +2012,6 @@
       "productName": "Botella Leve PET 50 ml cristal",
       "variantId": "62431794",
       "variantName": "Negra",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/3c80486df5c946c311d847bc20d6551fc3c4b25e862d3744284f294e894b5c7f99432.jpg"
-    },
-    {
-      "productSlug": "botella-leve-pet-50-ml-cristal",
-      "productName": "Botella Leve PET 50 ml cristal",
-      "variantId": "62431795",
-      "variantName": "Aluminio",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/3c80486df5c946c311d847bc20d6551fc3c4b25e862d3744284f294e894b5c7f99432.jpg"
     },
     {
