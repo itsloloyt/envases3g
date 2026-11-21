@@ -1,7 +1,7 @@
 {
   "totalAccessoryVariants": 3105,
-  "completed": 80,
-  "remaining": 3025,
+  "completed": 83,
+  "remaining": 3022,
   "sourceLinked": 3083,
   "sourceSharedReferences": 2591,
   "missing": [
@@ -9524,27 +9524,6 @@
       "variantId": "26794388",
       "variantName": "Presentación única",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/86e28630207af192e89dc7f5230077af77e89b837d60684c0bd57ba51468c36699432.jpg"
-    },
-    {
-      "productSlug": "lata-pastillero-de-aluminio-15-50-100-ml",
-      "productName": "Lata pastillero de aluminio. 15 - 50 - 100 ml",
-      "variantId": "50480843",
-      "variantName": "15 ml",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/fa90bf969cfab40064f0523cac04fb304571e3d3d5610b833e11901a0b7ebf2599432.jpg"
-    },
-    {
-      "productSlug": "lata-pastillero-de-aluminio-15-50-100-ml",
-      "productName": "Lata pastillero de aluminio. 15 - 50 - 100 ml",
-      "variantId": "50480844",
-      "variantName": "50 ml",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/fa90bf969cfab40064f0523cac04fb304571e3d3d5610b833e11901a0b7ebf2599432.jpg"
-    },
-    {
-      "productSlug": "lata-pastillero-de-aluminio-15-50-100-ml",
-      "productName": "Lata pastillero de aluminio. 15 - 50 - 100 ml",
-      "variantId": "50480845",
-      "variantName": "100 ml",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/fa90bf969cfab40064f0523cac04fb304571e3d3d5610b833e11901a0b7ebf2599432.jpg"
     },
     {
       "productSlug": "life-125-cc-cristal",
