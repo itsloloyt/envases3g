@@ -1,9 +1,9 @@
 {
   "totalAccessoryVariants": 3105,
-  "completed": 83,
-  "remaining": 3022,
+  "completed": 85,
+  "remaining": 3020,
   "sourceLinked": 3083,
-  "sourceSharedReferences": 2591,
+  "sourceSharedReferences": 2589,
   "missing": [
     {
       "productSlug": "aceite-aromatico-premium-puro",
@@ -1831,20 +1831,6 @@
       "variantId": "38502305",
       "variantName": "Presentación única",
       "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/224f501c69f3476839a95de0ce2e4780537ceb80e4f995a41facf554a689f15299432.jpg"
-    },
-    {
-      "productSlug": "botella-de-vidrio-rectangular-de-125-ml",
-      "productName": "Botella de vidrio rectangular de 125 ml",
-      "variantId": "41194651",
-      "variantName": "Botella sola",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/01a8d45f2f036eec9df27f7570b1cc72835f1e193294962a496e7b96433ca28099432.jpg"
-    },
-    {
-      "productSlug": "botella-de-vidrio-rectangular-de-125-ml",
-      "productName": "Botella de vidrio rectangular de 125 ml",
-      "variantId": "41194652",
-      "variantName": "Botella con corcho",
-      "referenceImage": "https://d22fxaf9t8d39k.cloudfront.net/01a8d45f2f036eec9df27f7570b1cc72835f1e193294962a496e7b96433ca28099432.jpg"
     },
     {
       "productSlug": "botella-esencia-100-ml-vidrio-con-tapa-a-rosca",
